@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 import Layout from '../containers/app-layout'
+import ReactMarkdown from "react-markdown"
 
 const UserTemplate = ({ data }) => (
   <Layout>
@@ -11,7 +12,15 @@ const UserTemplate = ({ data }) => (
           <h2>
             <Link to={`/Article_${article.id}`}>{article.title}</Link>
           </h2>
-          <p>{article.content}</p>
+          <ReactMarkdown
+            source={article.content.substring(0, 100).concat("...")}
+            escapeHtml={false}
+            transformImageUri={uri => uri.startsWith('http') ? uri :
+              `${process.env.IMAGE_BASE_URL}${uri}` }
+            className="indexArticle"
+          />
+
+          <Link to={`/Article_${article.id}`}>Read more</Link>
         </li>
       ))}
     </ul>
@@ -20,7 +29,7 @@ const UserTemplate = ({ data }) => (
 
 export default UserTemplate
 
-export const query = graphql`
+export const query = graphql`  
   query UserTemplate($id: String!) {
     strapiUser(id: { eq: $id }) {
       id

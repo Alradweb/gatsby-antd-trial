@@ -1,21 +1,24 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-import Header from "../components/header"
-import AppLayout from "../containers/app-layout"
+import Layout from "../containers/app-layout"
+//import ReactMarkdown from "react-markdown"
+//import Img from 'gatsby-image'
+import Header from '../components/header'
+/* eslint-disable */
 
 export default (props) => {
-  const { data } = props
-  console.log(props)
-  return (
-    <AppLayout>
-      <div style={{ color: `purple` }}>
-        <Header headerText={data.site.siteMetadata.title}/>
-        <Link to="/contact/">Contact</Link>
-        <p>language : {data.site.siteMetadata.language}</p>
-        <img src="https://source.unsplash.com/random/400x200" alt="Fq8USwd9HH3A62D"/>
-      </div>
-    </AppLayout>
-  )
+    const { data } = props
+    console.log(process.env.IMAGE_BASE_URL)
+    return (
+      <Layout>
+          <div style={{ color: `purple` }}>
+              <Header headerText={data.site.siteMetadata.title}/>
+              <Link to="/contact/">Contact</Link>
+              <p>language : {data.site.siteMetadata.language}</p>
+              <img src="https://source.unsplash.com/random/400x200" alt="Fq8USwd9HH3A62D"/>
+          </div>
+      </Layout>
+    )
 }
 export const query = graphql`
   query {

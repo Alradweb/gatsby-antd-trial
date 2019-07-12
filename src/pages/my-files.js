@@ -3,7 +3,7 @@ import { graphql } from "gatsby"
 import Layout from "antd/lib/layout"
 
 export default ({ data }) => {
-  console.log(data)
+  //console.log(data)
   return (
     <Layout>
       <div>
