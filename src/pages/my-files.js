@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from "gatsby"
-import Layout from "antd/lib/layout"
+import Layout from "../containers/app-layout"
 
 export default ({ data }) => {
   //console.log(data)

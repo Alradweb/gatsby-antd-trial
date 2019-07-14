@@ -1,6 +1,16 @@
 html {
     background-color: #ffefd5;
 }
+.app-container{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    overflow: hidden;
+}
+.app-media{
+    width: auto;
+    height: 100%;
+}
 .test{
     border: 2px solid black;
 }
@@ -27,3 +37,5 @@ html {
     width: 100%;
     max-width: 600px;
 }
+
+

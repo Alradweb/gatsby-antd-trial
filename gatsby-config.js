@@ -8,9 +8,31 @@ module.exports = {
   /* Your site config here */
   siteMetadata: {
     title: `Test`,
-    language: 'en'
+    language: "en",
+    helmetMetaData: [
+      { name: 'description', content: 'Sample' },
+      { name: 'keywords', content: 'sample, something' },
+    ],
+    menuLinks: [
+      {
+        name: "home",
+        link: "/",
+        key: 1
+      },
+      {
+        name: "articles",
+        link: "/articles",
+        key: 2
+      },
+      {
+        name: "users",
+        link: "/users",
+        key: 3
+      },
+    ],
   },
   plugins: [
+    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -20,7 +42,7 @@ module.exports = {
     },
     `gatsby-transformer-remark`,
     {
-      resolve: 'gatsby-source-strapi',
+      resolve: "gatsby-source-strapi",
       options: {
         apiURL: process.env.DEPLOY_URL
           ? "https://intense-inlet-52562.herokuapp.com"
@@ -30,6 +52,6 @@ module.exports = {
       },
     },
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`
+    `gatsby-plugin-sharp`,
   ],
 }
