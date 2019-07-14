@@ -1,25 +1,45 @@
-import React, { useRef, useState } from "react"
+import React, { useRef, useState,  useEffect } from "react"
 import classes from "./app-menu.module.css"
 import Media from "react-media"
 import { Layout, Menu, Icon } from "antd"
-//import { Link } from "@reach/router"
+import { Link } from "@reach/router"
 import styles from "./app-menu.module.css"
-import { Link} from "gatsby"
+//import { Link} from "gatsby"
 
 const { Header} = Layout
+
+
+// const GatsbyLink = ({ activeClassName, children, ...rest }) => {
+//   const isPartiallyActive = ({ isPartiallyCurrent }) => {
+//     return isPartiallyCurrent ? { className: activeClassName } : null;
+//   };
+//
+//   return (
+//     <Link {...rest} getProps={isPartiallyActive}>
+//       {children}
+//     </Link>
+//   );
+// };
+
 const currentLocation = (menuLinks, location) =>{
+  console.log('DesktopMenu--', location)
   const result =  menuLinks.find(({link}) => link === location)
   return result ? result.key : 0
 }
 
 const DesktopMenu = ({menuLinks, location}) => {
+  const testing = currentLocation(menuLinks, location)
+  // useEffect(() => {
+  //   console.log('--')
+  // }, [location]);
   return (
     <Header>
       <div className={styles.logo}/>
       <Menu
         theme="dark"
         mode="horizontal"
-        defaultSelectedKeys={[`${currentLocation(menuLinks, location)}`]}
+        defaultSelectedKeys={[`${testing}`]}
+        selectedKeys={[`${testing}`]}
         style={{ lineHeight: "64px" }}
       >
         {menuLinks.map(({key, link, name}) =>{
@@ -64,6 +84,7 @@ const MobileMenu = ({menuLinks, location}) => {
       }}>
         <Menu
           defaultSelectedKeys={[`${currentLocation(menuLinks, location)}`]}
+          selectedKeys={[`${currentLocation(menuLinks, location)}`]}
           theme="dark"
           onClick={function({ item, key, keyPath, domEvent }) {
             //console.log(item, key, keyPath, domEvent)
@@ -86,38 +107,38 @@ const MobileMenu = ({menuLinks, location}) => {
   )
 }
 
-const AppMenu = ({menuLinks}) => {
-  const location = window.location.pathname
-  return (
-    <>
-      <Media query="(max-width: 599px)">
-        {matches =>
-          matches ? (
-            <MobileMenu menuLinks={menuLinks} location={location}/>
-          ) : (
-            <DesktopMenu menuLinks={menuLinks} location={location}/>
-          )
-        }
-      </Media>
-    </>
-  )
+class AppMenu extends React.Component{
+  state ={
+    location : '/'
+  }
+  componentDidMount(){
+    const location = typeof window  !== undefined ? window.location.pathname : '/'
+    console.log('location--',location)
+    this.setState((state)=>{
+      return{
+        location
+      }
+    })
+  }
+
+  render(){
+     console.log('render', this.state)
+    return (
+      <>
+        <Media query="(max-width: 599px)">
+          {matches =>
+            matches ? (
+              <MobileMenu menuLinks={this.props.menuLinks} location={this.state.location}/>
+            ) : (
+              <DesktopMenu menuLinks={this.props.menuLinks} location={this.state.location}/>
+            )
+          }
+        </Media>
+      </>
+    )
+  }
+
 }
 
-
-// export const query = graphql`
-//   query AppMenu {
-//     site {
-//     siteMetadata {
-//       title
-//       language
-//       menuLinks {
-//         key
-//         link
-//         name
-//       }
-//     }
-//   }
-//  }
-// `
 
 export default AppMenu
