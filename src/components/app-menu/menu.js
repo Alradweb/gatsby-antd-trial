@@ -1,29 +1,28 @@
 import React, { useRef, useState } from "react"
 import classes from "./app-menu.module.css"
-import Media from "react-media"
 import { Layout, Menu, Icon } from "antd"
-import { Link } from "@reach/router"
+import { Link as GatsbyLink } from "@reach/router"
 import styles from "./app-menu.module.css"
+//import Media from "react-media"
 //import { Link} from "gatsby"
-
 const { Header} = Layout
+if (typeof window !== `undefined`) {
+  var Media = require("react-media").default
+}
 
-
-const GatsbyLink  = props => (
-  <Link
-    {...props}
-    getProps={(props ) => {
-      //console.log(props)
-      // the object returned here is passed to the
-      // anchor element's props
-      return {
-        style: {
-          border: props.isCurrent ? "3px solid white" : "1px solid black"
-        }
-      };
-    }}
-  />
-)
+// const GatsbyLink  = props => (
+//   <Link
+//     {...props}
+//     getProps={(props ) => {
+//
+//       return {
+//         style: {
+//           border: props.isCurrent ? "3px solid white" : "1px solid black"
+//         }
+//       };
+//     }}
+//   />
+// )
 
 
 
@@ -104,7 +103,18 @@ const MobileMenu = ({menuLinks, location}) => {
     </>
   )
 }
+const FMedia =(props) =>{
 
+  return Media ? (<Media query="(max-width: 599px)">
+    {matches =>
+      matches ? (
+        <MobileMenu menuLinks={props.menuLinks}/>
+      ) : (
+        <DesktopMenu menuLinks={props.menuLinks}/>
+      )
+    }
+  </Media>) : <DesktopMenu menuLinks={props.menuLinks}/>
+}
 class AppMenu extends React.Component{
 
   componentDidMount(){
@@ -117,15 +127,7 @@ class AppMenu extends React.Component{
 
     return (
       <>
-        <Media query="(max-width: 599px)">
-          {matches =>
-            matches ? (
-              <MobileMenu menuLinks={this.props.menuLinks}/>
-            ) : (
-              <DesktopMenu menuLinks={this.props.menuLinks}/>
-            )
-          }
-        </Media>
+        <FMedia {...this.props}/>
       </>
     )
   }

@@ -2,12 +2,14 @@ import React from "react"
 import styles from "./app-layout.module.css"
 import AppMenu from "../components/app-menu/menu"
 import { Layout} from "antd"
-import PageProgress from "react-page-progress"
+//import PageProgress from "react-page-progress"
 import { graphql, StaticQuery } from "gatsby"
 import { Helmet } from "react-helmet"
-
+if (typeof window !== `undefined`) {
+  var PageProgress = require("react-page-progress").default
+}
 const { Content, Footer } = Layout
-
+console.log(PageProgress)
 const TestLayout = ({ children }) => (
   <StaticQuery
     query={graphql`
@@ -36,7 +38,7 @@ const TestLayout = ({ children }) => (
         >
         </Helmet>
         <div className={styles.appLayout}>
-          <PageProgress color='blue' height={3}/>
+           { PageProgress ? <PageProgress color='blue' height={3}/> : null}
           <AppMenu menuLinks={data.site.siteMetadata.menuLinks}/>
           <Content>
             {children}
