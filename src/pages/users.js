@@ -6,15 +6,13 @@ import { Row } from "antd"
 
 export default () => (
   <AppLayout>
-    <div style={{ color: `purple`, padding: "20px" }}>
+    <div style={{ padding: "20px" }}>
       <Link to="/">Home</Link>
-      <Row gutter={16}>
+      <Row gutter={{ xs: 8, sm: 16 }}>
         {
-          [8, 8, 8, 8, 8, 8, 8, 8].map((user, idx) => {
+          [8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8].map((user, idx) => {
             return (
-
               <User key={idx}/>
-
             )
           })
         }

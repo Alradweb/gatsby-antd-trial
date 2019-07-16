@@ -48,7 +48,7 @@ const TestLayout = (props) => (
             © {new Date().getFullYear()}, Built with
             {` `}
             <a href="https://www.gatsbyjs.org">Gatsby</a> and {" "}
-            <p>{JSON.stringify(props.location)}</p>
+            <p>test info</p>
             <a href="http://strapi.io">Strapi</a>
           </Footer>
         </div>

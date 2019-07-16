@@ -17,9 +17,9 @@ const User = (props) => {
     `,
   )
   return (
-    <Col span={8}>
+    <Col  xs={24} sm={12}  md={8} lg={6}>
       <Card
-        style={{ padding: "20px" }}
+        style={{ padding: "20px", marginBottom: "16px" }}
         cover={
           <img
             alt="example"

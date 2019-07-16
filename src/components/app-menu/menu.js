@@ -28,6 +28,7 @@ const { Header } = Layout
 const DesktopMenu = ({ menuLinks, currentPath }) => {
  // let [itemKey, changeKey] = useState(1)
 
+ //console.log('internal--', internal)
   return (
     <Header>
       <div className={styles.logo}/>
