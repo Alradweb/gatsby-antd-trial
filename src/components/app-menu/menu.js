@@ -1,33 +1,32 @@
 import React, { useRef, useState } from "react"
 import classes from "./app-menu.module.css"
 import { Layout, Menu, Icon } from "antd"
-import { Link as GatsbyLink } from "@reach/router"
+//import { Link as GatsbyLink} from "@reach/router"
 import styles from "./app-menu.module.css"
-//import Media from "react-media"
-//import { Link} from "gatsby"
-const { Header} = Layout
-if (typeof window !== `undefined`) {
-  var Media = require("react-media").default
-}
+import Media from "react-media"
+import { Link as GatsbyLink} from "gatsby"
+const { Header } = Layout
+// if (typeof window !== `undefined`) {
+//   var Media = require("react-media").default
+// }
 
-// const GatsbyLink  = props => (
+// const GatsbyLink = props => (
 //   <Link
 //     {...props}
-//     getProps={(props ) => {
+//     getProps={(props) => {
 //
 //       return {
 //         style: {
-//           border: props.isCurrent ? "3px solid white" : "1px solid black"
-//         }
-//       };
+//           border: props.isCurrent ? "3px solid white" : "1px solid black",
+//         },
+//       }
 //     }}
 //   />
 // )
 
 
-
-const DesktopMenu = ({menuLinks}) => {
-
+const DesktopMenu = ({ menuLinks, currentPath }) => {
+ // let [itemKey, changeKey] = useState(1)
 
   return (
     <Header>
@@ -35,12 +34,13 @@ const DesktopMenu = ({menuLinks}) => {
       <Menu
         theme="dark"
         mode="horizontal"
-        defaultSelectedKeys={[`0`]}
-        // selectedKeys={[`${testing}`]}
+        defaultSelectedKeys={[`${currentPath}`]}
+        //onClick={(e)=> changeKey(itemKey = e.key)}
+        //selectedKeys={[`${itemKey}`]}
         style={{ lineHeight: "64px" }}
       >
-        {menuLinks.map(({key, link, name}) =>{
-          return <Menu.Item key={key}><GatsbyLink  to={link}>{name.toUpperCase()}</GatsbyLink></Menu.Item> //activeClassName={styles.activeLink}
+        {menuLinks.map(({ link, name }) => {
+          return <Menu.Item key={link}><GatsbyLink to={`${link}`}>{name.toUpperCase()}</GatsbyLink></Menu.Item> //activeClassName={styles.activeLink}
         })}
       </Menu>
     </Header>
@@ -48,7 +48,7 @@ const DesktopMenu = ({menuLinks}) => {
 }
 
 
-const MobileMenu = ({menuLinks, location}) => {
+const MobileMenu = ({ menuLinks, currentPath }) => {
   const sidebar = useRef(null)
   const menuButton = useRef(null)
   const [collapsed, toggle] = useState(true)
@@ -80,7 +80,7 @@ const MobileMenu = ({menuLinks, location}) => {
         toggle(!collapsed)
       }}>
         <Menu
-          defaultSelectedKeys={[`0`]}
+          defaultSelectedKeys={[`${currentPath}`]}
           // selectedKeys={[`${currentLocation(menuLinks, location)}`]}
           theme="dark"
           onClick={function({ item, key, keyPath, domEvent }) {
@@ -88,9 +88,9 @@ const MobileMenu = ({menuLinks, location}) => {
 
           }}
         >
-          {menuLinks.map(({key, link, name}) =>{
+          {menuLinks.map(({ link, name }) => {
             return (
-              <Menu.Item key={key}>
+              <Menu.Item key={link}>
                 <Icon type="pie-chart"/>
                 <span>{name.toUpperCase()}</span>
                 <GatsbyLink to={link}/>
@@ -103,35 +103,19 @@ const MobileMenu = ({menuLinks, location}) => {
     </>
   )
 }
-const FMedia =(props) =>{
 
-  return Media ? (<Media query="(max-width: 599px)">
+
+const AppMenu =(props) =>{
+  console.log('menu-props--', props)
+  return <Media query="(max-width: 599px)">
     {matches =>
       matches ? (
-        <MobileMenu menuLinks={props.menuLinks}/>
+        <MobileMenu menuLinks={props.menuLinks} currentPath={props.currentPath}/>
       ) : (
-        <DesktopMenu menuLinks={props.menuLinks}/>
+        <DesktopMenu menuLinks={props.menuLinks} currentPath={props.currentPath}/>
       )
     }
-  </Media>) : <DesktopMenu menuLinks={props.menuLinks}/>
-}
-class AppMenu extends React.Component{
-
-  componentDidMount(){
-
-    console.log('componentDidMount--')
-
-  }
-
-  render(){
-
-    return (
-      <>
-        <FMedia {...this.props}/>
-      </>
-    )
-  }
-
+  </Media>
 }
 
 

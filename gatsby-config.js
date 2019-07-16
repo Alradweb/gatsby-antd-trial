@@ -21,12 +21,12 @@ module.exports = {
       },
       {
         name: "articles",
-        link: "/articles",
+        link: "/articles/",
         key: 2
       },
       {
         name: "users",
-        link: "/users",
+        link: "/users/",
         key: 3
       },
     ],

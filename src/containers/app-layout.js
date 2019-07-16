@@ -2,15 +2,16 @@ import React from "react"
 import styles from "./app-layout.module.css"
 import AppMenu from "../components/app-menu/menu"
 import { Layout} from "antd"
-//import PageProgress from "react-page-progress"
 import { graphql, StaticQuery } from "gatsby"
 import { Helmet } from "react-helmet"
-if (typeof window !== `undefined`) {
-  var PageProgress = require("react-page-progress").default
-}
+import { Location } from '@reach/router';
+import { isWindow } from "../utils"
+
+const PageProgress = isWindow ? require("react-page-progress").default : null
+
 const { Content, Footer } = Layout
-console.log(PageProgress)
-const TestLayout = ({ children }) => (
+//console.log(PageProgress)
+const TestLayout = (props) => (
   <StaticQuery
     query={graphql`
       query SiteTitleQuery {
@@ -38,15 +39,16 @@ const TestLayout = ({ children }) => (
         >
         </Helmet>
         <div className={styles.appLayout}>
-           { PageProgress ? <PageProgress color='blue' height={3}/> : null}
-          <AppMenu menuLinks={data.site.siteMetadata.menuLinks}/>
+           { PageProgress && <PageProgress color='blue' height={3}/> }
+          <AppMenu menuLinks={data.site.siteMetadata.menuLinks} currentPath={props.location.pathname}/>
           <Content>
-            {children}
+            {props.children}
           </Content>
           <Footer style={{ textAlign: "center" }}>
             © {new Date().getFullYear()}, Built with
             {` `}
             <a href="https://www.gatsbyjs.org">Gatsby</a> and {" "}
+            <p>{JSON.stringify(props.location)}</p>
             <a href="http://strapi.io">Strapi</a>
           </Footer>
         </div>
@@ -54,7 +56,12 @@ const TestLayout = ({ children }) => (
     )}
   />
 )
-export default TestLayout
+//export default TestLayout
+export default props => (
+  <Location>
+    {locationProps => <TestLayout {...locationProps} {...props} />}
+  </Location>
+)
 // const AppLayout = ({ children }) => {
 //   return (
 //     <div className={styles.appLayout}>
