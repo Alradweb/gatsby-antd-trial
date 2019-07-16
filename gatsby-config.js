@@ -33,6 +33,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    'gatsby-plugin-antd',
     {
       resolve: `gatsby-source-filesystem`,
       options: {
