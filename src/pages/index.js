@@ -4,6 +4,7 @@ import Layout from "../containers/app-layout"
 //import ReactMarkdown from "react-markdown"
 //import Img from 'gatsby-image'
 import Header from '../components/header'
+import { Card } from "antd"
 /* eslint-disable */
 
 export default (props) => {
@@ -15,9 +16,13 @@ export default (props) => {
           <div style={{ color: `purple` }}>
             <Header headerText={data.site.siteMetadata.title}/>
             <div style={{width: '100%', height: '100vh'}}>
-              <video id="bg-vid" className="app-media" autoPlay muted loop playsInline="" style={{opacity: '0.62'}}>
-                <source src="https://dsnu2dcxtn37x.cloudfront.net/assets/videos/gmlaunch2.mp4" type="video/mp4"/>
-              </video>
+              <Card
+                cover={<video id="bg-vid" className="app-media" autoPlay muted loop
+                              style={{ opacity: '0.62' }}>
+                  <source src="https://dsnu2dcxtn37x.cloudfront.net/assets/videos/gmlaunch2.mp4" type="video/mp4"/>
+                </video>}
+              />
+
             </div>
 
             <Link to="/contact/">Contact</Link>
