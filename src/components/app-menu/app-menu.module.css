@@ -1,9 +1,17 @@
-.logo {
+.logo-wrapper {
     width: 120px;
-    height: 31px;
+    height: 32px;
     background: rgba(255, 255, 255, 0.2);
     margin: 16px 24px 16px 0;
     float: left;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.logo{
+    font-size: 24px;
+    color: #1890ff;
 }
 .trigger {
     font-size: 18px;

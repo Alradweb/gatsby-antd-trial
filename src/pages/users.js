@@ -1,11 +1,11 @@
 import React from "react"
 import { Link } from "gatsby"
-import AppLayout from "../containers/app-layout"
+import Layout from "../containers/app-layout"
 import User from "../components/user"
 import { Row } from "antd"
 
 export default () => (
-  <AppLayout>
+  <Layout>
     <div style={{ padding: "20px" }}>
       <Link to="/">Home</Link>
       <Row gutter={{ xs: 8, sm: 16 }}>
@@ -18,5 +18,5 @@ export default () => (
         }
       </Row>
     </div>
-  </AppLayout>
+  </Layout>
 )

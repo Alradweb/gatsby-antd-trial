@@ -1,12 +1,7 @@
 html {
-    background-color: #ffefd5;
+    /*background-color: #ffefd5;*/
 }
-.app-container{
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    overflow: hidden;
-}
+
 .app-media{
     width: auto;
     height: 100%;

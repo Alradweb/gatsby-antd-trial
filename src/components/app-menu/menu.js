@@ -5,6 +5,7 @@ import { Layout, Menu, Icon } from "antd"
 import styles from "./app-menu.module.css"
 import Media from "react-media"
 import { Link as GatsbyLink} from "gatsby"
+import Search from "../search/search"
 const { Header } = Layout
 // if (typeof window !== `undefined`) {
 //   var Media = require("react-media").default
@@ -31,7 +32,9 @@ const DesktopMenu = ({ menuLinks, currentPath }) => {
  //console.log('internal--', internal)
   return (
     <Header>
-      <div className={styles.logo}/>
+      <div className={styles.logoWrapper}><GatsbyLink to={'/'}><span className={styles.logo}>{`LO\u0307\u0323GO`}</span></GatsbyLink></div>
+      <Search/>
+      <nav>
       <Menu
         theme="dark"
         mode="horizontal"
@@ -44,6 +47,7 @@ const DesktopMenu = ({ menuLinks, currentPath }) => {
           return <Menu.Item key={link}><GatsbyLink to={`${link}`}>{name.toUpperCase()}</GatsbyLink></Menu.Item> //activeClassName={styles.activeLink}
         })}
       </Menu>
+      </nav>
     </Header>
   )
 }
@@ -76,7 +80,7 @@ const MobileMenu = ({ menuLinks, currentPath }) => {
         </Header>
       </div>
 
-      <div className={classes.sidebar} ref={sidebar} onClick={() => {
+      <nav className={classes.sidebar} ref={sidebar} onClick={() => {
         closeNav()
         toggle(!collapsed)
       }}>
@@ -100,7 +104,7 @@ const MobileMenu = ({ menuLinks, currentPath }) => {
           })}
         </Menu>
 
-      </div>
+      </nav>
     </>
   )
 }

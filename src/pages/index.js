@@ -11,7 +11,7 @@ export default (props) => {
     const { data } = props
     console.log(process.env.IMAGE_BASE_URL)
     return (
-      <div className='app-container'>
+
         <Layout>
           <div style={{ color: `purple` }}>
             <Header headerText={data.site.siteMetadata.title}/>
@@ -30,8 +30,6 @@ export default (props) => {
             <img src="https://source.unsplash.com/random/400x200" alt="Fq8USwd9HH3A62D"/>
           </div>
         </Layout>
-      </div>
-
     )
 }
 export const query = graphql`

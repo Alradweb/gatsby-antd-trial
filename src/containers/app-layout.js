@@ -32,15 +32,16 @@ const TestLayout = (props) => (
       }
     `}
     render={data => (
-      <React.Fragment>
+      <>
         <Helmet
           title={data.site.siteMetadata.title}
           meta={data.site.siteMetadata.helmetMetaData}
         >
         </Helmet>
+        { PageProgress && <PageProgress color='blue' height={3}/> }
+        <AppMenu className={styles.appTopMenu} menuLinks={data.site.siteMetadata.menuLinks} currentPath={props.location.pathname}/>
         <div className={styles.appLayout}>
-           { PageProgress && <PageProgress color='blue' height={3}/> }
-          <AppMenu menuLinks={data.site.siteMetadata.menuLinks} currentPath={props.location.pathname}/>
+
           <Content>
             {props.children}
           </Content>
@@ -52,7 +53,7 @@ const TestLayout = (props) => (
             <a href="http://strapi.io">Strapi</a>
           </Footer>
         </div>
-      </React.Fragment>
+      </>
     )}
   />
 )

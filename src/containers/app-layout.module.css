@@ -1,16 +1,39 @@
+/* -----Mobile First-----*/
+
 .app-layout{
     display: flex;
     flex-direction: column;
     width: 100%;
     box-sizing: border-box;
-    overflow: hidden;
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding: 0 8px;
+}
+.app-layout p{
+    font-size: 14px;
+}
+.app-layout header{
+    /*position: absolute;*/
+    /*left: 0;*/
+    /*right: 0;*/
 }
 
-.test {
-    color: brown;
-    padding: 16px;
+/* ----- >= 768px -----*/
+
+@media (min-width: 768px) {
+    .app-layout{
+        padding: 0 16px;
+    }
+
 }
 
-.content {
-    background: yellow
+/* ----- >= 1200px -----*/
+
+@media (min-width: 1200px) {
+    .app-layout{
+
+    }
+    .app-layout p{
+        font-size: 18px !important;
+    }
 }

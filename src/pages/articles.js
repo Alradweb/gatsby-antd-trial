@@ -2,11 +2,11 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../containers/app-layout"
 import Img from "gatsby-image"
-import ReactMarkdown from "react-markdown"
+//import ReactMarkdown from "react-markdown"
 import { Col, Row, Card} from "antd"
 const { Meta } = Card
 const IndexPage = ({ data }) =>{
-    console.log(data.allStrapiArticle.edges)
+    //console.log(data.allStrapiArticle.edges)
     return (
       <Layout>
           <h1>Hi people</h1>
