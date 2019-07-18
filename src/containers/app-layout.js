@@ -7,6 +7,7 @@ import { Helmet } from "react-helmet"
 import { Location } from '@reach/router';
 //import { isWindow } from "../utils"
 import rerender from "../components/rerender"
+import ScrollProgress from "../components/scroll-progress/scroll-progress"
 
 //const PageProgress = isWindow ? require("react-page-progress").default : null
 
@@ -39,6 +40,7 @@ const TestLayout = (props) => (
           meta={data.site.siteMetadata.helmetMetaData}
         >
         </Helmet>
+        <ScrollProgress isWindow={props.isWindow}/>
         <AppMenu
           menuLinks={data.site.siteMetadata.menuLinks}
           currentPath={props.location.pathname}
