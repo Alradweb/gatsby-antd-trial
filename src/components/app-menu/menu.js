@@ -4,8 +4,9 @@ import { Layout, Menu, Icon } from "antd"
 //import { Link as GatsbyLink} from "@reach/router"
 import styles from "./app-menu.module.css"
 import Media from "react-media"
-import { Link as GatsbyLink} from "gatsby"
+import { Link as GatsbyLink } from "gatsby"
 import Search from "../search/search"
+
 const { Header } = Layout
 // if (typeof window !== `undefined`) {
 //   var Media = require("react-media").default
@@ -27,36 +28,37 @@ const { Header } = Layout
 
 
 const DesktopMenu = ({ menuLinks, currentPath }) => {
- // let [itemKey, changeKey] = useState(1)
+  // let [itemKey, changeKey] = useState(1)
 
- //console.log('internal--', internal)
+  //console.log('internal--', internal)
   return (
     <Header>
-      <div className={styles.logoWrapper}><GatsbyLink to={'/'}><span className={styles.logo}>{`LO\u0307\u0323GO`}</span></GatsbyLink></div>
+      <div className={styles.logoWrapper}><GatsbyLink to={"/"}><span className={styles.logo}>{`LO\u0307\u0323GO`}</span></GatsbyLink>
+      </div>
       <Search/>
       <nav>
-      <Menu
-        theme="dark"
-        mode="horizontal"
-        defaultSelectedKeys={[`${currentPath}`]}
-        //onClick={(e)=> changeKey(itemKey = e.key)}
-        //selectedKeys={[`${itemKey}`]}
-        style={{ lineHeight: "64px" }}
-      >
-        {menuLinks.map(({ link, name }) => {
-          return <Menu.Item key={link}><GatsbyLink to={`${link}`}>{name.toUpperCase()}</GatsbyLink></Menu.Item> //activeClassName={styles.activeLink}
-        })}
-      </Menu>
+        <Menu
+          theme="dark"
+          mode="horizontal"
+          defaultSelectedKeys={[`${currentPath}`]}
+          //onClick={(e)=> changeKey(itemKey = e.key)}
+          //selectedKeys={[`${itemKey}`]}
+          style={{ lineHeight: "64px" }}
+        >
+          {menuLinks.map(({ link, name }) => {
+            return <Menu.Item key={link}><GatsbyLink to={`${link}`}>{name.toUpperCase()}</GatsbyLink></Menu.Item> //activeClassName={styles.activeLink}
+          })}
+        </Menu>
       </nav>
     </Header>
   )
 }
 
 
-const MobileMenu = ({ menuLinks, currentPath }) => {
+const MobileMenu = ({ menuLinks, currentPath, collapse }) => {
   const sidebar = useRef(null)
   const menuButton = useRef(null)
-  const [collapsed, toggle] = useState(true)
+  const [collapsed, toggle] = useState(collapse)
   const openNav = () => {
     sidebar.current.style.width = "250px"
     menuButton.current.style.marginLeft = "250px"
@@ -67,8 +69,8 @@ const MobileMenu = ({ menuLinks, currentPath }) => {
   }
   const closedMenuContent = (
     <>
-    <div className={styles.logoMobile}>{`LO\u0307\u0323GO`}</div>
-    <Search/>
+      <div className={styles.logoMobile}>{`LO\u0307\u0323GO`}</div>
+      <Search/>
     </>
   )
   return (
@@ -115,10 +117,12 @@ const MobileMenu = ({ menuLinks, currentPath }) => {
     </>
   )
 }
+MobileMenu.defaultProps = {
+  collapse: true
+}
 
-
-const AppMenu =(props) =>{
-  console.log('menu-props--', props)
+const AppMenu = (props) => {
+  console.log("menu-props--", props)
   return <Media query="(max-width: 599px)">
     {matches =>
       matches ? (
