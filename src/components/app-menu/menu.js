@@ -86,7 +86,7 @@ const MobileMenu = ({ menuLinks, currentPath, collapse }) => {
             }}
           />
         </Header>
-        {collapsed && closedMenuContent}
+        {collapsed ? closedMenuContent : null}
       </div>
 
       <nav className={classes.sidebar} ref={sidebar} onClick={() => {
