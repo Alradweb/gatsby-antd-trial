@@ -5,10 +5,10 @@ import { Layout} from "antd"
 import { graphql, StaticQuery } from "gatsby"
 import { Helmet } from "react-helmet"
 import { Location } from '@reach/router';
-import { isWindow } from "../utils"
+//import { isWindow } from "../utils"
 import rerender from "../components/rerender"
 
-const PageProgress = isWindow ? require("react-page-progress").default : null
+//const PageProgress = isWindow ? require("react-page-progress").default : null
 
 const { Content, Footer } = Layout
 //console.log(PageProgress)
@@ -39,14 +39,13 @@ const TestLayout = (props) => (
           meta={data.site.siteMetadata.helmetMetaData}
         >
         </Helmet>
-        { PageProgress && <PageProgress color='blue' height={3}/> }
         <AppMenu
           menuLinks={data.site.siteMetadata.menuLinks}
           currentPath={props.location.pathname}
           isWindow={props.isWindow}
         />
         <div className={styles.appLayout}>
-
+          {/*{ PageProgress && <PageProgress color='blue' height={3}/> }*/}
           <Content>
             {props.children}
           </Content>
