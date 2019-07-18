@@ -6,6 +6,7 @@ import { graphql, StaticQuery } from "gatsby"
 import { Helmet } from "react-helmet"
 import { Location } from '@reach/router';
 import { isWindow } from "../utils"
+import rerender from "../components/rerender"
 
 const PageProgress = isWindow ? require("react-page-progress").default : null
 
@@ -39,7 +40,11 @@ const TestLayout = (props) => (
         >
         </Helmet>
         { PageProgress && <PageProgress color='blue' height={3}/> }
-        <AppMenu  menuLinks={data.site.siteMetadata.menuLinks} currentPath={props.location.pathname}/>
+        <AppMenu
+          menuLinks={data.site.siteMetadata.menuLinks}
+          currentPath={props.location.pathname}
+          isWindow={props.isWindow}
+        />
         <div className={styles.appLayout}>
 
           <Content>
@@ -57,10 +62,11 @@ const TestLayout = (props) => (
     )}
   />
 )
-//export default TestLayout
+const AppLayout = rerender(TestLayout)
+
 export default props => (
   <Location>
-    {locationProps => <TestLayout {...locationProps} {...props} />}
+    {locationProps => <AppLayout {...locationProps} {...props} />}
   </Location>
 )
 // const AppLayout = ({ children }) => {
