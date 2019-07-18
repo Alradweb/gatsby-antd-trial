@@ -64,6 +64,7 @@ const MobileMenu = ({ menuLinks, currentPath, collapse }) => {
     menuButton.current.style.marginLeft = "250px"
   }
   const closeNav = () => {
+    if(collapsed) return
     sidebar.current.style.width = "0"
     menuButton.current.style.marginLeft = "0"
   }
