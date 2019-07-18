@@ -13,14 +13,27 @@
     font-size: 24px;
     color: #1890ff;
 }
-.trigger {
+.logo-mobile{
     font-size: 18px;
+    color: #1890ff;
+    background-color: lightgrey;
+}
+.trigger {
+    font-size: 24px;
     line-height: 64px;
     padding: 0 24px;
     cursor: pointer;
     transition: color 0.3s;
+    color: white;
 }
-
+.trigger-open{
+    font-size: 24px;
+    line-height: 64px;
+    padding: 0 24px;
+    cursor: pointer;
+    transition: color 0.3s;
+    color:  #001529;
+}
 .trigger:hover {
     color: #1890ff;
 }
@@ -52,9 +65,18 @@
 }
 
 .menu-button {
-    transition: margin-left .5s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all .5s;
+    background-color: #001529;
+    /*transition: color 0.3s;*/
 }
+.menu-button-open{
 
+    transition: all .8s;
+    background-color: transparent;
+}
 
 @media screen and (max-height: 450px) {
     .sidebar {padding-top: 15px;}

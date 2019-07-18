@@ -65,12 +65,18 @@ const MobileMenu = ({ menuLinks, currentPath }) => {
     sidebar.current.style.width = "0"
     menuButton.current.style.marginLeft = "0"
   }
+  const closedMenuContent = (
+    <>
+    <div className={styles.logoMobile}>{`LO\u0307\u0323GO`}</div>
+    <Search/>
+    </>
+  )
   return (
     <>
-      <div ref={menuButton} className={styles.menuButton}>
+      <div ref={menuButton} className={collapsed ? styles.menuButton : styles.menuButtonOpen}>
         <Header style={{ background: "transparent", padding: 0, height: "64px", width: "64px" }}>
           <Icon
-            className={classes.trigger}
+            className={collapsed ? classes.trigger : classes.triggerOpen}
             type={collapsed ? "menu-unfold" : "menu-fold"}
             onClick={() => {
               collapsed ? openNav() : closeNav()
@@ -78,6 +84,7 @@ const MobileMenu = ({ menuLinks, currentPath }) => {
             }}
           />
         </Header>
+        {collapsed && closedMenuContent}
       </div>
 
       <nav className={classes.sidebar} ref={sidebar} onClick={() => {
