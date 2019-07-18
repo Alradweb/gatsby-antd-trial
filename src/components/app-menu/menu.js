@@ -33,7 +33,10 @@ const DesktopMenu = ({ menuLinks, currentPath }) => {
   //console.log('internal--', internal)
   return (
     <Header>
-      <div className={styles.logoWrapper}><GatsbyLink to={"/"}><span className={styles.logo}>{`LO\u0307\u0323GO`}</span></GatsbyLink>
+      <div className={styles.logoWrapper}>
+        <GatsbyLink to={"/"}>
+          <span className={styles.logo}>{`LO\u0307\u0323GO`}</span>
+        </GatsbyLink>
       </div>
       <Search/>
       <nav>
@@ -70,14 +73,14 @@ const MobileMenu = ({ menuLinks, currentPath, collapse }) => {
   }
   const closedMenuContent = (
     <>
-      <div className={styles.logoMobile}>{`LO\u0307\u0323GO`}</div>
+      <div className={styles.logoMobile}><GatsbyLink to={"/"}>{`LO\u0307\u0323GO`}</GatsbyLink></div>
       <Search/>
     </>
   )
   return (
     <>
       <div ref={menuButton} className={collapsed ? styles.menuButton : styles.menuButtonOpen}>
-        <Header style={{ background: "transparent", padding: 0, height: "64px", width: "64px" }}>
+        <Header style={{ background: "transparent", padding: 0 , lineHeight: 0}}>
           <Icon
             className={collapsed ? classes.trigger : classes.triggerOpen}
             type={collapsed ? "menu-unfold" : "menu-fold"}
