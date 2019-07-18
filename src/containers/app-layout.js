@@ -39,7 +39,7 @@ const TestLayout = (props) => (
         >
         </Helmet>
         { PageProgress && <PageProgress color='blue' height={3}/> }
-        <AppMenu className={styles.appTopMenu} menuLinks={data.site.siteMetadata.menuLinks} currentPath={props.location.pathname}/>
+        <AppMenu  menuLinks={data.site.siteMetadata.menuLinks} currentPath={props.location.pathname}/>
         <div className={styles.appLayout}>
 
           <Content>

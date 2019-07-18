@@ -6,6 +6,7 @@ import styles from "./app-menu.module.css"
 import Media from "react-media"
 import { Link as GatsbyLink } from "gatsby"
 import Search from "../search/search"
+import { isWindow } from "../../utils"
 
 const { Header } = Layout
 // if (typeof window !== `undefined`) {
@@ -127,6 +128,7 @@ MobileMenu.defaultProps = {
 
 const AppMenu = (props) => {
   console.log("menu-props--", props)
+  if(!isWindow) return <DesktopMenu menuLinks={props.menuLinks} currentPath={props.currentPath}/>
   return <Media query="(max-width: 599px)">
     {matches =>
       matches ? (
