@@ -1,48 +1,61 @@
-.search-wrap{
-
+.search-wrap {
+    display: flex;
+    align-items: center;
+    /*float: right;*/
+    line-height: 0;
 }
-.search{
-    float: right;
+
+.search {
     cursor: pointer;
     text-align: center;
     transition: color .25s ease;
     font-size: 18px;
     color: rgb(94, 97, 99);
-
 }
-.search:hover{
+
+.search:hover {
     color: rgba(162, 164, 166, 0.97);
 }
 
-.search-field{
-    position: absolute;
-    left: 0;
-    top: 65px;
-    padding: 15px;
-    width: 100%;
-    border-top:  1px solid #454749;
-    z-index: 4;
-    display: none;
+.search-field {
+    margin-right: 8px;
+    overflow: hidden;
+    width: 0;
+    transition: width 1s ease;
 
 
 }
-.search-field input[type=text]{
+
+.search-field-open {
+    margin-right: 8px;
+    margin-left: 8px;
+    width: 180px;
+    transition: width 1s ease;
+}
+.search-field input[type='text'] {
     width: 100%;
-    padding: 8px 15px;
+    padding: 8px;
     border:  1px solid #454749;
-    background-color: #0E7DE7;
+    background-color: #5e5e5e;
     font-size: 16px;
     color: #ffffff;
     outline: none;
-
-
-
-
 }
-.search-field input[type=text]:focus{
+.search-field-open input[type='text'] {
+    width: 100%;
+    padding: 8px;
     border:  1px solid #454749;
+    background-color: #5e5e5e;
+    font-size: 16px;
+    color: #ffffff;
+    outline: none;
 }
-.search-field input[type=text] ::placeholder{
+
+.search-field input[type='text']:focus {
+    border: 1px solid #454749;
+}
+
+.search-field input[type='text']::placeholder {
     color: rgba(255, 255, 255, 0.84)
 
 }

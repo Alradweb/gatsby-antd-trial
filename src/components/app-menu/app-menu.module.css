@@ -17,9 +17,8 @@
 .logo-wrapper {
     width: 120px;
     height: 32px;
-    background: rgba(255, 255, 255, 0.2);
+    background: #5e5e5e;
     margin: 16px 24px 16px 0;
-    float: left;
     text-align: center;
     display: flex;
     justify-content: space-around;
@@ -27,12 +26,15 @@
 }
 .logo{
     font-size: 24px;
-    color: #1890ff;
+    color: tomato;
 }
 .logo-mobile{
     font-size: 18px;
-    color: #1890ff;
-    background-color: lightgrey;
+    /*color: tomato;*/
+    background-color: #5e5e5e;
+}
+.logo-mobile a{
+    color: tomato;
 }
 .trigger {
     font-size: 24px;

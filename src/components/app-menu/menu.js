@@ -33,13 +33,12 @@ const DesktopMenu = ({ menuLinks, currentPath }) => {
 
   //console.log('internal--', internal)
   return (
-    <Header>
+    <Header style={{ display: 'flex', justifyContent: 'space-between', padding: '0 32px'}}>
       <div className={styles.logoWrapper}>
         <GatsbyLink to={"/"}>
           <span className={styles.logo}>{`LO\u0307\u0323GO`}</span>
         </GatsbyLink>
       </div>
-      <Search/>
       <nav>
         <Menu
           theme="dark"
@@ -54,6 +53,7 @@ const DesktopMenu = ({ menuLinks, currentPath }) => {
           })}
         </Menu>
       </nav>
+      <Search/>
     </Header>
   )
 }

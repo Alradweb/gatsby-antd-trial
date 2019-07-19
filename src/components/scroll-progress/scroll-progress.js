@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React, { useEffect, useRef } from "react"
 import styles from "./scroll-progress.module.css"
 
 const ScrollProgress = ({ isWindow }) => {
@@ -12,7 +12,12 @@ const ScrollProgress = ({ isWindow }) => {
       let scrolled = (winScroll / height) * 100
       bar.current.style.width = scrolled + "%"
     }
-    window.onscroll = () => onScrollHandler()
+    useEffect(() => {
+      window.addEventListener('scroll', onScrollHandler)
+      return () => {
+        window.removeEventListener('scroll', onScrollHandler)
+      }
+    })
     return (
       <div className={styles.progressContainer}>
         <div className={styles.progressBar} ref={bar}/>
