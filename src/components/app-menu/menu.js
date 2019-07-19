@@ -63,6 +63,10 @@ const MobileMenu = ({ menuLinks, currentPath, collapse }) => {
   const sidebar = useRef(null)
   const menuButton = useRef(null)
   const [collapsed, toggle] = useState(collapse)
+  const [searchIsOpen, searchStateChanged] = useState(false)
+  const searchToggle = (state)=>{
+    searchStateChanged(state)
+  }
   const openNav = () => {
     sidebar.current.style.width = "250px"
     menuButton.current.style.marginLeft = "250px"
@@ -74,25 +78,24 @@ const MobileMenu = ({ menuLinks, currentPath, collapse }) => {
   }
   const closedMenuContent = (
     <>
-      <div className={styles.logoMobile}><GatsbyLink to={"/"}>{`LO\u0307\u0323GO`}</GatsbyLink></div>
-      <Search/>
+      { (!searchIsOpen || !collapsed) && <div className={styles.logoMobile}><GatsbyLink to={"/"}>{`LO\u0307\u0323GO`}</GatsbyLink></div>}
+      <Search searchToggle={searchToggle}/>
     </>
   )
   return (
     <>
-      <div ref={menuButton} className={collapsed ? styles.menuButton : styles.menuButtonOpen}>
-        <Header style={{ background: "transparent", padding: 0 , lineHeight: 0}}>
-          <Icon
-            className={collapsed ? classes.trigger : classes.triggerOpen}
-            type={collapsed ? "menu-unfold" : "menu-fold"}
-            onClick={() => {
-              collapsed ? openNav() : closeNav()
-              toggle(!collapsed)
-            }}
-          />
-        </Header>
+      <header ref={menuButton} className={collapsed ? styles.menuButton : styles.menuButtonOpen}>
+        <Icon
+          className={collapsed ? classes.trigger : classes.triggerOpen}
+          type={collapsed ? "menu-unfold" : "menu-fold"}
+          onClick={() => {
+            collapsed ? openNav() : closeNav()
+            toggle(!collapsed)
+            searchStateChanged(false)
+          }}
+        />
         {collapsed ? closedMenuContent : null}
-      </div>
+      </header>
 
       <nav className={classes.sidebar} ref={sidebar} onClick={() => {
         closeNav()
