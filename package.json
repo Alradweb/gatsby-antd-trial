@@ -28,7 +28,8 @@
     "react-helmet": "^5.2.1",
     "react-markdown": "^4.1.0",
     "react-media": "^1.9.2",
-    "react-page-progress": "^1.1.0"
+    "react-redux": "^7.1.0",
+    "redux": "^4.0.4"
   },
   "devDependencies": {
     "prettier": "^1.18.2"

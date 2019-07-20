@@ -84,7 +84,8 @@ const MobileMenu = ({ menuLinks, currentPath, collapse }) => {
   )
   return (
     <>
-      <header ref={menuButton} className={collapsed ? styles.menuButton : styles.menuButtonOpen}>
+
+      <div ref={menuButton} className={collapsed ? styles.menuButton : styles.menuButtonOpen}>
         <Icon
           className={collapsed ? classes.trigger : classes.triggerOpen}
           type={collapsed ? "menu-unfold" : "menu-fold"}
@@ -95,13 +96,15 @@ const MobileMenu = ({ menuLinks, currentPath, collapse }) => {
           }}
         />
         {collapsed ? closedMenuContent : null}
-      </header>
+      </div>
 
-      <nav className={classes.sidebar} ref={sidebar} onClick={() => {
+      <nav className={classes.sidebar}  ref={sidebar} onClick={() => {
         closeNav()
         toggle(!collapsed)
       }}>
+
         <Menu
+
           defaultSelectedKeys={[`${currentPath}`]}
           // selectedKeys={[`${currentLocation(menuLinks, location)}`]}
           theme="dark"
@@ -112,7 +115,8 @@ const MobileMenu = ({ menuLinks, currentPath, collapse }) => {
         >
           {menuLinks.map(({ link, name }) => {
             return (
-              <Menu.Item key={link}>
+              <Menu.Item key={link} >
+
                 <Icon type="pie-chart"/>
                 <span>{name.toUpperCase()}</span>
                 <GatsbyLink to={link}/>
