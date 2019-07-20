@@ -1,9 +1,12 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useRef} from "react"
+import {connect} from 'react-redux'
 import styles from './app-search.module.css'
 import { Icon } from "antd"
+import * as actions from '../../redux/actions/menu'
 
-const Search = ({searchToggle}) =>{
-  const [open, toggle] = useState(false)
+const Search = ({menu, toggleSearch}) =>{
+  const{searchIsOpen} = menu
+  //console.log(toggleSearch)
   const input = useRef(null)
   // const getOpen =()=> open
   // const onClickHandler = (e) =>{
@@ -20,9 +23,7 @@ const Search = ({searchToggle}) =>{
   // })
   return(
     <div className={styles.searchWrap}>
-
-      {/*<div className={search ? styles.searchFieldOpen : styles.searchField }>*/}
-      <div className={open ? styles.searchFieldOpen : styles.searchField }>
+      <div className={searchIsOpen ? styles.searchFieldOpen : styles.searchField }>
         <form  id="cse-search-box">
           <input type="hidden" name="cx" value="partner-pub-xxx:xxx"/>
           <input type="hidden" name="cof" value="FORID:10"/>
@@ -31,8 +32,8 @@ const Search = ({searchToggle}) =>{
         </form>
       </div>
       <div onClick={()=> {
-        searchToggle && searchToggle(!open)
-        toggle(!open)
+        toggleSearch(!searchIsOpen)
+
         //console.log('click2', open)
       }} className={styles.search} title="Поиск по сайту...">
         <Icon type="search" />
@@ -40,4 +41,10 @@ const Search = ({searchToggle}) =>{
     </div>
   )
 }
-export default Search
+
+const mapStateToProps = ({menu}) =>{
+  return {
+    menu
+  }
+}
+export default connect(mapStateToProps, actions)(Search)

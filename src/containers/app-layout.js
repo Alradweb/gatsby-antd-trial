@@ -1,21 +1,23 @@
 import React from "react"
+import {Provider} from 'react-redux'
+import store from '../redux/store'
 import styles from "./app-layout.module.css"
 import AppMenu from "../components/app-menu/menu"
 import { Layout} from "antd"
 import { graphql, StaticQuery } from "gatsby"
 import { Helmet } from "react-helmet"
 import { Location } from '@reach/router';
-//import { isWindow } from "../utils"
+
 import rerender from "../components/rerender"
 import ScrollProgress from "../components/scroll-progress/scroll-progress"
 
-//const PageProgress = isWindow ? require("react-page-progress").default : null
-
 const { Content, Footer } = Layout
 //console.log(PageProgress)
-const TestLayout = (props) => (
-  <StaticQuery
-    query={graphql`
+const TestLayout = (props) => {
+  console.log('Layout(props)->',props)
+  return (
+    <StaticQuery
+      query={graphql`
       query SiteTitleQuery {
         site {
           siteMetadata {
@@ -33,36 +35,37 @@ const TestLayout = (props) => (
         }
       }
     `}
-    render={data => (
-      <>
-        <Helmet
-          title={data.site.siteMetadata.title}
-          meta={data.site.siteMetadata.helmetMetaData}
-        >
-        </Helmet>
-        <ScrollProgress isWindow={props.isWindow}/>
-        <AppMenu
-          menuLinks={data.site.siteMetadata.menuLinks}
-          currentPath={props.location.pathname}
-          isWindow={props.isWindow}
-        />
-        <div className={styles.appLayout}>
-          {/*{ PageProgress && <PageProgress color='blue' height={3}/> }*/}
-          <Content>
-            {props.children}
-          </Content>
-          <Footer style={{ textAlign: "center" }}>
-            © {new Date().getFullYear()}, Built with
-            {` `}
-            <a href="https://www.gatsbyjs.org">Gatsby</a> and {" "}
-            <p>test info</p>
-            <a href="http://strapi.io">Strapi</a>
-          </Footer>
-        </div>
-      </>
-    )}
-  />
-)
+      render={data => (
+        <Provider store={store}>
+          <Helmet
+            title={data.site.siteMetadata.title}
+            meta={data.site.siteMetadata.helmetMetaData}
+          >
+          </Helmet>
+          <ScrollProgress isWindow={props.isWindow}/>
+          <AppMenu
+            menuLinks={data.site.siteMetadata.menuLinks}
+            currentPath={props.location.pathname}
+            isWindow={props.isWindow}
+          />
+          <div className={styles.appLayout}>
+
+            <Content>
+              {props.children}
+            </Content>
+            <Footer style={{ textAlign: "center" }}>
+              © {new Date().getFullYear()}, Built with
+              {` `}
+              <a href="https://www.gatsbyjs.org">Gatsby</a> and {" "}
+              <p>test info</p>
+              <a href="http://strapi.io">Strapi</a>
+            </Footer>
+          </div>
+        </Provider>
+      )}
+    />
+  )
+}
 const AppLayout = rerender(TestLayout)
 
 export default props => (
