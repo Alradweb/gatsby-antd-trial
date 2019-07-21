@@ -1,0 +1,11 @@
+.important-info-wrapper{
+    width: 100%;
+    background-color: #a2a4a6;
+    text-align: center;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+.image{
+    max-width: 100%;
+    height: auto;
+}

@@ -9,7 +9,7 @@ import { Helmet } from "react-helmet"
 import { Location } from '@reach/router';
 import rerender from "../components/rerender"
 import ScrollProgress from "../components/scroll-progress/scroll-progress"
-import Ad from "../components/ad/ad"
+import ImportantInfo from "../components/important-info/important-info"
 
 const { Content, Footer } = Layout
 
@@ -49,7 +49,7 @@ const TestLayout = (props) => {
             isWindow={props.isWindow}
           />
           <div className={styles.appLayout}>
-            <Ad/>
+            <ImportantInfo/>
             <Content>
               {props.children}
             </Content>
