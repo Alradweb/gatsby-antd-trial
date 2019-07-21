@@ -4,23 +4,23 @@ import styles from './app-search.module.css'
 import { Icon } from "antd"
 import * as actions from '../../redux/actions/menu'
 
+
 const Search = ({menu, toggleSearch}) =>{
   const{searchIsOpen} = menu
-  //console.log(toggleSearch)
   const input = useRef(null)
-  // const getOpen =()=> open
-  // const onClickHandler = (e) =>{
-  //
-  //    if(getOpen() && e.target !== input.current ){
-  //      toggle(false)
-  //    }else return
-  // }
-  // useEffect(() => {
-  //     window.addEventListener('click', onClickHandler)
-  //   return () => {
-  //     window.removeEventListener('click', onClickHandler)
-  //   }
-  // })
+
+  const setClickWatcher = (ev) => {
+    ev.stopPropagation()
+    input.current.focus()
+    const onClickHandler =(e)=>{
+      if(e.target !== input.current){
+        toggleSearch(false)
+        window.removeEventListener('click', onClickHandler)
+      }
+    }
+    window.addEventListener('click', onClickHandler)
+  }
+
   return(
     <div className={styles.searchWrap}>
       <div className={searchIsOpen ? styles.searchFieldOpen : styles.searchField }>
@@ -31,10 +31,9 @@ const Search = ({menu, toggleSearch}) =>{
           <input ref={input} type="text" name="q" placeholder={`Поиск по сайту...`}/>
         </form>
       </div>
-      <div onClick={()=> {
+      <div onClick={(ev)=> {
         toggleSearch(!searchIsOpen)
-
-        //console.log('click2', open)
+        setClickWatcher(ev)
       }} className={styles.search} title="Поиск по сайту...">
         <Icon type="search" />
       </div>

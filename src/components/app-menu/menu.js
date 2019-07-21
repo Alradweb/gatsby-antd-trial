@@ -22,8 +22,6 @@ const DesktopMenu = ({ menuLinks, currentPath }) => {
           theme="dark"
           mode="horizontal"
           defaultSelectedKeys={[`${currentPath}`]}
-          //onClick={(e)=> changeKey(itemKey = e.key)}
-          //selectedKeys={[`${itemKey}`]}
           style={{ lineHeight: "64px" }}
         >
           {menuLinks.map(({ link, name }) => {
@@ -53,7 +51,7 @@ const MobileMenu = ({ menuLinks, currentPath, menu, toggleSearch, closeMenu, tog
   }
   const closedMenuContent = (
     <>
-      { (!searchIsOpen && !menuIsOpen) && <div className={styles.logoMobile}><GatsbyLink to={"/"}>{`LO\u0307\u0323GO`}</GatsbyLink></div>}
+      { !menuIsOpen && <div className={searchIsOpen ? styles.logoMobileClose : styles.logoMobile}><GatsbyLink to={"/"}>{`LO\u0307\u0323GO`}</GatsbyLink></div>}
       <Search/>
     </>
   )
@@ -67,7 +65,6 @@ const MobileMenu = ({ menuLinks, currentPath, menu, toggleSearch, closeMenu, tog
           onClick={() => {
             menuIsOpen ? closeNav() : openNav()
             toggleMenu(!menuIsOpen)
-            //searchStateChanged(false)
           }}
         />
         {menuIsOpen ? null : closedMenuContent }
@@ -93,7 +90,6 @@ const MobileMenu = ({ menuLinks, currentPath, menu, toggleSearch, closeMenu, tog
             )
           })}
         </Menu>
-
       </nav>
     </>
   )
@@ -102,7 +98,7 @@ const MobileMenu = ({ menuLinks, currentPath, menu, toggleSearch, closeMenu, tog
 
 const AppMenu = (props) => {
   //console.log("menu-props--", props)
-  if(!props.isWindow) return <DesktopMenu menuLinks={props.menuLinks} currentPath={props.currentPath}/>
+  //if(!props.isWindow) return <DesktopMenu menuLinks={props.menuLinks} currentPath={props.currentPath}/>
   return <Media query="(max-width: 599px)">
     {matches =>
       matches ? (
@@ -125,12 +121,5 @@ const mapStateToProps = ({menu}) =>{
     menu
   }
 }
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     openMenu: () => dispatch(menuOpen()),
-//     closeMenu: ()=> dispatch(menuClose()),
-//     toggleMenu: (payload) => dispatch(toggleMenu(payload))
-//
-//   }
-// };
+
 export default connect(mapStateToProps, actions)(AppMenu)

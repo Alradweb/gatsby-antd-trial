@@ -7,14 +7,13 @@ import { Layout} from "antd"
 import { graphql, StaticQuery } from "gatsby"
 import { Helmet } from "react-helmet"
 import { Location } from '@reach/router';
-
 import rerender from "../components/rerender"
 import ScrollProgress from "../components/scroll-progress/scroll-progress"
 
 const { Content, Footer } = Layout
-//console.log(PageProgress)
+
 const TestLayout = (props) => {
-  console.log('Layout(props)->',props)
+ // console.log('Layout(props)->',props)
   return (
     <StaticQuery
       query={graphql`

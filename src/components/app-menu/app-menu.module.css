@@ -16,12 +16,13 @@
 .logo-wrapper {
     width: 120px;
     height: 32px;
-    background: #5e5e5e;
+    /*background: #5e5e5e;*/
     margin: 16px 24px 16px 0;
     text-align: center;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    font-weight: bold;
 }
 .logo{
     font-size: 24px;
@@ -29,10 +30,22 @@
 }
 .logo-mobile{
     font-size: 18px;
-    background-color: #5e5e5e;
+    font-weight: bold;
+    background-color: transparent;
+    transition: all 1s;
+}
+.logo-mobile-close{
+    font-size: 0;
+    width: 0;
+}
+.logo-mobile-close a{
+    color: tomato;
+    font-size: 0;
+    width: 0;
 }
 .logo-mobile a{
     color: tomato;
+    transition: all 1s;
 }
 .trigger {
     font-size: 24px;
@@ -55,16 +68,16 @@
 }
 
 .sidebar {
-    height: 100%; /* 100% Full-height */
-    width: 0; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Stay on top */
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
     top: 0;
     left: 0;
     background-color: #001529;
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
 }
 
 .sidebar a {

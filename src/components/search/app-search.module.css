@@ -53,10 +53,11 @@
 
 .search-field input[type='text']:focus {
     border: 1px solid #454749;
-}
-
-.search-field input[type='text']::placeholder {
     color: rgba(255, 255, 255, 0.84)
-
 }
+
+/*.search-field input[type='text']::placeholder {*/
+/*    color: rgba(255, 255, 255, 0.84)*/
+
+/*}*/
 
