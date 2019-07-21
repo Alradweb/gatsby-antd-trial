@@ -98,7 +98,7 @@ const MobileMenu = ({ menuLinks, currentPath, menu, toggleSearch, closeMenu, tog
 
 const AppMenu = (props) => {
   //console.log("menu-props--", props)
-  //if(!props.isWindow) return <DesktopMenu menuLinks={props.menuLinks} currentPath={props.currentPath}/>
+  if(!props.isWindow) return <DesktopMenu menuLinks={props.menuLinks} currentPath={props.currentPath}/>
   return <Media query="(max-width: 599px)">
     {matches =>
       matches ? (
