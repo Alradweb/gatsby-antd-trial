@@ -1,0 +1,29 @@
+.likely{
+   display: flex;
+    justify-content: space-between;
+}
+.likely__widget{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+    padding: 5px;
+    border: 1px solid #00e000;
+    border-radius: 3px;
+}
+
+.likely__icon {
+    fill: tomato;
+    width: 25px;
+    height: 25px;
+}
+.likely__widget .likely__icon svg{
+    width: 25px;
+    height: 25px;
+}
+.likely__button{
+  font-size: 12px;
+}
+.likely__widget_facebook{
+
+}
