@@ -10,7 +10,7 @@ import Likely from "../components/likely/likely"
 
 export default (props) => {
     const { data } = props
-    console.log(process.env.IMAGE_BASE_URL)
+    //console.log(props)
     return (
 
         <Layout>

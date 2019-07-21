@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from "react"
 import styles from "./scroll-progress.module.css"
+import { connect } from "react-redux"
 
-const ScrollProgress = ({ isWindow }) => {
-  if (!isWindow) {
+const ScrollProgress = ({ _window }) => {
+  console.log('progress-', _window.isWindow)
+  if (!_window.isWindow) {
     return null
   } else {
     const bar = useRef(null)
@@ -25,4 +27,10 @@ const ScrollProgress = ({ isWindow }) => {
     )
   }
 }
-export default ScrollProgress
+const mapStateToProps = ({_window}) =>{
+  return {
+    _window
+  }
+}
+
+export default connect(mapStateToProps)(ScrollProgress)

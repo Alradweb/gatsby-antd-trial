@@ -7,13 +7,13 @@ import { Layout} from "antd"
 import { graphql, StaticQuery } from "gatsby"
 import { Helmet } from "react-helmet"
 import { Location } from '@reach/router';
-import rerender from "../components/rerender"
+import WindowIndicator from "../components/window-indicator"
 import ScrollProgress from "../components/scroll-progress/scroll-progress"
 import ImportantInfo from "../components/important-info/important-info"
 
 const { Content, Footer } = Layout
 
-const TestLayout = (props) => {
+const AppLayout = (props) => {
  // console.log('Layout(props)->',props)
   return (
     <StaticQuery
@@ -37,16 +37,17 @@ const TestLayout = (props) => {
     `}
       render={data => (
         <Provider store={store}>
+          <WindowIndicator>
           <Helmet
             title={data.site.siteMetadata.title}
             meta={data.site.siteMetadata.helmetMetaData}
           >
           </Helmet>
-          <ScrollProgress isWindow={props.isWindow}/>
+          <ScrollProgress/>
           <AppMenu
             menuLinks={data.site.siteMetadata.menuLinks}
             currentPath={props.location.pathname}
-            isWindow={props.isWindow}
+
           />
           <div className={styles.appLayout}>
             <ImportantInfo/>
@@ -61,12 +62,13 @@ const TestLayout = (props) => {
               <a href="http://strapi.io">Strapi</a>
             </Footer>
           </div>
+          </WindowIndicator>
         </Provider>
       )}
     />
   )
 }
-const AppLayout = rerender(TestLayout)
+
 
 export default props => (
   <Location>
