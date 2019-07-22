@@ -1,28 +1,47 @@
-import React, {Component} from 'react'
-import store from '../../redux/store'
-// import Likely, {
-//   Facebook,
-//   Twitter,
-//   Vkontakte,
-//   Odnoklassniki
-// } from 'react-ilyabirman-likely'
-import './app-likely.css'
-store.subscribe((state)=>{
-  if(store.getState()._window.isWindow){
-    console.log('tttttttrrrrrrrrrrruuuuuuuuuueeeeeeeee', store.getState()._window.isWindow)
-    import ('react-ilyabirman-likely').then(likely => console.log(likely))
+import React, { Component } from "react"
+import store from "../../redux/store"
+import { connect } from "react-redux"
+import "./app-likely.css"
+import { moduleLoaded } from "../../redux/actions/module"
+
+let likelyModule = null
+const neededFunc = (module) => {
+  likelyModule = module
+  store.dispatch(moduleLoaded(true))
+}
+store.subscribe(async () => {
+  if (store.getState()._window.isWindow && !likelyModule) {
+    //import ('react-ilyabirman-likely').then(likely => like = likely.default)
+    const module = await import("react-ilyabirman-likely")
+    neededFunc(module)
   }
 })
-export default class AppLikely extends Component {
-  render() {
+
+const AppLikely = (props) => {
+  console.log(props)
+  if (props.module.moduleLoaded && likelyModule) {
+    const Likely = likelyModule.default
+    const { Facebook, Twitter, Vkontakte, Odnoklassniki } = likelyModule
     return (
-      <div/>
+      <Likely size={"small"} skin={"default"}>
+        <Facebook>Share on Facebook</Facebook>
+        <Twitter via="your_twitter_account">Share on Twitter</Twitter>
+        <Vkontakte>Share on Vkontakte</Vkontakte>
+        <Odnoklassniki>Share on Odnoklassniki</Odnoklassniki>
+      </Likely>
+    )
+  }else {
+    return (
+      <div>social networks</div>
     )
   }
+
 }
-// {/*<Likely size={'big'} skin={'default'}>*/}
-// {/*  <Facebook>Share on Facebook</Facebook>*/}
-// {/*  <Twitter via="your_twitter_account">Share on Twitter</Twitter>*/}
-// {/*  <Vkontakte>Share on Vkontakte</Vkontakte>*/}
-// {/*  <Odnoklassniki>Share on Odnoklassniki</Odnoklassniki>*/}
-// {/*</Likely>*/}
+
+
+const mapStateToProps = ({ module }) => {
+  return {
+    module,
+  }
+}
+export default connect(mapStateToProps)(AppLikely)
