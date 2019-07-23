@@ -1,11 +1,12 @@
-import React, { Component } from "react"
+import React from "react"
 import store from "../../redux/store"
 import { connect } from "react-redux"
-import "./app-likely.css"
 import { moduleLoaded } from "../../redux/actions/module"
+import "./app-likely.css"
+import DummyLikely from "./dummy-likely"
 
 let likelyModule = null
-const neededFunc = (module) => {
+const setModule = (module) => {
   likelyModule = module
   store.dispatch(moduleLoaded(true))
 }
@@ -13,29 +14,25 @@ store.subscribe(async () => {
   if (store.getState()._window.isWindow && !likelyModule) {
     //import ('react-ilyabirman-likely').then(likely => like = likely.default)
     const module = await import("react-ilyabirman-likely")
-    neededFunc(module)
+    setModule(module)
   }
 })
 
 const AppLikely = (props) => {
-  console.log(props)
   if (props.module.moduleLoaded && likelyModule) {
     const Likely = likelyModule.default
     const { Facebook, Twitter, Vkontakte, Odnoklassniki } = likelyModule
     return (
-      <Likely size={"small"} skin={"default"}>
-        <Facebook>Share on Facebook</Facebook>
-        <Twitter via="your_twitter_account">Share on Twitter</Twitter>
-        <Vkontakte>Share on Vkontakte</Vkontakte>
-        <Odnoklassniki>Share on Odnoklassniki</Odnoklassniki>
+      <Likely>
+        <Facebook>Facebook</Facebook>
+        <Twitter via="your_twitter_account">Twitter</Twitter>
+        <Vkontakte>Vkontakte</Vkontakte>
+        <Odnoklassniki>Odnoklassniki</Odnoklassniki>
       </Likely>
     )
-  }else {
-    return (
-      <div>social networks</div>
-    )
+  } else {
+    return <DummyLikely/>
   }
-
 }
 
 
@@ -45,3 +42,4 @@ const mapStateToProps = ({ module }) => {
   }
 }
 export default connect(mapStateToProps)(AppLikely)
+

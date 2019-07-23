@@ -3,6 +3,8 @@ import { Link, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import Layout from '../containers/app-layout'
 import ReactMarkdown from "react-markdown"
+import AppLikely from "../components/likely/likely"
+//import { Card } from "antd"
 
 const ArticleTemplate = ({ data }) => (
   <Layout>
@@ -19,6 +21,7 @@ const ArticleTemplate = ({ data }) => (
       transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
       escapeHtml={false}
     />
+    <AppLikely/>
   </Layout>
 )
 
