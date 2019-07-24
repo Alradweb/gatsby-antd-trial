@@ -73,7 +73,7 @@
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 1;
+    z-index: 100;
     top: 0;
     left: 0;
     background-color: #001529;
@@ -94,7 +94,7 @@
 .modal::before{
     content: '';
     transition: opacity .25s ease,top .25s ease,left .25s ease,bottom .25s ease,right .25s ease;
-    z-index: 100;
+    z-index: 999;
     position: absolute;
     border: #fff solid 1px;
     top: 0;
