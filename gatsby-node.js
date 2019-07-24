@@ -6,7 +6,7 @@
 
 
 
-const path = require(`path`);
+const path = require(`path`)
 
 const makeRequest = (graphql, request) => new Promise((resolve, reject) => {
   // Query for article nodes to use in creating pages.
@@ -16,16 +16,16 @@ const makeRequest = (graphql, request) => new Promise((resolve, reject) => {
         reject(result.errors)
       }
 
-      return result;
-    })
+      return result
+    }),
   )
-});
+})
 
 
 // Implement the Gatsby API “createPages”. This is called once the
 // data layer is bootstrapped to let plugins create pages from data.
 exports.createPages = ({ actions, graphql }) => {
-  const { createPage } = actions;
+  const { createPage } = actions
 
   const getArticles = makeRequest(graphql, `
     {
@@ -48,7 +48,7 @@ exports.createPages = ({ actions, graphql }) => {
         },
       })
     })
-  });
+  })
 
   const getAuthors = makeRequest(graphql, `
     {
@@ -71,11 +71,10 @@ exports.createPages = ({ actions, graphql }) => {
         },
       })
     })
-  });
-
+  })
   // Queries for articles and authors nodes to use in creating pages.
   return Promise.all([
     getArticles,
     getAuthors,
   ])
-};
+}
