@@ -24,10 +24,10 @@ const AppLikely = (props) => {
     const { Facebook, Twitter, Vkontakte, Odnoklassniki } = likelyModule
     return (
       <Likely>
-        <Facebook>Facebook</Facebook>
-        <Twitter via="your_twitter_account">Twitter</Twitter>
-        <Vkontakte>Vkontakte</Vkontakte>
-        <Odnoklassniki>Odnoklassniki</Odnoklassniki>
+        <Facebook/>
+        <Twitter via="your_twitter_account"/>
+        <Vkontakte/>
+        <Odnoklassniki/>
       </Likely>
     )
   } else {
@@ -43,3 +43,9 @@ const mapStateToProps = ({ module }) => {
 }
 export default connect(mapStateToProps)(AppLikely)
 
+// {/*<Likely>*/}
+// {/*  <Facebook>Facebook</Facebook>*/}
+// {/*  <Twitter via="your_twitter_account">Twitter</Twitter>*/}
+// {/*  <Vkontakte>Vkontakte</Vkontakte>*/}
+// {/*  <Odnoklassniki>Odnoklassniki</Odnoklassniki>*/}
+// {/*</Likely>*/}

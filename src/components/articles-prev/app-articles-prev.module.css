@@ -27,10 +27,11 @@
     outline-offset: -10px;
 }
 .content {
-    padding: 40px 30px;
-    transition: .5s ease;
-    opacity: 1;
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 40px 30px;
     bottom: 0;
     text-align: left;
     color: #ffffff;
@@ -42,8 +43,8 @@
 
 
 .text {
-    color: #ffffff;
     font-size: 18px;
+    color: #ffffff;
 }
 .text a{
     color: #ffffff;
@@ -55,10 +56,23 @@
     cursor: pointer;
 }
 .text a h3{
-    margin: 0;
     color: #ffffff;
+    margin: 0;
 }
-
+.social{
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+}
+.share-icon{
+    font-size: 18px;
+    margin-right: 5px;
+}
+.eye{
+    font-size: 15px;
+    font-weight: lighter;
+    margin-right: 14px;
+}
 @media (max-width: 576px) {
     .article-prev{
        margin-bottom: 8px;

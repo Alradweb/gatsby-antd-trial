@@ -3,8 +3,10 @@ import { Link, graphql, StaticQuery } from "gatsby"
 import Img from "gatsby-image"
 //import ReactMarkdown from "react-markdown"
 import { Col, Row, Card, Icon } from "antd"
+import AppLikely from '../likely/likely'
 import { randomArticles } from "../../utils"
 import styles from "./app-articles-prev.module.css"
+
 
 const { Meta } = Card
 const PrevArticle = (props) => {
@@ -15,6 +17,12 @@ const PrevArticle = (props) => {
         {/*<img src={props.imgSrc} alt="Avatar" className={styles.image} style={{width: '1200px'}}/>*/}
           <div className={styles.content}>
             <div className={styles.text}><Link to={`/articles/${props.id}`}><h3>{props.title}</h3></Link></div>
+            <div className={styles.social}>
+              <Icon className={styles.shareIcon} type="eye" />
+              <b className={styles.eye}>{Math.ceil(Math.random() * 100)}</b>
+              <Icon className={styles.shareIcon} type="share-alt"/>
+              <AppLikely/>
+            </div>
           </div>
       </div>
       {/*<div className={styles.wrapper}>*/}

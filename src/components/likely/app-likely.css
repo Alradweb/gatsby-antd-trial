@@ -1,29 +1,37 @@
-.likely{
-   display: flex;
+.likely {
+    display: flex;
     justify-content: space-between;
 }
-.likely__widget{
+
+.likely__widget {
     display: flex;
+    text-align: center;
     justify-content: space-around;
     align-items: center;
     cursor: pointer;
-    padding: 5px;
-    border: 1px solid #00e000;
-    border-radius: 3px;
+    padding: 3px;
+    margin-right: 3px;
+    border: 1px solid #ffffff;
+    border-radius: 50%;
 }
 
 .likely__icon {
-    fill: tomato;
-    width: 25px;
-    height: 25px;
+    display: flex;
+    fill: #ffffff;
+    width: 16px;
+    height: 16px;
 }
-.likely__widget .likely__icon svg{
-    width: 25px;
-    height: 25px;
+
+.likely__widget .likely__icon svg {
+    width: 12px;
+    height: 12px;
+    margin: auto;
 }
-.likely__button{
-  font-size: 12px;
+
+.likely__button {
+    /*font-size: 12px;*/
 }
-.likely__widget_facebook{
+
+.likely__widget_facebook {
 
 }
