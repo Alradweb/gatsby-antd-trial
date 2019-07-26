@@ -18,7 +18,6 @@ const NewPrev = (props) => {
             return false
           }else return true
         }}
-        transformImageUri={uri => uri.startsWith('http') ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
         escapeHtml={false}
       />
       {isLongNew ? <p style={{color: 'tomato'}}>'Читать далее...'</p> : null}
