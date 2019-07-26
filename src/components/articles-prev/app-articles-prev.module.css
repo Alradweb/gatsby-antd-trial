@@ -65,7 +65,7 @@
     align-items: center;
     margin-top: 8px;
 }
-.share-icon{
+.icon{
     font-size: 18px;
     margin-right: 5px;
 }
@@ -84,7 +84,7 @@
     .content {
         padding: 40px 12px;
     }
-    .share-icon{
+    .icon{
         font-size: 14px;
         margin-right: 3px;
     }

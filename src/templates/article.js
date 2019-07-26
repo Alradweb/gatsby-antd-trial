@@ -8,7 +8,7 @@ import AppLikely from "../components/likely/likely"
 
 const ArticleTemplate = ({ data }) => (
   <Layout>
-    <h1>{data.strapiArticle.title}</h1>
+    <h3>{data.strapiArticle.title}</h3>
     <p>
       by{" "}
       <Link to={`/authors/User_${data.strapiArticle.author.id}`}>
