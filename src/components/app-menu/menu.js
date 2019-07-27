@@ -11,7 +11,7 @@ const { Header } = Layout
 
 const DesktopMenu = ({ menuLinks, currentPath }) => {
   return (
-    <Header style={{ display: 'flex', justifyContent: 'space-between', padding: '0 32px'}}>
+    <Header  className={styles.desktopHeader}>
       <div className={styles.logoWrapper}>
         <GatsbyLink to={"/"}>
           <span className={styles.logo}>{`LO\u0307\u0323GO`}</span>
@@ -56,8 +56,7 @@ const MobileMenu = ({ menuLinks, currentPath, menu, toggleSearch, closeMenu, tog
     </>
   )
   return (
-    <>
-
+    <header style={{marginBottom: '8px'}}>
       <div ref={menuButton} className={menuIsOpen ? styles.menuButtonOpen : styles.menuButton }>
         <Icon
           className={menuIsOpen ? styles.triggerOpen : styles.trigger  }
@@ -91,7 +90,7 @@ const MobileMenu = ({ menuLinks, currentPath, menu, toggleSearch, closeMenu, tog
           })}
         </Menu>
       </nav>
-    </>
+    </header>
   )
 }
 

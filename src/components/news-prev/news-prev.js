@@ -82,6 +82,7 @@ const NewsPrev = () => {
               </Col>
               <Col  xs={{ span: 24 }} md={{ span: 8 }}>
                 <ImportantInfo cube/>
+                <ImportantInfo vertical/>
               </Col>
             </Row>
           </section>
