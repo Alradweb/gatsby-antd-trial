@@ -50,7 +50,7 @@ const AppLayout = (props) => {
 
           />
           <div className={styles.appLayout}>
-            <ImportantInfo/>
+            <ImportantInfo horizontal/>
             <Content>
               {props.children}
             </Content>

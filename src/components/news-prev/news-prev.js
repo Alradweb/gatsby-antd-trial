@@ -3,12 +3,13 @@ import { Link, graphql, StaticQuery } from "gatsby"
 import { Col, Row } from "antd"
 import styles from "./app-news-prev.module.css"
 import ReactMarkdown from "react-markdown"
-import Img from "gatsby-image"
+import ImportantInfo from "../important-info/important-info"
+
 
 const NewPrev = (props) => {
   const [isLongNew, changeState] = useState(false)
   return (
-    <Col span={12} className={styles.newPrev}>
+    <Col  xs={{ span: 24 }} md={{ span: 12 }} className={styles.newPrev}>
       <div className={styles.container} style={{ backgroundImage: `url(${props.imgSrc})` }}>
         <div className={styles.overlay}>
           <ReactMarkdown
@@ -65,7 +66,7 @@ const NewsPrev = () => {
           <section className={styles.newsPrev}>
             <h2>НОВОСТИ</h2>
             <Row>
-              <Col span={16}>
+              <Col xs={{ span: 24 }} md={{ span: 16 }}>
                 <Row>
                   {
                     news.map((n) => {
@@ -79,7 +80,9 @@ const NewsPrev = () => {
                   }
                 </Row>
               </Col>
-              <Col span={8}>col-8</Col>
+              <Col  xs={{ span: 24 }} md={{ span: 8 }}>
+                <ImportantInfo cube/>
+              </Col>
             </Row>
           </section>
         )

@@ -1,10 +1,13 @@
 import React from 'react'
 import styles from './important-info.module.css'
-import test from '../../../static/img-horizontal.jpg'
+import horizontal from '../../../static/img-horizontal.jpg'
+import vertical from '../../../static/img-vertical.jpg'
+import cube from '../../../static/img-cube.jpg'
 const ImportantInfo = (props) =>{
+  const infoSize = props.horizontal ? horizontal :  props.vertical ? vertical : cube
   return(
-    <div className={styles.importantInfoWrapper}>
-      <img src={test} alt={'important'} width={1300} className={styles.image}/>
+    <div className={props.horizontal ? styles.horizontal :  props.vertical ? styles.vertical : styles.cube}>
+      <img src={infoSize} alt={'important info'} width={1300} className={styles.image}/>
     </div>
   )
 }
