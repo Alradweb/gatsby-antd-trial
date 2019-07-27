@@ -3,13 +3,14 @@
   "private": true,
   "description": "Trial starter for Gatsby and Ant Design",
   "version": "0.1.0",
-  "license": "MIT",
+  "license": "ISC",
   "scripts": {
     "build": "gatsby build",
     "dev": "gatsby develop",
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run dev",
     "serve": "gatsby serve",
+    "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
   },
   "dependencies": {

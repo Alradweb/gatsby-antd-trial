@@ -4,6 +4,14 @@
 }
 
 .new-prev{
-
-    padding: 16px;
+    /*padding: 16px;*/
+}
+.container {
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: block;
+    min-height: 340px;
+    opacity: 1;
+    backface-visibility: hidden;
 }

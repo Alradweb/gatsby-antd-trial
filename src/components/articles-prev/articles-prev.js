@@ -10,7 +10,7 @@ const PrevArticle = (props) => {
   //console.log(props)
   return (
     <Col xs={{ span: 24 }} sm={{ span: props.span }} className={styles.articlePrev}>
-      <div className={styles.container} style={{ backgroundImage: `url(${props.imgSrc})` }}>
+      <div className={styles.container} style={{ backgroundImage: `url(${props.imgSrc})`}}>
         <div className={styles.content}>
           <div className={styles.text}>
             <Link to={`/articles/${props.id}`}>

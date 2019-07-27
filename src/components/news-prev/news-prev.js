@@ -4,11 +4,14 @@ import { Link, graphql, StaticQuery } from "gatsby"
 import { Col, Row, Icon } from "antd"
 import styles from "./app-news-prev.module.css"
 import ReactMarkdown from "react-markdown"
+import Img from "gatsby-image"
 
 const NewPrev = (props) => {
   const [isLongNew, changeState] = useState(false)
   return (
     <Col span={12} className={styles.newPrev}>
+      {/*<div className={styles.container} style={{ backgroundImage: `url(${props.imgSrc})`}}>*/}
+      <div>
       <ReactMarkdown
         source={props.content}
         allowedTypes={['text', 'paragraph', 'heading']}
@@ -21,9 +24,11 @@ const NewPrev = (props) => {
         escapeHtml={false}
       />
       {isLongNew ? <p style={{color: 'tomato'}}>'Читать далее...'</p> : null}
+        <Img fluid={props.imgSrc} />
       {/*<h3>{props.title}</h3>*/}
       {/*<p>{props.content}</p>*/}
       {/*<p>{props.newsDate}</p>*/}
+      </div>
     </Col>
   )
 }
@@ -41,11 +46,11 @@ const NewsPrev = () => {
         date(formatString: "DD.MM.YYYY")
         title
         image {
-          childImageSharp {
-            fluid {
-              src
-            }
-          }
+         childImageSharp {
+            fluid(maxWidth: 960, maxHeight: 600) {
+            ...GatsbyImageSharpFluid
+              }
+          }  
         }
       }
     }
@@ -69,6 +74,7 @@ const NewsPrev = () => {
                                     id={n.node.id}
                                     title={n.node.title}
                                     content={n.node.content}
+                                    imgSrc={n.node.image.childImageSharp.fluid}
                                     newsDate={n.node.date}/>
                   })
                 }
