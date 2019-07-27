@@ -3,7 +3,7 @@ import { Link, graphql, StaticQuery } from "gatsby"
 //import ReactMarkdown from "react-markdown"
 import { Col, Row, Icon } from "antd"
 import AppLikely from "../likely/likely"
-import { randomArticles } from "../../utils"
+//import { randomArticles } from "../../utils"
 import styles from "./app-articles-prev.module.css"
 
 const PrevArticle = (props) => {
@@ -55,11 +55,12 @@ const ArticlesPrev = () => {
  }
   `}
       render={data => {
+        const fiveArticles = data.allStrapiArticle.edges.slice(-5)
         return (
           <section>
             <Row>
               {
-                randomArticles(data.allStrapiArticle.edges).map((article, idx) => {
+                fiveArticles.map((article, idx) => {
                   const span = idx < 2 ? 12 : 8
                   return (
                     <PrevArticle title={article.node.title}
