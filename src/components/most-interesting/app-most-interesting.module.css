@@ -3,9 +3,9 @@
     background-position: center;
     position: relative;
     display: block;
-    min-height: 340px;
+    min-height: 1px;
     backface-visibility: hidden;
-    padding: 16px 0 54px 0;
+    padding-top: 16px;
     margin-bottom: 16px;
 }
 .most-interesting::before{
@@ -21,13 +21,31 @@
 .row{
     padding: 0 8px;
 }
-.wrapper{
-    display: flex;
-    align-items: stretch;
-}
+
 .container{
     position: relative;
     min-height: 1px;
     padding-right: 8px;
     padding-left: 8px;
+    margin-bottom: 16px;
+
+}
+.title{
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 1.2;
+    margin: 8px 0 0;
+    padding-bottom: 8px;
+    color: #ffffff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+.title:hover{
+    text-decoration: underline;
+}
+
+@media (min-width: 576px) {
+    .title{
+        border: none;
+    }
+
 }

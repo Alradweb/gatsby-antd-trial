@@ -5,21 +5,35 @@ import sky from "../../../static/sky.jpg"
 import { Row, Col, Card } from "antd"
 import Img from "gatsby-image"
 import Social from "../social/social"
+import Media from "react-media"
 
 const InterestingArticle = (props) => {
   return (
-    <Col xs={{ span: 24 }} sm={{ span: 6 }} className={styles.container}>
-      <Card bordered={false}
-            cover={<Img fluid={props.fluid}/>}
-            bodyStyle={{padding: '8px', textAlign: 'center', display: 'flex'}}
-      >
-        <Social color='dark' customStyle={{margin: '0 auto'}}/>
-      </Card>
-      {/*<Social color='dark'/>*/}
-      <h3>
-        <Link to={`/articles/${props.id}`}>{props.title}</Link>
-      </h3>
+
+    <Col xs={{ span: 24 }} sm={{ span: 12 }} md={{ span: 12 }} lg={{ span: 6 }} className={styles.container}>
+
+        <Card bordered={false}
+              cover={<Img fluid={props.fluid}/>}
+              bodyStyle={{ display: "flex", padding: "8px", textAlign: "center", overflow: "hidden" }}
+        >
+          <Media query="(min-width: 992px)">
+            {matches =>
+              matches ? (
+                <Social color='dark' customStyle={{ margin: "0 auto" }}/>
+              ) : (
+                <Social color='dark' customStyle={{ margin: "0 auto 0 0" }}/>
+              )
+            }
+          </Media>
+        </Card>
+        <Link to={`/articles/${props.id}`}>
+          <h3 className={styles.title}>
+            {props.title}
+          </h3>
+        </Link>
+
     </Col>
+
   )
 }
 
@@ -50,19 +64,18 @@ const MostInteresting = () => {
         <section className={styles.mostInteresting} style={{ backgroundImage: `url(${sky})` }}>
           <Row className={styles.row}>
             <h2 className='section-title-light'>САМОЕ ИНТЕРЕСНОЕ</h2>
-            <div className={styles.wrapper}>
+
             {
               articles.map((a, idx) => {
-                const title = idx === 1 ? "Скачать стоковое фото ночное звездное небо ✓ популярный фотобанк ✓ доступные цены ✓ миллионы роялти-фри фотографий, изображений и ..." : a.node.title
                 return <InterestingArticle
                   key={a.node.id}
-                  title={title}
+                  title={a.node.title}
                   id={a.node.id}
                   fluid={a.node.image.childImageSharp.fluid}
                 />
               })
             }
-            </div>
+
           </Row>
         </section>
       )
@@ -70,3 +83,5 @@ const MostInteresting = () => {
   />)
 }
 export default MostInteresting
+
+
