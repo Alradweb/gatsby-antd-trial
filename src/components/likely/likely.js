@@ -2,7 +2,7 @@ import React from "react"
 import store from "../../redux/store"
 import { connect } from "react-redux"
 import { moduleLoaded } from "../../redux/actions/module"
-import "./app-likely.css"
+import styles from './app-likely.module.css'
 import DummyLikely from "./dummy-likely"
 
 let likelyModule = null
@@ -19,19 +19,26 @@ store.subscribe(async () => {
 })
 
 const AppLikely = (props) => {
+   const fill = props.color
   if (props.module.moduleLoaded && likelyModule) {
     const Likely = likelyModule.default
     const { Facebook, Twitter, Vkontakte, Odnoklassniki } = likelyModule
     return (
-      <Likely>
-        <Facebook/>
-        <Twitter via="your_twitter_account"/>
-        <Vkontakte/>
-        <Odnoklassniki/>
-      </Likely>
+      <div className={ fill === 'dark' ? styles.likelyDark : styles.likelyLight}>
+        <Likely>
+          <Facebook/>
+          <Twitter via="your_twitter_account"/>
+          <Vkontakte/>
+          <Odnoklassniki/>
+        </Likely>
+      </div>
     )
   } else {
-    return <DummyLikely/>
+    return (
+      <div className={ fill === 'dark' ? styles.likelyDark : styles.likelyLight}>
+        <DummyLikely/>
+      </div>
+    )
   }
 }
 

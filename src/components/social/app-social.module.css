@@ -1,0 +1,23 @@
+.social{
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+}
+.icon{
+    font-size: 18px;
+    margin-right: 5px;
+}
+.eye{
+    font-size: 15px;
+    font-weight: lighter;
+    margin-right: 14px;
+}
+@media (min-width: 576px) and (max-width: 768px) {
+    .icon{
+        font-size: 14px;
+        margin-right: 3px;
+    }
+    .eye{
+        margin-right: 8px;
+    }
+}

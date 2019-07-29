@@ -2,13 +2,27 @@ html {
     /*background-color: #ffefd5;*/
 }
 
-.app-media{
+.app-media {
     width: auto;
     height: 100%;
 }
-.test{
+
+.section-title-red {
+    color: tomato;
+    text-decoration: underline;
+}
+
+.section-title-light {
+    position: relative;
+    color: #ffffff;
+    text-decoration: underline;
+    margin-left: 8px;
+}
+
+.test {
     border: 2px solid black;
 }
+
 .indexArticle {
     max-height: 250px;
     overflow: hidden;
@@ -17,6 +31,7 @@ html {
 .indexArticle img {
     display: none;
 }
+
 .articleContent img {
     display: block;
     margin: 0 auto;
@@ -34,7 +49,26 @@ html {
 }
 
 /*testing*/
-.article-wrapper{
+.article-wrapper {
     padding: 16px;
     border: 1px dashed lightgrey;
+}
+.likely {
+    display: flex;
+    justify-content: space-between;
+}
+.likely > div{
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+    padding: 3px;
+    margin-right: 3px;
+    border-radius: 50%;
+}
+.likely > div > span:first-child {
+    display: flex;
+    width: 16px;
+    height: 16px;
 }

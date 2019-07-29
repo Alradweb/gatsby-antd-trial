@@ -1,0 +1,31 @@
+.likely-light{
+    color: #ffffff;
+}
+.likely-dark{
+    color: rgba(0, 0, 0, 0.65);
+}
+.likely-light > div > div {
+    border: 1px solid #ffffff;
+}
+.likely-dark  > div > div {
+    border: 1px solid rgba(0, 0, 0, 0.65);
+}
+.likely-light > div > div > span:first-child {
+    fill: #ffffff;
+}
+.likely-dark > div > div > span:first-child {
+    fill: rgba(0, 0, 0, 0.65);
+}
+.likely-light > div > div > span:first-child  svg {
+    width: 12px;
+    height: 12px;
+    margin: auto;
+}
+.likely-dark > div > div > span:first-child  svg {
+    width: 12px;
+    height: 12px;
+    margin: auto;
+}
+
+
+

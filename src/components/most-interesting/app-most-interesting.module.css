@@ -1,0 +1,33 @@
+.most-interesting{
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: block;
+    min-height: 340px;
+    backface-visibility: hidden;
+    padding: 16px 0 54px 0;
+    margin-bottom: 16px;
+}
+.most-interesting::before{
+    content: '';
+    background-color: #000000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: .85;
+}
+.row{
+    padding: 0 8px;
+}
+.wrapper{
+    display: flex;
+    align-items: stretch;
+}
+.container{
+    position: relative;
+    min-height: 1px;
+    padding-right: 8px;
+    padding-left: 8px;
+}

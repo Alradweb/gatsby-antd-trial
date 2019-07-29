@@ -5,6 +5,7 @@ import { Col, Row, Icon } from "antd"
 import AppLikely from "../likely/likely"
 //import { randomArticles } from "../../utils"
 import styles from "./app-articles-prev.module.css"
+import Social from "../social/social"
 
 const PrevArticle = (props) => {
   //console.log(props)
@@ -17,12 +18,13 @@ const PrevArticle = (props) => {
               <h3>{props.title.toUpperCase()}</h3>
             </Link>
           </div>
-          <div className={styles.social}>
-            <Icon className={styles.icon} type="eye"/>
-            <b className={styles.eye}>{Math.ceil(Math.random() * 100)}</b>
-            <Icon className={styles.icon} type="share-alt"/>
-            <AppLikely/>
-          </div>
+          <Social color='light'/>
+          {/*<div className={styles.social}>*/}
+          {/*  <Icon className={styles.icon} type="eye"/>*/}
+          {/*  <b className={styles.eye}>{Math.ceil(Math.random() * 100)}</b>*/}
+          {/*  <Icon className={styles.icon} type="share-alt"/>*/}
+          {/*  <AppLikely/>*/}
+          {/*</div>*/}
         </div>
       </div>
     </Col>
@@ -57,7 +59,7 @@ const ArticlesPrev = () => {
       render={data => {
         const fiveArticles = data.allStrapiArticle.edges.slice(-5)
         return (
-          <section>
+          <section className={styles.articlesPrev}>
             <Row>
               {
                 fiveArticles.map((article, idx) => {

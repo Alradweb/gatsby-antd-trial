@@ -1,4 +1,6 @@
-
+.articles-prev{
+    margin-bottom: 16px;
+}
 .container {
     background-size: cover;
     background-position: center;
@@ -60,20 +62,7 @@
     color: #ffffff;
     margin: 0;
 }
-.social{
-    display: flex;
-    align-items: center;
-    margin-top: 8px;
-}
-.icon{
-    font-size: 18px;
-    margin-right: 5px;
-}
-.eye{
-    font-size: 15px;
-    font-weight: lighter;
-    margin-right: 14px;
-}
+
 @media (max-width: 576px) {
     .article-prev{
        margin-bottom: 8px;
@@ -84,12 +73,4 @@
     .content {
         padding: 40px 12px;
     }
-    .icon{
-        font-size: 14px;
-        margin-right: 3px;
-    }
-    .eye{
-        margin-right: 8px;
-    }
-
 }

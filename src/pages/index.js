@@ -4,6 +4,7 @@ import Layout from "../containers/app-layout"
 //import ReactMarkdown from "react-markdown"
 import ArticlesPrev from "../components/articles-prev/articles-prev"
 import NewsPrev from "../components/news-prev/news-prev"
+import MostInteresting from "../components/most-interesting/most-interesting"
 
 /* eslint-disable */
 
@@ -14,6 +15,7 @@ export default (props) => {
         <Layout>
             <ArticlesPrev/>
             <NewsPrev/>
+            <MostInteresting/>
         </Layout>
     )
 }

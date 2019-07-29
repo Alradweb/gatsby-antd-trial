@@ -64,7 +64,7 @@ const NewsPrev = () => {
         console.log(data)
         return (
           <section className={styles.newsPrev}>
-            <h2>НОВОСТИ</h2>
+            <h2 className='section-title-red'>НОВОСТИ</h2>
             <Row>
               <Col xs={{ span: 24 }} md={{ span: 16 }}>
                 <Row>
@@ -82,7 +82,7 @@ const NewsPrev = () => {
               </Col>
               <Col  xs={{ span: 24 }} md={{ span: 8 }}>
                 <ImportantInfo cube/>
-                <ImportantInfo vertical/>
+                <ImportantInfo horizontal/>
               </Col>
             </Row>
           </section>
