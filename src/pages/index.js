@@ -5,17 +5,19 @@ import Layout from "../containers/app-layout"
 import ArticlesPrev from "../components/articles-prev/articles-prev"
 import NewsPrev from "../components/news-prev/news-prev"
 import MostInteresting from "../components/most-interesting/most-interesting"
+import Popular from "../components/popular/popular"
 
 /* eslint-disable */
 
 export default (props) => {
-    const { data } = props
+    //const { data } = props
     //console.log(props)
     return (
         <Layout>
-            <ArticlesPrev/>
+            <ArticlesPrev columns={5}/>
             <NewsPrev/>
             <MostInteresting/>
+            <Popular/>
         </Layout>
     )
 }

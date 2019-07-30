@@ -10,6 +10,7 @@ html {
 .section-title-red {
     color: tomato;
     text-decoration: underline;
+    margin-left: 8px;
 }
 
 .section-title-light {

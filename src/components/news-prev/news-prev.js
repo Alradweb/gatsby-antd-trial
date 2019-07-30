@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Link, graphql, StaticQuery } from "gatsby"
+import { graphql, StaticQuery } from "gatsby"
 import { Col, Row } from "antd"
 import styles from "./app-news-prev.module.css"
 import ReactMarkdown from "react-markdown"
@@ -60,8 +60,7 @@ const NewsPrev = () => {
   `}
       render={data => {
         const news = data.allStrapiNewsarticle.edges.slice(-4)
-        //const news = [...data.allStrapiNewsarticle.edges[2]]
-        console.log(data)
+        // console.log(data)
         return (
           <section className={styles.newsPrev}>
             <h2 className='section-title-red'>НОВОСТИ</h2>

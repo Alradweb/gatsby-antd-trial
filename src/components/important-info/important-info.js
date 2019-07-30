@@ -7,7 +7,7 @@ const ImportantInfo = (props) =>{
   const infoSize = props.horizontal ? horizontal :  props.vertical ? vertical : cube
   return(
     <div className={props.horizontal ? styles.horizontal :  props.vertical ? styles.vertical : styles.cube}>
-      <img src={infoSize} alt={'important info'} width={1300} className={styles.image}/>
+      <img src={infoSize} alt={'important info'}  className={styles.image}/>
     </div>
   )
 }

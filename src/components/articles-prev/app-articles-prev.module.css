@@ -10,6 +10,34 @@
     opacity: 1;
     backface-visibility: hidden;
 }
+.min-container{
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: block;
+    min-height: 300px;
+    opacity: 1;
+    backface-visibility: hidden;
+}
+.min-container::before{
+    content: '';
+    background-color: #001529;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: .55;
+    transition: opacity .50s ease;
+}
+.min-container:hover.min-container::before{
+    opacity: .8;
+    background-image: url('../../../static/sky.png');
+    background-position: left;
+    background-repeat: repeat;
+    outline: 1px solid  #ffffff;
+    outline-offset: -10px;
+}
 .container::before {
     content: '';
     background-color: #001529;
@@ -67,7 +95,11 @@
     .article-prev{
        margin-bottom: 8px;
     }
-
+}
+@media (max-width: 768px) {
+    .min-container:hover.min-container::before{
+        outline: none;
+    }
 }
 @media (min-width: 576px) and (max-width: 768px) {
     .content {

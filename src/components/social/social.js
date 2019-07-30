@@ -4,7 +4,6 @@ import { Icon } from "antd"
 import AppLikely from "../likely/likely"
 
 const Social = (props) =>{
-  console.log(props)
   return(
     <div className={styles.social} style={props.customStyle}>
       <Icon className={styles.icon} type="eye"/>
