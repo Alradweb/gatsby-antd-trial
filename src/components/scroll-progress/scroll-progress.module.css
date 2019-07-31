@@ -9,6 +9,12 @@
 
 .progress-bar{
     height: 3px;
-    background: #1c3aaf;
+    background: tomato;
     width: 0;
+}
+@media (max-width: 768px) {
+    .progress-container{
+        display: none;
+    }
+
 }

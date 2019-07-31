@@ -3,7 +3,6 @@ import styles from "./scroll-progress.module.css"
 import { connect } from "react-redux"
 
 const ScrollProgress = ({ _window }) => {
-  //console.log('progress-', _window.isWindow)
   if (!_window.isWindow) {
     return null
   } else {

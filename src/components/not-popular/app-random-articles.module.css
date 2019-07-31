@@ -1,0 +1,46 @@
+.random-wrap {
+ margin-bottom: 16px;
+}
+.col-wrap > div > div > div:first-child{
+    margin-bottom: 8px;
+}
+.row{
+
+}
+.container {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.content{
+    padding: 0 16px 0 0;
+}
+.title {
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 1.2;
+    margin: 16px 0 0;
+    padding-bottom: 8px;
+    color: tomato;
+}
+
+.title:hover {
+    text-decoration: underline;
+}
+@media (min-width: 768px) {
+    .row{
+        display: flex;
+        align-items: stretch;
+    }
+    .random-wrap {
+        margin-bottom: 0;
+    }
+    .col-wrap{
+        padding: 0 0 0 8px;
+    }
+    .title{
+        font-size: 22px;
+    }
+
+}

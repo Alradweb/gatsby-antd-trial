@@ -10,7 +10,7 @@ import { Location } from '@reach/router';
 import WindowIndicator from "../components/window-indicator"
 import ScrollProgress from "../components/scroll-progress/scroll-progress"
 import ImportantInfo from "../components/important-info/important-info"
-
+import ScrollToTop from '../components/scroll-to-top/scroll-to-top'
 const { Content, Footer } = Layout
 
 const AppLayout = (props) => {
@@ -62,6 +62,7 @@ const AppLayout = (props) => {
               <a href="http://strapi.io">Strapi</a>
             </Footer>
           </div>
+            <ScrollToTop/>
           </WindowIndicator>
         </Provider>
       )}

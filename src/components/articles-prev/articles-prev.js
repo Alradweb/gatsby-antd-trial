@@ -2,7 +2,6 @@ import React from "react"
 import { Link, navigate} from "gatsby"
 //import ReactMarkdown from "react-markdown"
 import { Col, Row} from "antd"
-//import { randomArticles } from "../../utils"
 import styles from "./app-articles-prev.module.css"
 import Social from "../social/social"
 import withArticles from "../withArticles"
@@ -16,7 +15,8 @@ const PrevArticle = (props) => {
          className={styles.articlePrev}
          onClick={() => navigate(`/articles/${props.id}`)}
     >
-      <div className={props.minSize ? styles.minContainer : styles.container} style={{ backgroundImage: `url(${props.imgSrc})` }}>
+      <div className={props.minSize ? styles.minContainer : styles.container}
+           style={{ backgroundImage: `url(${props.imgSrc})` }}>
         <div className={styles.content}>
           <div className={styles.text}>
             <Link to={`/articles/${props.id}`}>
@@ -32,19 +32,19 @@ const PrevArticle = (props) => {
 
 
 const ArticlesPrev = (props) => {
-  //console.log("ArticlesPrev--", props)
-  const numberOfArticles =  props.articles.slice(-(props.columns))
+  const articles = props.specialArticles ? props.specialArticles : props.articles.slice(-(props.columns))
   return (
-    <section className={styles.articlesPrev} >
+    <div className={styles.articlesPrev} >
       <Row>
         {
-          numberOfArticles.map((article, idx) => {
-            let span = 1
+          articles.map((article, idx) => {
+            let span = 24
             if(props.columns === 5){
               span = idx < 2 ? 12 : 8
-            }else if(props.columns === 4){
+            }
+            if(props.columns === 4){
               span = 12
-            }else span = 1
+            }
             return (
               <PrevArticle title={article.node.title}
                            id={article.node.id}
@@ -57,7 +57,7 @@ const ArticlesPrev = (props) => {
           })
         }
       </Row>
-    </section>
+    </div>
   )
 
 }
