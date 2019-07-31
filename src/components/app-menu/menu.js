@@ -6,9 +6,24 @@ import Media from "react-media"
 import { Link as GatsbyLink } from "gatsby"
 import Search from "../search/search"
 import * as actions from '../../redux/actions/menu'
-
 const { Header } = Layout
 
+const LowerMenu = ({menuLinks, currentPath}) =>{
+  return(
+    <nav style={{ borderBottom: '1px solid rgba(255,255,255,.1)'}}>
+      <Menu
+        theme="dark"
+        mode="horizontal"
+        defaultSelectedKeys={[`${currentPath}`]}
+        style={{ lineHeight: "64px" }}
+      >
+        {menuLinks.map(({ link, name }) => {
+          return <Menu.Item key={link} style={{backgroundColor: 'transparent'}}><GatsbyLink to={`${link}`}>{name.toUpperCase()}</GatsbyLink></Menu.Item> //activeClassName={styles.activeLink}
+        })}
+      </Menu>
+    </nav>
+  )
+}
 const DesktopMenu = ({ menuLinks, currentPath }) => {
   return (
     <Header  className={styles.desktopHeader}>
@@ -96,7 +111,8 @@ const MobileMenu = ({ menuLinks, currentPath, menu, toggleSearch, closeMenu, tog
 
 
 const AppMenu = (props) => {
-  //console.log("menu-props--", props._window.isWindow)
+  console.log("menu-props--", props)
+  if(props.lower) return <LowerMenu menuLinks={props.menuLinks} currentPath={props.currentPath}/>
   if(!props._window.isWindow) return <DesktopMenu menuLinks={props.menuLinks} currentPath={props.currentPath}/>
   return <Media query="(max-width: 599px)">
     {matches =>

@@ -11,7 +11,8 @@ import WindowIndicator from "../components/window-indicator"
 import ScrollProgress from "../components/scroll-progress/scroll-progress"
 import ImportantInfo from "../components/important-info/important-info"
 import ScrollToTop from '../components/scroll-to-top/scroll-to-top'
-const { Content, Footer } = Layout
+import Footer from "../components/footer/footer"
+const { Content} = Layout
 
 const AppLayout = (props) => {
  // console.log('Layout(props)->',props)
@@ -54,12 +55,12 @@ const AppLayout = (props) => {
             <Content>
               {props.children}
             </Content>
-            <Footer style={{ textAlign: "center" }}>
-              © {new Date().getFullYear()}, Built with
-              {` `}
-              <a href="https://www.gatsbyjs.org">Gatsby</a> and {" "}
-              <p>test info</p>
-              <a href="http://strapi.io">Strapi</a>
+            <Footer>
+              <AppMenu
+                menuLinks={data.site.siteMetadata.menuLinks}
+                currentPath={props.location.pathname}
+                lower
+              />
             </Footer>
           </div>
             <ScrollToTop/>

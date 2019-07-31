@@ -32,7 +32,7 @@ const RandomArticle = ({ article }) => {
 const RandomArticles = (props) => {
   const randArticles = randomArticles(props.articles, 3)
   const [one, ...articles] = randArticles
-  console.log(one, "---", articles)
+ // console.log(one, "---", articles)
   return (
     <section className={styles.randomArticles}>
       <h2 className='section-title-red'>СЛУЧАЙНЫЕ СТАТЬИ</h2>

@@ -6,7 +6,8 @@ import ArticlesPrev from "../components/articles-prev/articles-prev"
 import NewsPrev from "../components/news-prev/news-prev"
 import MostInteresting from "../components/most-interesting/most-interesting"
 import Popular from "../components/popular/popular"
-import NotPopular from "../components/not-popular/random-articles"
+import RandomArticles from "../components/random-articles/random-articles"
+import ShowMore from "../components/showMore/show-more"
 
 /* eslint-disable */
 
@@ -19,7 +20,8 @@ export default (props) => {
             <NewsPrev/>
             <MostInteresting/>
             <Popular/>
-            <NotPopular/>
+            <RandomArticles/>
+            <ShowMore/>
         </Layout>
     )
 }

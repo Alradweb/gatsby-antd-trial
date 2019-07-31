@@ -1,0 +1,24 @@
+.show-more{
+    padding: 34px 0 40px 0;
+    text-align: center;
+    margin-bottom: 8px;
+}
+.button{
+    display: inline-block;
+    border: none;
+    color: #ffffff;
+    text-decoration: none;
+    background-color: tomato;
+    padding: 12px 40px;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-align: center;
+    position: relative;
+    outline: 0;
+    cursor: pointer;
+    transition: background-color .7s ease;
+}
+.button:hover{
+    background-color: #001529;
+}

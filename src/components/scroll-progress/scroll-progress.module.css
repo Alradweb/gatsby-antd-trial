@@ -12,9 +12,3 @@
     background: tomato;
     width: 0;
 }
-@media (max-width: 768px) {
-    .progress-container{
-        display: none;
-    }
-
-}
