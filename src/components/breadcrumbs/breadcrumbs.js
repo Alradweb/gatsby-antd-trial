@@ -2,6 +2,7 @@ import React from 'react'
 import { Location } from '@reach/router';
 import { Link  } from "gatsby"
 import { Breadcrumb, Icon } from 'antd';
+import styles from './app-breadcrumbs.module.css'
 const breadcrumbNameMap = {
   '/articles': 'статьи',
   '/apps/1': 'Application1',
@@ -11,23 +12,23 @@ const breadcrumbNameMap = {
 };
 const Breadcrumbs = (props) =>{
   console.log('Breadcrumbs--',props.location)
-  const pathSnippets = props.location.pathname.split('/').filter(i => i);
+  const pathSnippets = props.location.pathname.split('/').filter(i => i)
   const pathsLength = pathSnippets.length
-  const extraBreadcrumbItems = pathSnippets.map((link, index) => {
-    const url = `/${pathSnippets.slice(0, index + 1).join('/')}`;
-    const title =  pathsLength === index + 1 ? props.title : link
+  const extraBreadcrumbItems = pathSnippets.map((snippet, index) => {
+    const url = `/${pathSnippets.slice(0, index + 1).join('/')}`
+    const title =  pathsLength === index + 1 ? props.title : snippet
     return (
       <Breadcrumb.Item key={url}>
         <Link to={url}>{title}</Link>
       </Breadcrumb.Item>
-    );
-  });
+    )
+  })
 
-  console.log(pathSnippets)
+  //console.log(pathSnippets)
   return(
-    <Breadcrumb>
+    <Breadcrumb className={styles.breadcrumbs} separator={'»'}>
       <Breadcrumb.Item>
-        <Link to={'/'}><Icon type="home" /></Link>
+        <Link to={'/'}><Icon type="home" style={{fontSize: '18px'}}/></Link>
       </Breadcrumb.Item>
       {extraBreadcrumbItems}
     </Breadcrumb>

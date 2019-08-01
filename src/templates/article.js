@@ -28,11 +28,14 @@ const ArticleTemplate = ({ data }) => {
           <div className={styles.articleHeader}>
             <Breadcrumbs title={data.strapiArticle.title}/>
           </div>
+          <ImportantInfo horizontal />
+          <div className={styles.text}>
           <ReactMarkdown
             source={data.strapiArticle.content}
             transformImageUri={uri => uri.startsWith("http") ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
             escapeHtml={false}
           />
+          </div>
         </Col>
         <Col xs={{span: 24}} md={{span: 8}}>
           <ImportantInfo vertical/>

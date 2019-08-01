@@ -5,7 +5,7 @@
     display: block;
     min-height: 400px;
     opacity: 1;
-    margin-bottom: 32px;
+    margin-bottom: 16px;
 }
 
 .content {
@@ -27,16 +27,31 @@
 .article{
     padding-right: 16px;
 }
+.article-header{
+    margin-bottom: 16px;
+}
+.text{
 
+}
+.text p{
+    font-size: 18px;
+    color: #333333
+}
 
 @media (max-width: 768px){
     .container{
-        margin-bottom: 16px;
+        margin-bottom: 8px;
     }
     .title{
         font-size: 24px;
     }
     .article{
-        padding-right: 8px;
+        padding-right: 0;
+    }
+    .article-header{
+        margin-bottom: 8px;
+    }
+    .text{
+        margin-bottom: 8px;
     }
 }

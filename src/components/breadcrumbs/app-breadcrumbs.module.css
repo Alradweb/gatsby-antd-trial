@@ -1,0 +1,10 @@
+.breadcrumbs{
+    color: tomato;
+}
+.breadcrumbs a{
+    color: tomato;
+    font-size: 18px;
+}
+.breadcrumbs span:last-child a{
+    color: #0a3004;
+}
