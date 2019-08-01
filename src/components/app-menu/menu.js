@@ -1,16 +1,18 @@
-import React, { useRef} from "react"
-import {connect} from "react-redux"
+import React, { useCallback, useRef } from "react"
+import { connect } from "react-redux"
 import { Layout, Menu, Icon } from "antd"
 import styles from "./app-menu.module.css"
 import Media from "react-media"
 import { Link as GatsbyLink } from "gatsby"
 import Search from "../search/search"
-import * as actions from '../../redux/actions/menu'
+import * as actions from "../../redux/actions/menu"
+import { addActiveStyle } from "../../utils"
+
 const { Header } = Layout
 
-const LowerMenu = ({menuLinks, currentPath}) =>{
-  return(
-    <nav style={{ borderBottom: '1px solid rgba(255,255,255,.1)'}}>
+const LowerMenu = ({ menuLinks, currentPath }) => {
+  return (
+    <nav style={{ borderBottom: "1px solid rgba(255,255,255,.6)" }}>
       <Menu
         theme="dark"
         mode="horizontal"
@@ -18,21 +20,29 @@ const LowerMenu = ({menuLinks, currentPath}) =>{
         style={{ lineHeight: "64px" }}
       >
         {menuLinks.map(({ link, name }) => {
-          return <Menu.Item key={link} style={{backgroundColor: 'transparent'}}><GatsbyLink to={`${link}`}>{name.toUpperCase()}</GatsbyLink></Menu.Item> //activeClassName={styles.activeLink}
+          return <Menu.Item key={link} style={{ backgroundColor: "transparent" }}>
+            <GatsbyLink
+              activeClassName={styles.activeLink} to={`${link}`}>
+              {name.toUpperCase()}
+            </GatsbyLink>
+          </Menu.Item> //activeClassName={styles.activeLink}
         })}
       </Menu>
     </nav>
   )
 }
 const DesktopMenu = ({ menuLinks, currentPath }) => {
+  const navRef = useCallback(node => {
+    addActiveStyle(node)
+  }, [])
   return (
-    <Header  className={styles.desktopHeader}>
+    <Header className={styles.desktopHeader}>
       <div className={styles.logoWrapper}>
         <GatsbyLink to={"/"}>
           <span className={styles.logo}>{`LO\u0307\u0323GO`}</span>
         </GatsbyLink>
       </div>
-      <nav>
+      <nav ref={navRef}>
         <Menu
           theme="dark"
           mode="horizontal"
@@ -40,7 +50,11 @@ const DesktopMenu = ({ menuLinks, currentPath }) => {
           style={{ lineHeight: "64px" }}
         >
           {menuLinks.map(({ link, name }) => {
-            return <Menu.Item key={link}><GatsbyLink to={`${link}`}>{name.toUpperCase()}</GatsbyLink></Menu.Item> //activeClassName={styles.activeLink}
+            return <Menu.Item key={link} style={{ backgroundColor: "transparent" }}>
+              <GatsbyLink to={`${link}`} activeClassName={styles.activeLink}>
+                {name.toUpperCase()}
+              </GatsbyLink>
+            </Menu.Item> //activeClassName={styles.activeLink}
           })}
         </Menu>
       </nav>
@@ -50,41 +64,44 @@ const DesktopMenu = ({ menuLinks, currentPath }) => {
 }
 
 
-const MobileMenu = ({ menuLinks, currentPath, menu, toggleSearch, closeMenu, toggleMenu}) => {
-  const{menuIsOpen, searchIsOpen} = menu
+const MobileMenu = ({ menuLinks, currentPath, menu, toggleSearch, closeMenu, toggleMenu }) => {
+  const { menuIsOpen, searchIsOpen } = menu
   const sidebar = useRef(null)
   const menuButton = useRef(null)
   const openNav = () => {
     toggleSearch(false)
     sidebar.current.style.width = "250px"
     menuButton.current.style.marginLeft = "250px"
+    addActiveStyle(sidebar.current, true)
   }
   const closeNav = () => {
-    if(!menuIsOpen) return
+    if (!menuIsOpen) return
     sidebar.current.style.width = "0"
     menuButton.current.style.marginLeft = "0"
   }
   const closedMenuContent = (
     <>
-      { !menuIsOpen && <div className={searchIsOpen ? styles.logoMobileClose : styles.logoMobile}><GatsbyLink to={"/"}>{`LO\u0307\u0323GO`}</GatsbyLink></div>}
+      {!menuIsOpen && <div className={searchIsOpen ? styles.logoMobileClose : styles.logoMobile}><GatsbyLink
+        to={"/"}>{`LO\u0307\u0323GO`}</GatsbyLink></div>}
       <Search/>
     </>
   )
   return (
-    <header style={{marginBottom: '8px'}}>
-      <div ref={menuButton} className={menuIsOpen ? styles.menuButtonOpen : styles.menuButton }>
+    <header style={{ marginBottom: "8px" }}>
+      <div ref={menuButton} className={menuIsOpen ? styles.menuButtonOpen : styles.menuButton}>
         <Icon
-          className={menuIsOpen ? styles.triggerOpen : styles.trigger  }
+          className={menuIsOpen ? styles.triggerOpen : styles.trigger}
           type={!menuIsOpen ? "menu-unfold" : "menu-fold"}
           onClick={() => {
+
             menuIsOpen ? closeNav() : openNav()
             toggleMenu(!menuIsOpen)
           }}
         />
-        {menuIsOpen ? null : closedMenuContent }
+        {menuIsOpen ? null : closedMenuContent}
       </div>
 
-      <nav className={styles.sidebar}  ref={sidebar} onClick={() => {
+      <nav className={styles.sidebar} ref={sidebar} onClick={() => {
         closeNav()
         closeMenu()
       }}>
@@ -96,7 +113,7 @@ const MobileMenu = ({ menuLinks, currentPath, menu, toggleSearch, closeMenu, tog
         >
           {menuLinks.map(({ link, name }) => {
             return (
-              <Menu.Item key={link} >
+              <Menu.Item key={link} style={{ backgroundColor: "transparent" }}>
                 <Icon type="pie-chart"/>
                 <span>{name.toUpperCase()}</span>
                 <GatsbyLink to={link}/>
@@ -111,9 +128,9 @@ const MobileMenu = ({ menuLinks, currentPath, menu, toggleSearch, closeMenu, tog
 
 
 const AppMenu = (props) => {
-  console.log("menu-props--", props)
-  if(props.lower) return <LowerMenu menuLinks={props.menuLinks} currentPath={props.currentPath}/>
-  if(!props._window.isWindow) return <DesktopMenu menuLinks={props.menuLinks} currentPath={props.currentPath}/>
+  //console.log("menu-props--", props)
+  if (props.lower) return <LowerMenu menuLinks={props.menuLinks} currentPath={props.currentPath}/>
+  if (!props._window.isWindow) return <DesktopMenu menuLinks={props.menuLinks} currentPath={props.currentPath}/>
   return <Media query="(max-width: 599px)">
     {matches =>
       matches ? (
@@ -121,7 +138,7 @@ const AppMenu = (props) => {
                     currentPath={props.currentPath}
                     menu={props.menu}
                     openMenu={props.openMenu}
-                    closeMenu={ props.closeMenu}
+                    closeMenu={props.closeMenu}
                     toggleMenu={props.toggleMenu}
                     toggleSearch={props.toggleSearch}
         />
@@ -131,10 +148,10 @@ const AppMenu = (props) => {
     }
   </Media>
 }
-const mapStateToProps = ({menu, _window}) =>{
+const mapStateToProps = ({ menu, _window }) => {
   return {
     menu,
-    _window
+    _window,
   }
 }
 

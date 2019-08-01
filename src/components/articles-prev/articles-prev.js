@@ -13,17 +13,20 @@ const PrevArticle = (props) => {
     <Col xs={{ span: 24 }}
          sm={{ span: props.span }}
          className={styles.articlePrev}
-         onClick={() => navigate(`/articles/${props.id}`)}
     >
       <div className={props.minSize ? styles.minContainer : styles.container}
-           style={{ backgroundImage: `url(${props.imgSrc})` }}>
+           style={{ backgroundImage: `url(${props.imgSrc})` }}
+           onClick={(ev)=>{
+            if(ev.target.tagName === 'DIV') navigate(`/articles/${props.id}`)
+           }}
+      >
         <div className={styles.content}>
           <div className={styles.text}>
             <Link to={`/articles/${props.id}`}>
               <h3>{props.title.toUpperCase()}</h3>
             </Link>
           </div>
-          <Social color='light'/>
+          <Social color='light' />
         </div>
       </div>
     </Col>

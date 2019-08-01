@@ -4,15 +4,13 @@
 .col-wrap > div > div > div:first-child{
     margin-bottom: 8px;
 }
-.row{
-
+.col-wrap{
+    padding: 0 0 0 8px;
 }
 .container {
     display: flex;
     flex-direction: column;
-
 }
-
 .content{
     padding: 0 16px 0 0;
 }
@@ -24,20 +22,23 @@
     padding-bottom: 8px;
     color: tomato;
 }
-
 .title:hover {
     text-decoration: underline;
 }
+
 @media (min-width: 768px) {
     .row{
         display: flex;
         align-items: stretch;
     }
+    .col-wrap > div > div > div:first-child{
+        margin-bottom: 16px;
+    }
     .random-wrap {
         margin-bottom: 0;
     }
     .col-wrap{
-        padding: 0 0 0 8px;
+        padding: 0 0 0 16px;
     }
     .title{
         font-size: 22px;

@@ -13,7 +13,9 @@ const InterestingArticle = (props) => {
          sm={{ span: 12 }}
          lg={{ span: 6 }}
          className={styles.container}
-         onClick={() => navigate(`/articles/${props.id}`)}
+         onClick={ ev =>{
+           if(ev.target.tagName === 'DIV') navigate(`/articles/${props.id}`)
+         }}
     >
       <Card bordered={false}
             cover={<Img fluid={props.fluid}/>}

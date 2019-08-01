@@ -12,7 +12,6 @@ const RandomArticle = ({ article }) => {
   return (
     <div className={styles.container}>
       <div onClick={() => navigate(`/articles/${article.node.id}`)}>
-        {/*<img className={styles.img} src={article.node.image.childImageSharp.fluid.src} alt={"good image"}/>*/}
         <Card bordered={false}
               cover={<Img fluid={article.node.fluidImage.childImageSharp.fluid}/>}
               bodyStyle={{ display: "flex", padding: "8px", textAlign: "center", overflow: "hidden" }} />
@@ -21,18 +20,17 @@ const RandomArticle = ({ article }) => {
         <Social color='dark' customStyle={{marginBottom: '8px'}}/>
         <Link to={`/articles/${article.node.id}`}>
           <h3 className={styles.title}>
-            {article.node.title.toUpperCase() + "Поскольку контент управляется Strapi, авторы могут писать статьи через приятный пользовательский интерфейс, и разработчикам нужно только перестроить блог Gatsby, чтобы обновить контент."}
+            {article.node.title.toUpperCase()}
           </h3>
         </Link>
       </div>
-
     </div>
   )
 }
 const RandomArticles = (props) => {
   const randArticles = randomArticles(props.articles, 3)
   const [one, ...articles] = randArticles
- // console.log(one, "---", articles)
+
   return (
     <section className={styles.randomArticles}>
       <h2 className='section-title-red'>СЛУЧАЙНЫЕ СТАТЬИ</h2>

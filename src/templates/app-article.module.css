@@ -1,0 +1,42 @@
+.container {
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: block;
+    min-height: 400px;
+    opacity: 1;
+    margin-bottom: 32px;
+}
+
+.content {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 40px 30px;
+    bottom: 0;
+    text-align: left;
+    color: #ffffff;
+}
+.title{
+    color: #ffffff;
+    font-size: 32px;
+    line-height: 1.2;
+    display: block;
+}
+.article{
+    padding-right: 16px;
+}
+
+
+@media (max-width: 768px){
+    .container{
+        margin-bottom: 16px;
+    }
+    .title{
+        font-size: 24px;
+    }
+    .article{
+        padding-right: 8px;
+    }
+}

@@ -18,3 +18,17 @@ export const getWidth = () => {
     document.documentElement.clientWidth,
   )
 }
+
+export const addActiveStyle = (node, mobile) => {
+  if (node !== null) {
+    const li = node.querySelector(".ant-menu-item-selected")
+    if (li && mobile) {
+      li.style.backgroundColor = "tomato"
+      li.style.borderRight = "8px solid #001529"
+      return
+    }
+    if (li) {
+      li.style.backgroundColor = "tomato"
+    }
+  }
+}

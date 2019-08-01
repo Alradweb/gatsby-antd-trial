@@ -15,7 +15,8 @@ import Footer from "../components/footer/footer"
 const { Content} = Layout
 
 const AppLayout = (props) => {
- // console.log('Layout(props)->',props)
+ //console.log('Layout(props)->',props)
+
   return (
     <StaticQuery
       query={graphql`
@@ -55,6 +56,7 @@ const AppLayout = (props) => {
             <Content>
               {props.children}
             </Content>
+          </div>
             <Footer>
               <AppMenu
                 menuLinks={data.site.siteMetadata.menuLinks}
@@ -62,7 +64,6 @@ const AppLayout = (props) => {
                 lower
               />
             </Footer>
-          </div>
             <ScrollToTop/>
           </WindowIndicator>
         </Provider>
