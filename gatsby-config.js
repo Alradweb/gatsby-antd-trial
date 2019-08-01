@@ -49,7 +49,7 @@ module.exports = {
           ? "https://intense-inlet-52562.herokuapp.com"
           : "http://localhost:1337",
         contentTypes: [`article`, `user`, `newsarticle`],
-        queryLimit: 1000,
+        queryLimit: 100000,
       },
     },
     `gatsby-transformer-sharp`,
