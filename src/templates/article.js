@@ -37,8 +37,9 @@ const ArticleTemplate = ({ data }) => {
             escapeHtml={false}
           />
             <div className={styles.social}>
-              <AppLikely/>
+              <AppLikely color='dark' fullSize lowerWidget/>
             </div>
+            <ImportantInfo horizontal />
           </div>
         </Col>
         <Col xs={{span: 24}} md={{span: 8}}>

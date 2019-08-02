@@ -2,7 +2,7 @@ import React from "react"
 import store from "../../redux/store"
 import { connect } from "react-redux"
 import { moduleLoaded } from "../../redux/actions/module"
-import styles from './app-likely.module.css'
+import styles from "./app-likely.module.css"
 import DummyLikely from "./dummy-likely"
 
 let likelyModule = null
@@ -19,24 +19,26 @@ store.subscribe(async () => {
 })
 
 const AppLikely = (props) => {
-   const fill = props.color
+  let clazz = props.color === "dark" ? styles.likelyDark : styles.likelyLight
+  if (props.lowerWidget) clazz = `${clazz} ${styles.lowerWidget}`
+  //console.log(clazz)
   if (props.module.moduleLoaded && likelyModule) {
     const Likely = likelyModule.default
     const { Facebook, Twitter, Vkontakte, Odnoklassniki } = likelyModule
     return (
-      <div className={ fill === 'dark' ? styles.likelyDark : styles.likelyLight}>
+      <div className={clazz}>
         <Likely>
-          <Facebook/>
-          <Twitter via="your_twitter_account"/>
-          <Vkontakte/>
-          <Odnoklassniki/>
+          <Facebook>{props.fullSize && "Facebook"}</Facebook>
+          <Twitter via="your_twitter_account">{props.fullSize && "Twitter"}</Twitter>
+          <Vkontakte>{props.fullSize && "Вконтакте"}</Vkontakte>
+          <Odnoklassniki>{props.fullSize && "Одноклассники"}</Odnoklassniki>
         </Likely>
       </div>
     )
   } else {
     return (
-      <div className={ fill === 'dark' ? styles.likelyDark : styles.likelyLight}>
-        <DummyLikely/>
+      <div className={clazz}>
+        <DummyLikely fullSize={props.fullSize}/>
       </div>
     )
   }
@@ -49,10 +51,3 @@ const mapStateToProps = ({ module }) => {
   }
 }
 export default connect(mapStateToProps)(AppLikely)
-
-// {/*<Likely>*/}
-// {/*  <Facebook>Facebook</Facebook>*/}
-// {/*  <Twitter via="your_twitter_account">Twitter</Twitter>*/}
-// {/*  <Vkontakte>Vkontakte</Vkontakte>*/}
-// {/*  <Odnoklassniki>Odnoklassniki</Odnoklassniki>*/}
-// {/*</Likely>*/}

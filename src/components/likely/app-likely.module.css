@@ -27,5 +27,20 @@
     margin: auto;
 }
 
+.lower-widget > div{
+    display: inline-flex;
+    justify-content: unset;
+    flex-wrap: wrap;
+}
+.lower-widget > div > div{
+    border-radius: unset;
+    margin: 0 16px 16px 0;
+}
+@media (max-width: 768px){
+    .lower-widget > div > div{
+        border-radius: unset;
+        margin: 0 8px 8px 0;
+    }
+}
 
 

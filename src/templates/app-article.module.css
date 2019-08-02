@@ -38,9 +38,11 @@
     color: #333333
 }
 .social{
-    min-height: 200px;
     background-color: #f0f0f0;
+    padding: 16px 0 0 16px;
+    margin-bottom: 16px;
 }
+
 @media (max-width: 768px){
     .container{
         margin-bottom: 8px;
@@ -55,6 +57,10 @@
         margin-bottom: 8px;
     }
     .text{
+        margin-bottom: 8px;
+    }
+    .social{
+        padding-bottom: 8px;
         margin-bottom: 8px;
     }
 }
