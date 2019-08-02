@@ -5,6 +5,29 @@ import styles from "./app-news-prev.module.css"
 import ReactMarkdown from "react-markdown"
 import ImportantInfo from "../important-info/important-info"
 
+const NewsWidget = ({news}) =>{
+  return(
+    <Row>
+      <h3 className={styles.widgetTitle}>НОВОСТИ</h3>
+      {
+        news.map(n =>{
+          return(
+            <Col xs={{span: 24}} key={n.node.id} className={styles.widgetColumn}>
+              <Row className={styles.widgetWrap}>
+                <Col xs={{span: 8}} className={styles.widgetDate}>
+                  <time dateTime={n.node.readerDate}>{n.node.date}</time>
+                </Col>
+                <Col xs={{span: 16}} className={styles.widgetText}>
+                  <p>{n.node.title}</p>
+                </Col>
+              </Row>
+            </Col>
+          )
+        })
+      }
+    </Row>
+  )
+}
 
 const NewPrev = (props) => {
   const [isLongNew, changeState] = useState(false)
@@ -32,8 +55,7 @@ const NewPrev = (props) => {
     </Col>
   )
 }
-const NewsPrev = () => {
-
+const NewsPrev = (props) => {
   return (
     <StaticQuery
       query={graphql`
@@ -61,7 +83,8 @@ const NewsPrev = () => {
       render={data => {
         const news = data.allStrapiNewsarticle.edges.slice(-4)
         // console.log(data)
-        return (
+        if(props.widget) return <NewsWidget news={news}/>
+          return (
           <section className={styles.newsPrev}>
             <h2 className='section-title-red'>НОВОСТИ</h2>
             <Row>

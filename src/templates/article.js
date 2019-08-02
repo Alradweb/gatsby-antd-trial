@@ -1,5 +1,5 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 //import Img from "gatsby-image"
 import Layout from "../containers/app-layout"
 import ReactMarkdown from "react-markdown"
@@ -9,6 +9,7 @@ import styles from "./app-article.module.css"
 import Social from "../components/social/social"
 import ImportantInfo from "../components/important-info/important-info"
 import Breadcrumbs from "../components/breadcrumbs/breadcrumbs"
+import NewsPrev from "../components/news-prev/news-prev"
 
 
 const ArticleTemplate = ({ data }) => {
@@ -35,10 +36,14 @@ const ArticleTemplate = ({ data }) => {
             transformImageUri={uri => uri.startsWith("http") ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
             escapeHtml={false}
           />
+            <div className={styles.social}>
+              <AppLikely/>
+            </div>
           </div>
         </Col>
         <Col xs={{span: 24}} md={{span: 8}}>
           <ImportantInfo vertical/>
+          <NewsPrev widget />
         </Col>
       </Row>
       <AppLikely/>

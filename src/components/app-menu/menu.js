@@ -32,6 +32,7 @@ const LowerMenu = ({ menuLinks, currentPath }) => {
   )
 }
 const DesktopMenu = ({ menuLinks, currentPath }) => {
+  //console.log("menu-props--", currentPath)
   const navRef = useCallback(node => {
     addActiveStyle(node)
   }, [])
@@ -65,6 +66,7 @@ const DesktopMenu = ({ menuLinks, currentPath }) => {
 
 
 const MobileMenu = ({ menuLinks, currentPath, menu, toggleSearch, closeMenu, toggleMenu }) => {
+  //console.log(menuLinks)
   const { menuIsOpen, searchIsOpen } = menu
   const sidebar = useRef(null)
   const menuButton = useRef(null)
@@ -111,10 +113,10 @@ const MobileMenu = ({ menuLinks, currentPath, menu, toggleSearch, closeMenu, tog
           theme="dark"
           // onClick={function({ item, key, keyPath, domEvent }) {console.log(item, key, keyPath, domEvent)}}
         >
-          {menuLinks.map(({ link, name }) => {
+          {menuLinks.map(({ link, name, icon }) => {
             return (
               <Menu.Item key={link} style={{ backgroundColor: "transparent" }}>
-                <Icon type="pie-chart"/>
+                <Icon type={icon} />
                 <span>{name.toUpperCase()}</span>
                 <GatsbyLink to={link}/>
               </Menu.Item>
@@ -128,7 +130,8 @@ const MobileMenu = ({ menuLinks, currentPath, menu, toggleSearch, closeMenu, tog
 
 
 const AppMenu = (props) => {
-  //console.log("menu-props--", props)
+
+
   if (props.lower) return <LowerMenu menuLinks={props.menuLinks} currentPath={props.currentPath}/>
   if (!props._window.isWindow) return <DesktopMenu menuLinks={props.menuLinks} currentPath={props.currentPath}/>
   return <Media query="(max-width: 599px)">

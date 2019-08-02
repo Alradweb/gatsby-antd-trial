@@ -17,16 +17,19 @@ module.exports = {
       {
         name: "home",
         link: "/",
+        icon: "home",
         key: 1
       },
       {
         name: "articles",
         link: "/articles/",
+        icon: "book",
         key: 2
       },
       {
         name: "users",
         link: "/users/",
+        icon: "smile",
         key: 3
       },
     ],

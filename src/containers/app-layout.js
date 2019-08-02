@@ -31,6 +31,7 @@ const AppLayout = (props) => {
             menuLinks {
              name
               link
+              icon
               key
             }
           }

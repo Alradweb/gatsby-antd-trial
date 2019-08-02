@@ -3,19 +3,13 @@ import { Location } from '@reach/router';
 import { Link  } from "gatsby"
 import { Breadcrumb, Icon } from 'antd';
 import styles from './app-breadcrumbs.module.css'
-const breadcrumbNameMap = {
-  '/articles': 'статьи',
-  '/apps/1': 'Application1',
-  '/apps/2': 'Application2',
-  '/apps/1/detail': 'Detail',
-  '/apps/2/detail': 'Detail'
-};
+
 const Breadcrumbs = (props) =>{
-  console.log('Breadcrumbs--',props.location)
+  //console.log('Breadcrumbs--',props.location)
   const pathSnippets = props.location.pathname.split('/').filter(i => i)
   const pathsLength = pathSnippets.length
   const extraBreadcrumbItems = pathSnippets.map((snippet, index) => {
-    const url = `/${pathSnippets.slice(0, index + 1).join('/')}`
+    const url = pathsLength === index + 1 ? `/${pathSnippets.slice(0, index + 1).join('/')}` : `/${pathSnippets.slice(0, index + 1).join('/')}/`
     const title =  pathsLength === index + 1 ? props.title : snippet
     return (
       <Breadcrumb.Item key={url}>
