@@ -4,13 +4,13 @@ import { graphql } from "gatsby"
 import Layout from "../containers/app-layout"
 import ReactMarkdown from "react-markdown"
 import AppLikely from "../components/likely/likely"
-import {Row, Col } from "antd"
+import { Row, Col } from "antd"
 import styles from "./app-article.module.css"
 import Social from "../components/social/social"
 import ImportantInfo from "../components/important-info/important-info"
 import Breadcrumbs from "../components/breadcrumbs/breadcrumbs"
 import NewsPrev from "../components/news-prev/news-prev"
-
+import ArticlesPrev from "../components/articles-prev/articles-prev"
 
 const ArticleTemplate = ({ data }) => {
   return (
@@ -24,30 +24,30 @@ const ArticleTemplate = ({ data }) => {
           <Social color='light'/>
         </div>
       </div>
-      <Row>
-        <Col xs={{span: 24}} md={{span: 16}} className={styles.article}>
+      <Row style={{marginBottom: '32px'}}>
+        <Col xs={{ span: 24 }} md={{ span: 16 }} className={styles.article}>
           <div className={styles.articleHeader}>
             <Breadcrumbs title={data.strapiArticle.title}/>
           </div>
-          <ImportantInfo horizontal />
+          <ImportantInfo horizontal/>
           <div className={styles.text}>
-          <ReactMarkdown
-            source={data.strapiArticle.content}
-            transformImageUri={uri => uri.startsWith("http") ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
-            escapeHtml={false}
-          />
+            <ReactMarkdown
+              source={data.strapiArticle.content}
+              transformImageUri={uri => uri.startsWith("http") ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
+              escapeHtml={false}
+            />
             <div className={styles.social}>
               <AppLikely color='dark' fullSize lowerWidget/>
             </div>
-            <ImportantInfo horizontal />
+            <ImportantInfo horizontal/>
+            <ArticlesPrev lowerWidget columns={5}/>
           </div>
         </Col>
-        <Col xs={{span: 24}} md={{span: 8}}>
+        <Col xs={{ span: 24 }} md={{ span: 8 }}>
           <ImportantInfo vertical/>
-          <NewsPrev widget />
+          <NewsPrev widget/>
         </Col>
       </Row>
-      <AppLikely/>
     </Layout>
   )
 

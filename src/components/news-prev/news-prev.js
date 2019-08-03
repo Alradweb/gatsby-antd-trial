@@ -8,7 +8,7 @@ import ImportantInfo from "../important-info/important-info"
 const NewsWidget = ({news}) =>{
   return(
     <Row>
-      <h3 className={styles.widgetTitle}>НОВОСТИ</h3>
+      <h3 className={styles.widgetTitle}>Новости</h3>
       {
         news.map(n =>{
           return(

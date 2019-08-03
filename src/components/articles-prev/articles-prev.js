@@ -33,9 +33,30 @@ const PrevArticle = (props) => {
   )
 }
 
-
+const ArticleLowerWidget = (props) =>{
+  return(
+    <div className={styles.lowerWidget}>
+       <h3 className={styles.lowerWidgetTitle}>{'Читать еще:'}</h3>
+       <ul className={styles.lowerWidgetList}>
+         {
+           props.articles.map(a =>{
+             return (
+               <li className={styles.lowerWidgetItem} key={a.node.id}>
+                 <Link to={`/articles/${a.node.id}`}>
+                   {a.node.title + 'Мы настоятельно не рекомендуем загружать файлы целиком, так как это приведет к увеличению размера вашего приложения и усложнит получение исправлений и обновлений'}
+                 </Link>
+               </li>
+             )
+           })
+         }
+       </ul>
+    </div>
+  )
+}
 const ArticlesPrev = (props) => {
   const articles = props.specialArticles ? props.specialArticles : props.articles.slice(-(props.columns))
+  console.log(articles)
+  if(props.lowerWidget) return <ArticleLowerWidget articles={articles}/>
   return (
     <div className={styles.articlesPrev} >
       <Row>
@@ -64,6 +85,8 @@ const ArticlesPrev = (props) => {
   )
 
 }
-
+ArticlesPrev.defaultProps = {
+  columns: 2
+}
 export default withArticles(ArticlesPrev)
 

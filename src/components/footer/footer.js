@@ -7,7 +7,7 @@ const Footer = (props) =>{
     <footer className={styles.footer}>
       {props.children}
       <div className={styles.footerContent}>
-        <p>© {new Date().getFullYear()}, Сделано с  <Icon type="heart" style={{color: 'tomato'}}/></p>
+        <p>© {new Date().getFullYear()}, Сделано с  <Icon type="heart" style={{color: 'tomato'}}/> к <Icon type="coffee" /></p>
         <p>Копирование контента и размещение на других сайтах запрещено.</p>
       </div>
     </footer>
