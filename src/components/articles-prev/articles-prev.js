@@ -55,7 +55,7 @@ const ArticleLowerWidget = (props) =>{
 }
 const ArticlesPrev = (props) => {
   const articles = props.specialArticles ? props.specialArticles : props.articles.slice(-(props.columns))
-  console.log(articles)
+  //console.log(articles)
   if(props.lowerWidget) return <ArticleLowerWidget articles={articles}/>
   return (
     <div className={styles.articlesPrev} >

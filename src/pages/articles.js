@@ -1,12 +1,11 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../containers/app-layout"
-import Img from "gatsby-image"
+//import Img from "gatsby-image"
 import { Col, Row, Card } from "antd"
 import ImportantInfo from "../components/important-info/important-info"
-//import { rusToLatin } from "../utils"
 
-const { Meta } = Card
+
 
 const IndexPage = ({ data }) => {
   //console.log(data.allStrapiArticle.edges)
