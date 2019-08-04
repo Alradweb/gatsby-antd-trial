@@ -11,14 +11,14 @@ import Img from "gatsby-image"
 const RandomArticle = ({ article }) => {
   return (
     <div className={styles.container}>
-      <div onClick={() => navigate(`/articles/${article.node.id}`)}>
+      <div onClick={() => navigate(`/articles/${article.node.customPath}`)}>
         <Card bordered={false}
               cover={<Img fluid={article.node.fluidImage.childImageSharp.fluid}/>}
               bodyStyle={{ display: "flex", padding: "8px", textAlign: "center", overflow: "hidden" }} />
       </div>
       <div className={styles.content}>
         <Social color='dark' customStyle={{marginBottom: '8px'}}/>
-        <Link to={`/articles/${article.node.id}`}>
+        <Link to={`/articles/${article.node.customPath}`}>
           <h3 className={styles.title}>
             {article.node.title.toUpperCase()}
           </h3>

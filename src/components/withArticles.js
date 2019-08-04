@@ -12,6 +12,7 @@ const withArticles = (View) =>{
       node {
         title
         id
+        customPath
         fluidImage: image {
           childImageSharp {
               fluid(maxWidth: 960, maxHeight: 600) {

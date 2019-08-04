@@ -14,7 +14,7 @@ const InterestingArticle = (props) => {
          lg={{ span: 6 }}
          className={styles.container}
          onClick={ ev =>{
-           if(ev.target.tagName === 'DIV') navigate(`/articles/${props.id}`)
+           if(ev.target.tagName === 'DIV') navigate(`/articles/${props.path}`)
          }}
     >
       <Card bordered={false}
@@ -23,7 +23,7 @@ const InterestingArticle = (props) => {
       >
         <Social color='dark' customStyle={{ margin: "0 auto 0 0" }}/>
       </Card>
-      <Link to={`/articles/${props.id}`}>
+      <Link to={`/articles/${props.path}`}>
         <h3 className={styles.title}>
           {props.title}
         </h3>
@@ -46,6 +46,7 @@ const MostInteresting = (props) => {
               key={a.node.id}
               title={a.node.title}
               id={a.node.id}
+              path={a.node.customPath}
               fluid={a.node.fluidImage.childImageSharp.fluid}
             />
           })

@@ -17,12 +17,12 @@ const PrevArticle = (props) => {
       <div className={props.minSize ? styles.minContainer : styles.container}
            style={{ backgroundImage: `url(${props.imgSrc})` }}
            onClick={(ev)=>{
-            if(ev.target.tagName === 'DIV') navigate(`/articles/${props.id}`)
+            if(ev.target.tagName === 'DIV') navigate(`/articles/${props.path}`)
            }}
       >
         <div className={styles.content}>
           <div className={styles.text}>
-            <Link to={`/articles/${props.id}`}>
+            <Link to={`/articles/${props.path}`}>
               <h3>{props.title.toUpperCase()}</h3>
             </Link>
           </div>
@@ -42,7 +42,7 @@ const ArticleLowerWidget = (props) =>{
            props.articles.map(a =>{
              return (
                <li className={styles.lowerWidgetItem} key={a.node.id}>
-                 <Link to={`/articles/${a.node.id}`}>
+                 <Link to={`/articles/${a.node.customPath}`}>
                    {a.node.title + 'Мы настоятельно не рекомендуем загружать файлы целиком, так как это приведет к увеличению размера вашего приложения и усложнит получение исправлений и обновлений'}
                  </Link>
                </li>
@@ -72,6 +72,7 @@ const ArticlesPrev = (props) => {
             return (
               <PrevArticle title={article.node.title}
                            id={article.node.id}
+                           path={article.node.customPath}
                            span={span}
                            key={article.node.id}
                            imgSrc={article.node.image.childImageSharp.fluid.src}

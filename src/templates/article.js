@@ -12,7 +12,10 @@ import Breadcrumbs from "../components/breadcrumbs/breadcrumbs"
 import NewsPrev from "../components/news-prev/news-prev"
 import ArticlesPrev from "../components/articles-prev/articles-prev"
 
-const ArticleTemplate = ({ data }) => {
+const ArticleTemplate = (props) => {
+  const { data } = props
+  console.log(props)
+  //return <h3>ArticleTemplate</h3>
   return (
     <Layout>
       <div className={styles.container}
