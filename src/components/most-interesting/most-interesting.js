@@ -1,5 +1,5 @@
 import React from "react"
-import { Link, navigate} from "gatsby"
+import { Link, navigate } from "gatsby"
 import styles from "./app-most-interesting.module.css"
 import sky from "../../../static/sky.png"
 import { Row, Col, Card } from "antd"
@@ -13,8 +13,8 @@ const InterestingArticle = (props) => {
          sm={{ span: 12 }}
          lg={{ span: 6 }}
          className={styles.container}
-         onClick={ ev =>{
-           if(ev.target.tagName === 'DIV') navigate(`/articles/${props.path}`)
+         onClick={ev => {
+           if (ev.target.tagName === "DIV") navigate(`/articles/${props.path}`)
          }}
     >
       <Card bordered={false}
@@ -37,9 +37,8 @@ const MostInteresting = (props) => {
   const articles = props.articles.slice(1, 5)
   return (
     <section className={styles.mostInteresting} style={{ backgroundImage: `url(${sky})` }}>
+      <h2 className={styles.sectionTitle}>САМОЕ ИНТЕРЕСНОЕ</h2>
       <Row className={styles.row}>
-        <h2 className='section-title-light'>САМОЕ ИНТЕРЕСНОЕ</h2>
-
         {
           articles.map(a => {
             return <InterestingArticle

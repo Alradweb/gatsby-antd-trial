@@ -9,8 +9,15 @@
     padding-top: 16px;
     margin-bottom: 16px;
 }
-
+.section-title{
+    position: relative;
+    color: #ffffff;
+    text-decoration: underline;
+    margin-left: 16px;
+}
 .row{
+    display: flex;
+    flex-wrap: wrap;
     padding: 0 8px;
 }
 
@@ -21,6 +28,9 @@
     padding-left: 8px;
     margin-bottom: 16px;
 
+}
+.row .container:last-child h3{
+    border: none;
 }
 .title{
     font-size: 17px;

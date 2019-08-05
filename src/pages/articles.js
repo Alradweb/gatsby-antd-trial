@@ -5,7 +5,8 @@ import Img from "gatsby-image"
 import { Col, Row, Card } from "antd"
 import ImportantInfo from "../components/important-info/important-info"
 import ReactMarkdown from "react-markdown"
-
+import styles from './styles/app-articles.module.css'
+import NewsPrev from "../components/news-prev/news-prev"
 
 
 const IndexPage = ({ data }) => {
@@ -15,37 +16,43 @@ const IndexPage = ({ data }) => {
   return (
     <Layout>
       <Row>
-        <Col xs={{ span: 24 }} md={{ span: 16 }} >
-          {
-            articles.map( a =>{
-              return(
-                <Row key={a.node.id}>
-                  <Col xs={{ span: 12 }}>
-                    <Card bordered={false}
-                          cover={<Img fluid={a.node.image.childImageSharp.fluid}/>}
-                          bodyStyle={{padding: "8px", overflow: "hidden" }}
-                    >
-                    </Card>
-                  </Col>
-                  <Col xs={{ span: 12 }}>
-                    {/*<p>{a.node.content.substring(0, 100).concat("...")}</p>*/}
-                    {/*<p>{a.node.content}</p>*/}
-                    <Link to={`/articles/${a.node.customPath}`}>{a.node.title}</Link>
-                    <ReactMarkdown
-                      source={a.node.content}
-                      allowedTypes={["text", "paragraph"]}
-                      allowNode={(node, index) => index === 0}
-                      escapeHtml={false}
-                    />
-                    <span style={{ color: "#ec1c1c" }}>Читать далее...</span>
-                  </Col>
-                </Row>
-              )
-            })
-          }
+        <Col xs={{ span: 24 }} md={{ span: 16 }} className={styles.articlesContainer}>
+          <h1>ВСЕ СТАТЬИ:</h1>
+          <ul className={styles.articlesList}>
+            {
+              articles.map( (a, idx) =>{
+                const lastItem = articles.length === idx + 1 || null
+                return(
+                  <li className={styles.articlesItem} key={a.node.id} style={lastItem && {border: 'none'}}>
+                    <Link to={`/articles/${a.node.customPath}`}>
+                    <Row>
+                      <Col xs={{ span: 12 }} className={styles.imageContainer}>
+                        <Card bordered={false}
+                              cover={<Img fluid={a.node.image.childImageSharp.fluid}/>}
+                          // bodyStyle={{padding: "8px", overflow: "hidden" }}
+                        >
+                        </Card>
+                      </Col>
+                      <Col xs={{ span: 12 }} className={styles.articlesText}>
+                        <h3 className={styles.articlesTitle}>{a.node.title}</h3>
+                        <ReactMarkdown
+                          source={a.node.content.substring(0, 200).concat("...")}
+                          allowedTypes={["text", "paragraph"]}
+                          allowNode={(node, index) => !index}
+                          escapeHtml={false}
+                        />
+                      </Col>
+                    </Row>
+                    </Link>
+                  </li>
+                )
+              })
+            }
+          </ul>
         </Col>
         <Col xs={{ span: 24 }} md={{ span: 8 }}>
           <ImportantInfo vertical/>
+          <NewsPrev widget/>
         </Col>
       </Row>
     </Layout>
