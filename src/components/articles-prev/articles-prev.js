@@ -43,7 +43,7 @@ const ArticleLowerWidget = (props) =>{
              return (
                <li className={styles.lowerWidgetItem} key={a.node.id}>
                  <Link to={`/articles/${a.node.customPath}`}>
-                   {a.node.title + 'Мы настоятельно не рекомендуем загружать файлы целиком, так как это приведет к увеличению размера вашего приложения и усложнит получение исправлений и обновлений'}
+                   {a.node.title}
                  </Link>
                </li>
              )
@@ -54,9 +54,16 @@ const ArticleLowerWidget = (props) =>{
   )
 }
 const ArticlesPrev = (props) => {
+  if(props.lowerWidget && props.exceptedIdArticle){
+    const getArticles = () =>{
+      const idx = props.articles.findIndex(el => el.node.id === props.exceptedIdArticle)
+      return [...props.articles.slice(0, idx), ...props.articles.slice(idx +1)].slice(-(props.columns))
+    }
+    return <ArticleLowerWidget articles={getArticles()}/>
+  }
   const articles = props.specialArticles ? props.specialArticles : props.articles.slice(-(props.columns))
-  //console.log(articles)
-  if(props.lowerWidget) return <ArticleLowerWidget articles={articles}/>
+  //console.log(props.exceptedArticle)
+
   return (
     <div className={styles.articlesPrev} >
       <Row>

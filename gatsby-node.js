@@ -31,7 +31,6 @@ exports.createPages = ({ actions, graphql }) => {
         edges {
           node {
             id
-            title
             customPath
           }
         }
@@ -42,7 +41,7 @@ exports.createPages = ({ actions, graphql }) => {
     result.data.allStrapiArticle.edges.forEach(({ node }) => {
       createPage({
         // path: `/articles/${node.id}`,
-        path: `/articles/${node.customPath || node.id}`,
+        path: `/articles/${node.customPath}`,
         component: path.resolve(`src/templates/article.js`),
         context: {
           id: node.id,

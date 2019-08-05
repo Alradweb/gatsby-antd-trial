@@ -12,6 +12,14 @@ import Breadcrumbs from "../components/breadcrumbs/breadcrumbs"
 import NewsPrev from "../components/news-prev/news-prev"
 import ArticlesPrev from "../components/articles-prev/articles-prev"
 
+// "policy": [{
+//       "img-src": "'self' http:"
+//     },
+//       "block-all-mixed-content"
+//     ] security.json
+
+
+
 const ArticleTemplate = (props) => {
   const { data } = props
   //console.log(props)
@@ -43,7 +51,7 @@ const ArticleTemplate = (props) => {
               <AppLikely color='dark' fullSize lowerWidget/>
             </div>
             <ImportantInfo horizontal/>
-            <ArticlesPrev lowerWidget columns={5}/>
+            <ArticlesPrev lowerWidget columns={5} exceptedIdArticle={data.strapiArticle.id}/>
           </div>
         </Col>
         <Col xs={{ span: 24 }} md={{ span: 8 }}>
@@ -62,6 +70,7 @@ export const query = graphql`
     strapiArticle(id: { eq: $id }) {
       title
       content
+      id
       image {
         childImageSharp {
           fluid {

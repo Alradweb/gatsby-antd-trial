@@ -1,15 +1,17 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 import Layout from "../containers/app-layout"
-//import Img from "gatsby-image"
+import Img from "gatsby-image"
 import { Col, Row, Card } from "antd"
 import ImportantInfo from "../components/important-info/important-info"
+import ReactMarkdown from "react-markdown"
 
 
 
 const IndexPage = ({ data }) => {
   //console.log(data.allStrapiArticle.edges)
   const articles = data.allStrapiArticle.edges
+  //const articles = data.allStrapiArticle.edges.slice(-1)
   return (
     <Layout>
       <Row>
@@ -19,11 +21,23 @@ const IndexPage = ({ data }) => {
               return(
                 <Row key={a.node.id}>
                   <Col xs={{ span: 12 }}>
-                    <Link to={`/articles/${a.node.customPath}`}>{a.node.title}</Link>
+                    <Card bordered={false}
+                          cover={<Img fluid={a.node.image.childImageSharp.fluid}/>}
+                          bodyStyle={{padding: "8px", overflow: "hidden" }}
+                    >
+                    </Card>
                   </Col>
                   <Col xs={{ span: 12 }}>
                     {/*<p>{a.node.content.substring(0, 100).concat("...")}</p>*/}
-                    <p>{a.node.content}</p>
+                    {/*<p>{a.node.content}</p>*/}
+                    <Link to={`/articles/${a.node.customPath}`}>{a.node.title}</Link>
+                    <ReactMarkdown
+                      source={a.node.content}
+                      allowedTypes={["text", "paragraph"]}
+                      allowNode={(node, index) => index === 0}
+                      escapeHtml={false}
+                    />
+                    <span style={{ color: "#ec1c1c" }}>Читать далее...</span>
                   </Col>
                 </Row>
               )

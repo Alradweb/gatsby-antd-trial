@@ -33,6 +33,12 @@
 .text{
 
 }
+.text img{
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+}
 .text p{
     font-size: 18px;
     color: #333333
