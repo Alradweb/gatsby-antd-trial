@@ -34,6 +34,23 @@
 .pagination li{
     display: inline-block;
     list-style: none;
-    min-height: 20px;
+    /*min-height: 20px;*/
     margin-right: 8px;
+}
+.pagination li{
+    margin-top: 5px;
+    width: 42px;
+    height: 42px;
+    line-height: 40px;
+    border: 2px solid #e5e5e5;
+    border-radius: 10em;
+    /*font-size: 18px;*/
+    text-decoration: none;
+    transition: border-color .25s ease,color .25s ease;
+}
+.number{
+    color: #666666;
+    font-size: 18px;
+    font-weight: 800;
+    margin: auto;
 }
