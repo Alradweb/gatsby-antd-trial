@@ -20,9 +20,10 @@ const LowerMenu = ({ menuLinks, currentPath }) => {
         style={{ lineHeight: "64px" }}
       >
         {menuLinks.map(({ link, name }) => {
-          return <Menu.Item key={link} style={{ backgroundColor: "transparent" }}>
+          const resolveAllMatches = currentPath.indexOf(name) > -1 ? currentPath : link
+          return <Menu.Item key={resolveAllMatches} style={{ backgroundColor: "transparent" }}>
             <GatsbyLink
-              activeClassName={styles.activeLink} to={`${link}`}>
+              activeClassName={styles.activeLink} to={resolveAllMatches}>
               {name.toUpperCase()}
             </GatsbyLink>
           </Menu.Item> //activeClassName={styles.activeLink}
@@ -47,12 +48,14 @@ const DesktopMenu = ({ menuLinks, currentPath }) => {
         <Menu
           theme="dark"
           mode="horizontal"
-          defaultSelectedKeys={[`${currentPath}`]}
+          defaultSelectedKeys={[`${currentPath}` ]}
+          // selectedKeys={[`/articles/2`]}
           style={{ lineHeight: "64px" }}
         >
           {menuLinks.map(({ link, name }) => {
-            return <Menu.Item key={link} style={{ backgroundColor: "transparent" }}>
-              <GatsbyLink to={`${link}`} activeClassName={styles.activeLink}>
+            const resolveAllMatches = currentPath.indexOf(name) > -1 ? currentPath : link
+            return <Menu.Item key={resolveAllMatches} style={{ backgroundColor: "transparent" }}>
+              <GatsbyLink to={resolveAllMatches} activeClassName={styles.activeLink}>
                 {name.toUpperCase()}
               </GatsbyLink>
             </Menu.Item> //activeClassName={styles.activeLink}
@@ -114,11 +117,12 @@ const MobileMenu = ({ menuLinks, currentPath, menu, toggleSearch, closeMenu, tog
           // onClick={function({ item, key, keyPath, domEvent }) {console.log(item, key, keyPath, domEvent)}}
         >
           {menuLinks.map(({ link, name, icon }) => {
+            const resolveAllMatches = currentPath.indexOf(name) > -1 ? currentPath : link
             return (
-              <Menu.Item key={link} style={{ backgroundColor: "transparent" }}>
+              <Menu.Item key={resolveAllMatches} style={{ backgroundColor: "transparent" }}>
                 <Icon type={icon} />
                 <span>{name.toUpperCase()}</span>
-                <GatsbyLink to={link}/>
+                <GatsbyLink to={resolveAllMatches}/>
               </Menu.Item>
             )
           })}
@@ -130,8 +134,7 @@ const MobileMenu = ({ menuLinks, currentPath, menu, toggleSearch, closeMenu, tog
 
 
 const AppMenu = (props) => {
-
-
+console.log(props.currentPath)
   if (props.lower) return <LowerMenu menuLinks={props.menuLinks} currentPath={props.currentPath}/>
   if (!props._window.isWindow) return <DesktopMenu menuLinks={props.menuLinks} currentPath={props.currentPath}/>
   return <Media query="(max-width: 599px)">

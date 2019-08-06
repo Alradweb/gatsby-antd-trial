@@ -5,7 +5,7 @@
  */
 
 const path = require(`path`)
-
+//const createPaginatedPages = require('gatsby-paginate')
 const makeRequest = (graphql, request) => new Promise((resolve, reject) => {
   // Query for article nodes to use in creating pages.
   resolve(
@@ -37,6 +37,17 @@ exports.createPages = ({ actions, graphql }) => {
       }
     }
     `).then(result => {
+    const postsPerPage = 2
+    const numPages = Math.ceil(result.data.allStrapiArticle.edges.length / postsPerPage)
+
+    Array.from({ length: numPages }).forEach((_, i) => {
+      createPage({
+        path: i === 0 ? `/articles/` : `/articles/${i + 1}`,
+        component: path.resolve("src/templates/articles-list.js"),
+        context: { limit: postsPerPage, skip: i * postsPerPage, numPages, currentPage: i + 1 },
+      })
+    })
+
     // Create pages for each article.
     result.data.allStrapiArticle.edges.forEach(({ node }) => {
       createPage({

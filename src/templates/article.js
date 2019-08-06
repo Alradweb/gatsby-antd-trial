@@ -22,7 +22,7 @@ import ArticlesPrev from "../components/articles-prev/articles-prev"
 
 const ArticleTemplate = (props) => {
   const { data } = props
-  //console.log(props)
+  console.log(props)
   //return <h3>ArticleTemplate</h3>
   return (
     <Layout>
