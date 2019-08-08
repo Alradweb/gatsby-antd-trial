@@ -29,14 +29,14 @@ const ArticlesList = (props) => {
                   <li className={styles.articlesItem} key={a.node.id} style={lastItem && {border: 'none'}}>
                     <Link to={`/articles/${a.node.customPath}`}>
                       <Row>
-                        <Col xs={{ span: 12 }} className={styles.imageContainer}>
+                        <Col xs={{ span: 24 }} md={{span: 12}} className={styles.imageContainer}>
                           <Card bordered={false}
                                 cover={<Img fluid={a.node.image.childImageSharp.fluid}/>}
-                            // bodyStyle={{padding: "8px", overflow: "hidden" }}
+                                bodyStyle={{ padding: "8px" }}
                           >
                           </Card>
                         </Col>
-                        <Col xs={{ span: 12 }} className={styles.articlesText}>
+                        <Col xs={{ span: 24 }} md={{span: 12}} className={styles.articlesText}>
                           <h3 className={styles.articlesTitle}>{a.node.title}</h3>
                           <ReactMarkdown
                             source={a.node.content.substring(0, 200).concat("...")}

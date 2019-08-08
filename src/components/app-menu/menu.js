@@ -23,7 +23,7 @@ const LowerMenu = ({ menuLinks, currentPath }) => {
           const resolveAllMatches = currentPath.indexOf(name) > -1 ? currentPath : link
           return <Menu.Item key={resolveAllMatches} style={{ backgroundColor: "transparent" }}>
             <GatsbyLink
-              activeClassName={styles.activeLink} to={resolveAllMatches}>
+              activeClassName={styles.activeLink} to={link}>
               {name.toUpperCase()}
             </GatsbyLink>
           </Menu.Item> //activeClassName={styles.activeLink}
@@ -55,7 +55,7 @@ const DesktopMenu = ({ menuLinks, currentPath }) => {
           {menuLinks.map(({ link, name }) => {
             const resolveAllMatches = currentPath.indexOf(name) > -1 ? currentPath : link
             return <Menu.Item key={resolveAllMatches} style={{ backgroundColor: "transparent" }}>
-              <GatsbyLink to={resolveAllMatches} activeClassName={styles.activeLink}>
+              <GatsbyLink to={link} activeClassName={styles.activeLink}>
                 {name.toUpperCase()}
               </GatsbyLink>
             </Menu.Item> //activeClassName={styles.activeLink}
@@ -122,7 +122,7 @@ const MobileMenu = ({ menuLinks, currentPath, menu, toggleSearch, closeMenu, tog
               <Menu.Item key={resolveAllMatches} style={{ backgroundColor: "transparent" }}>
                 <Icon type={icon} />
                 <span>{name.toUpperCase()}</span>
-                <GatsbyLink to={resolveAllMatches}/>
+                <GatsbyLink to={link}/>
               </Menu.Item>
             )
           })}

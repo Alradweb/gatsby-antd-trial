@@ -46,7 +46,7 @@
 
 @media (max-width: 768px) {
     .image-container {
-        padding-right: 8px;
+        padding-right: 0;
     }
     .articles-list{
         padding-right: 0;
