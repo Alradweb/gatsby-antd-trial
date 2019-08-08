@@ -68,4 +68,6 @@ html {
     width: 16px;
     height: 16px;
 }
-
+div ul .ant-pagination-item-active{
+    border-color: tomato;
+}

@@ -35,7 +35,7 @@ const LowerMenu = ({ menuLinks, currentPath }) => {
 const DesktopMenu = ({ menuLinks, currentPath }) => {
   //console.log("menu-props--", currentPath)
   const navRef = useCallback(node => {
-    addActiveStyle(node)
+    if (node !== null) {addActiveStyle(node)}
   }, [])
   return (
     <Header className={styles.desktopHeader}>

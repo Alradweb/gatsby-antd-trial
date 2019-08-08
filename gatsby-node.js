@@ -37,7 +37,7 @@ exports.createPages = ({ actions, graphql }) => {
       }
     }
     `).then(result => {
-    const postsPerPage = 2
+    const postsPerPage = 3
     const numPages = Math.ceil(result.data.allStrapiArticle.edges.length / postsPerPage)
 
     Array.from({ length: numPages }).forEach((_, i) => {

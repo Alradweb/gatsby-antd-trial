@@ -1,28 +1,26 @@
 .paginate-wrapper{
     padding: 40px 0;
-    background-color: #f5f5f5;
     text-align: center;
 }
 .button{
     display: inline-block;
     border: none;
-    color: #fff;
+    color: #ffffff;
     text-decoration: none;
     background-color: tomato;
     padding: 12px 40px;
     font-size: 14px;
     text-transform: uppercase;
     font-weight: 600;
-    border-radius: 10em;
     text-align: center;
     position: relative;
     outline: 0;
     cursor: pointer;
-    transition: background-color .1s ease;
+    transition: background-color .7s ease;
 }
 .button:hover{
     text-decoration: none;
-    background-color: rgba(255, 99, 71, 0.71);
+    background-color: #001529;
     color: #fff;
 }
 .pagination{
@@ -31,26 +29,32 @@
     text-align: center;
     padding: 12px 0 0 0;
 }
-.pagination li{
-    display: inline-block;
-    list-style: none;
-    /*min-height: 20px;*/
-    margin-right: 8px;
-}
-.pagination li{
+.pagination li {
     margin-top: 5px;
     width: 42px;
     height: 42px;
     line-height: 40px;
-    border: 2px solid #e5e5e5;
-    border-radius: 10em;
-    /*font-size: 18px;*/
+    border-radius: unset;
     text-decoration: none;
-    transition: border-color .25s ease,color .25s ease;
+    transition: border-color .25s ease;
+}
+
+.pagination li:hover{
+    border-color: tomato;
+}
+.pagination li:hover a{
+    color: tomato;
 }
 .number{
     color: #666666;
     font-size: 18px;
     font-weight: 800;
     margin: auto;
+}
+
+.pagination li a{
+    font-size: 18px;
+}
+.pagination li .active-href{
+    color: tomato;
 }
