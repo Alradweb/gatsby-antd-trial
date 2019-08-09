@@ -19,12 +19,12 @@ const LowerMenu = ({ menuLinks, currentPath }) => {
         defaultSelectedKeys={[`${currentPath}`]}
         style={{ lineHeight: "64px" }}
       >
-        {menuLinks.map(({ link, name }) => {
-          const resolveAllMatches = currentPath.indexOf(name) > -1 ? currentPath : link
+        {menuLinks.map(({ link, name, alias }) => {
+          const resolveAllMatches = currentPath.startsWith(`/${name}`) ? currentPath : link
           return <Menu.Item key={resolveAllMatches} style={{ backgroundColor: "transparent" }}>
             <GatsbyLink
               activeClassName={styles.activeLink} to={link}>
-              {name.toUpperCase()}
+              {alias.toUpperCase()}
             </GatsbyLink>
           </Menu.Item> //activeClassName={styles.activeLink}
         })}
@@ -52,11 +52,12 @@ const DesktopMenu = ({ menuLinks, currentPath }) => {
           // selectedKeys={[`/articles/2`]}
           style={{ lineHeight: "64px" }}
         >
-          {menuLinks.map(({ link, name }) => {
-            const resolveAllMatches = currentPath.indexOf(name) > -1 ? currentPath : link
+          {menuLinks.map(({ link, name, alias }) => {
+            const resolveAllMatches = currentPath.startsWith(`/${name}`) ? currentPath : link
+            //console.log('--curr-',currentPath, '--name--', name, 'matches?-', currentPath.startsWith(`/${name}`))
             return <Menu.Item key={resolveAllMatches} style={{ backgroundColor: "transparent" }}>
               <GatsbyLink to={link} activeClassName={styles.activeLink}>
-                {name.toUpperCase()}
+                {alias.toUpperCase()}
               </GatsbyLink>
             </Menu.Item> //activeClassName={styles.activeLink}
           })}
@@ -116,12 +117,12 @@ const MobileMenu = ({ menuLinks, currentPath, menu, toggleSearch, closeMenu, tog
           theme="dark"
           // onClick={function({ item, key, keyPath, domEvent }) {console.log(item, key, keyPath, domEvent)}}
         >
-          {menuLinks.map(({ link, name, icon }) => {
-            const resolveAllMatches = currentPath.indexOf(name) > -1 ? currentPath : link
+          {menuLinks.map(({ link, name, icon, alias }) => {
+            const resolveAllMatches = currentPath.startsWith(`/${name}`) ? currentPath : link
             return (
               <Menu.Item key={resolveAllMatches} style={{ backgroundColor: "transparent" }}>
                 <Icon type={icon} />
-                <span>{name.toUpperCase()}</span>
+                <span>{alias.toUpperCase()}</span>
                 <GatsbyLink to={link}/>
               </Menu.Item>
             )
@@ -134,7 +135,7 @@ const MobileMenu = ({ menuLinks, currentPath, menu, toggleSearch, closeMenu, tog
 
 
 const AppMenu = (props) => {
-console.log(props.currentPath)
+//console.log(props.currentPath)
   if (props.lower) return <LowerMenu menuLinks={props.menuLinks} currentPath={props.currentPath}/>
   if (!props._window.isWindow) return <DesktopMenu menuLinks={props.menuLinks} currentPath={props.currentPath}/>
   return <Media query="(max-width: 599px)">

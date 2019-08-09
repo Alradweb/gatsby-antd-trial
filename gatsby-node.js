@@ -60,7 +60,44 @@ exports.createPages = ({ actions, graphql }) => {
       })
     })
   })
+  //-----------------------
+  const getNews = makeRequest(graphql, `
+    {
+      allStrapiNewsarticle{
+    edges {
+      node {
+        customPath
+        id
+      }
+    }
+  }
+    }
+    `).then(result => {
+     //console.log(result.data.allStrapiNewsarticle.edges)
+    const newsPerPage = 3
+    const numPages = Math.ceil(result.data.allStrapiNewsarticle.edges.length / newsPerPage)
 
+    Array.from({ length: numPages }).forEach((_, i) => {
+      createPage({
+        path: i === 0 ? `/news/` : `/news/${i + 1}`,
+        component: path.resolve("src/templates/news-list.js"),
+        context: { limit: newsPerPage, skip: i * newsPerPage, numPages, currentPage: i + 1 },
+      })
+    })
+
+    // Create pages for each article.
+    result.data.allStrapiNewsarticle.edges.forEach(({ node }) => {
+      createPage({
+        path: `/news/${node.customPath}`,
+        component: path.resolve(`src/templates/new.js`),
+        context: {
+          id: node.id,
+        },
+      })
+    })
+  })
+
+  //------------------------
   const getAuthors = makeRequest(graphql, `
     {
       allStrapiUser {
@@ -86,6 +123,7 @@ exports.createPages = ({ actions, graphql }) => {
   // Queries for styles and authors nodes to use in creating pages.
   return Promise.all([
     getArticles,
+    getNews,
     getAuthors,
   ])
 }

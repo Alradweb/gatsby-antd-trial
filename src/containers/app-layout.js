@@ -30,9 +30,9 @@ const AppLayout = (props) => {
             }
             menuLinks {
              name
+             alias
               link
               icon
-              key
             }
           }
         }

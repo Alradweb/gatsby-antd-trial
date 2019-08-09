@@ -16,20 +16,23 @@ module.exports = {
     menuLinks: [
       {
         name: "home",
+        alias: "домой",
         link: "/",
         icon: "home",
         key: 1
       },
       {
         name: "articles",
+        alias: "статьи",
         link: "/articles/",
-        icon: "book",
+        icon: "read",
         key: 2
       },
       {
-        name: "users",
-        link: "/users/",
-        icon: "smile",
+        name: "news",
+        alias: "новости",
+        link: "/news/",
+        icon: "notification",
         key: 3
       },
     ],

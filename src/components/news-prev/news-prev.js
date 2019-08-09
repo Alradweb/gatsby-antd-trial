@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { graphql, StaticQuery } from "gatsby"
+import { graphql, StaticQuery, Link } from "gatsby"
 import { Col, Row } from "antd"
 import styles from "./app-news-prev.module.css"
 import ReactMarkdown from "react-markdown"
@@ -35,17 +35,19 @@ const NewPrev = (props) => {
     <Col  xs={{ span: 24 }} md={{ span: 12 }} className={styles.newPrev}>
       <div className={styles.container} style={{ backgroundImage: `url(${props.imgSrc})` }}>
         <div className={styles.overlay}>
-          <ReactMarkdown
-            source={props.content}
-            allowedTypes={["text", "paragraph", "heading"]}
-            allowNode={(node, index) => {
-              if (index > 1) {
-                changeState(true)
-                return false
-              } else return true
-            }}
-            escapeHtml={false}
-          />
+          <Link to={`/news/${props.path}`}>
+            <ReactMarkdown
+              source={props.content}
+              allowedTypes={["text", "paragraph", "heading"]}
+              allowNode={(node, index) => {
+                if (index > 1) {
+                  changeState(true)
+                  return false
+                } else return true
+              }}
+              escapeHtml={false}
+            />
+          </Link>
           <div className={styles.newsFooter}>
             <time className={styles.date} dateTime={props.newsDate[1]}>{props.newsDate[0]}</time>
             {isLongNew ? <span style={{ color: "#ec1c1c" }}>Читать далее...</span> : null}
@@ -68,6 +70,7 @@ const NewsPrev = (props) => {
         date(formatString: "DD.MM.YYYY")
         readerDate: date(formatString: "YYYY-MM-DD" )
         title
+        customPath
         image {
          childImageSharp {
             fluid(maxWidth: 960, maxHeight: 600) {
@@ -94,6 +97,7 @@ const NewsPrev = (props) => {
                     news.map((n) => {
                       return <NewPrev key={n.node.id}
                                       id={n.node.id}
+                                      path={n.node.customPath}
                                       title={n.node.title}
                                       content={n.node.content}
                                       imgSrc={n.node.image.childImageSharp.fluid.src}

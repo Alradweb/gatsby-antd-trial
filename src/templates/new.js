@@ -12,37 +12,30 @@ import Breadcrumbs from "../components/breadcrumbs/breadcrumbs"
 import NewsPrev from "../components/news-prev/news-prev"
 import ArticlesPrev from "../components/articles-prev/articles-prev"
 
-// "policy": [{
-//       "img-src": "'self' http:"
-//     },
-//       "block-all-mixed-content"
-//     ] security.json
 
-
-
-const ArticleTemplate = (props) => {
+const NewTemplate = (props) => {
   const { data } = props
   //console.log(props)
   return (
     <Layout>
       <div className={styles.container}
-           style={{ backgroundImage: `linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.7)), url(${data.strapiArticle.image.childImageSharp.fluid.src})` }}
+           style={{ backgroundImage: `linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.7)), url(${data.strapiNewsarticle.image.childImageSharp.fluid.src})` }}
       >
         <div className={styles.content}>
           <h1
-            className={styles.title}>{data.strapiArticle.title}</h1>
+            className={styles.title}>{data.strapiNewsarticle.title}</h1>
           <Social color='light'/>
         </div>
       </div>
       <Row style={{marginBottom: '32px'}}>
         <Col xs={{ span: 24 }} md={{ span: 16 }} className={styles.article}>
           <div className={styles.articleHeader}>
-            <Breadcrumbs title={data.strapiArticle.title}/>
+            <Breadcrumbs title={data.strapiNewsarticle.title}/>
           </div>
           <ImportantInfo horizontal/>
           <div className={styles.text}>
             <ReactMarkdown
-              source={data.strapiArticle.content}
+              source={data.strapiNewsarticle.content}
               transformImageUri={uri => uri.startsWith("http") ? uri : `${process.env.IMAGE_BASE_URL}${uri}`}
               escapeHtml={false}
             />
@@ -50,7 +43,7 @@ const ArticleTemplate = (props) => {
               <AppLikely color='dark' fullSize lowerWidget/>
             </div>
             <ImportantInfo horizontal/>
-            <ArticlesPrev lowerWidget columns={5} exceptedIdArticle={data.strapiArticle.id}/>
+            {/*<ArticlesPrev lowerWidget columns={5} exceptedIdArticle={data.strapiArticle.id}/>*/}
           </div>
         </Col>
         <Col xs={{ span: 24 }} md={{ span: 8 }}>
@@ -62,14 +55,16 @@ const ArticleTemplate = (props) => {
   )
 
 }
-export default ArticleTemplate
+export default NewTemplate
 
 export const query = graphql`  
-  query ArticleTemplate($id: String!) {
-    strapiArticle(id: { eq: $id }) {
+  query NewTemplate($id: String!) {
+    strapiNewsarticle(id: { eq: $id }) {
       title
       content
       id
+      date(formatString: "DD.MM.YYYY")
+      readerDate: date(formatString: "YYYY-MM-DD" )
       image {
         childImageSharp {
           fluid {
@@ -77,13 +72,6 @@ export const query = graphql`
             }
         }
       }
-      author {
-        id
-        username
-      }
     }
   }
 `
-//   <Link to={`/authors/User_${data.strapiArticle.author.id}`}>
-// {data.strapiArticle.author.username}
-// </Link>
