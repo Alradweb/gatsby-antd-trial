@@ -9,13 +9,13 @@ import styles from "./app-article.module.css"
 import Social from "../components/social/social"
 import ImportantInfo from "../components/important-info/important-info"
 import Breadcrumbs from "../components/breadcrumbs/breadcrumbs"
-import NewsPrev from "../components/news-prev/news-prev"
+//import NewsPrev from "../components/news-prev/news-prev"
 import ArticlesPrev from "../components/articles-prev/articles-prev"
 
 
 const NewTemplate = (props) => {
   const { data } = props
-  //console.log(props)
+  //console.log(props.pageContext)
   return (
     <Layout>
       <div className={styles.container}
@@ -30,7 +30,7 @@ const NewTemplate = (props) => {
       <Row style={{marginBottom: '32px'}}>
         <Col xs={{ span: 24 }} md={{ span: 16 }} className={styles.article}>
           <div className={styles.articleHeader}>
-            <Breadcrumbs title={data.strapiNewsarticle.title}/>
+            <Breadcrumbs title={data.strapiNewsarticle.title} alias={props.pageContext.alias}/>
           </div>
           <ImportantInfo horizontal/>
           <div className={styles.text}>
@@ -43,12 +43,12 @@ const NewTemplate = (props) => {
               <AppLikely color='dark' fullSize lowerWidget/>
             </div>
             <ImportantInfo horizontal/>
-            {/*<ArticlesPrev lowerWidget columns={5} exceptedIdArticle={data.strapiArticle.id}/>*/}
+            <ArticlesPrev lowerWidget columns={5}/>
           </div>
         </Col>
         <Col xs={{ span: 24 }} md={{ span: 8 }}>
           <ImportantInfo vertical/>
-          <NewsPrev widget/>
+          <ArticlesPrev sideWidget columns={6}/>
         </Col>
       </Row>
     </Layout>

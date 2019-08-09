@@ -37,7 +37,7 @@ const ArticleTemplate = (props) => {
       <Row style={{marginBottom: '32px'}}>
         <Col xs={{ span: 24 }} md={{ span: 16 }} className={styles.article}>
           <div className={styles.articleHeader}>
-            <Breadcrumbs title={data.strapiArticle.title}/>
+            <Breadcrumbs title={data.strapiArticle.title} alias={props.pageContext.alias}/>
           </div>
           <ImportantInfo horizontal/>
           <div className={styles.text}>

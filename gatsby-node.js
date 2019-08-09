@@ -44,7 +44,7 @@ exports.createPages = ({ actions, graphql }) => {
       createPage({
         path: i === 0 ? `/articles/` : `/articles/${i + 1}`,
         component: path.resolve("src/templates/articles-list.js"),
-        context: { limit: postsPerPage, skip: i * postsPerPage, numPages, currentPage: i + 1 },
+        context: { limit: postsPerPage, skip: i * postsPerPage, numPages, currentPage: i + 1, alias: 'статьи' },
       })
     })
 
@@ -56,6 +56,7 @@ exports.createPages = ({ actions, graphql }) => {
         component: path.resolve(`src/templates/article.js`),
         context: {
           id: node.id,
+          alias: 'статьи'
         },
       })
     })
@@ -81,7 +82,7 @@ exports.createPages = ({ actions, graphql }) => {
       createPage({
         path: i === 0 ? `/news/` : `/news/${i + 1}`,
         component: path.resolve("src/templates/news-list.js"),
-        context: { limit: newsPerPage, skip: i * newsPerPage, numPages, currentPage: i + 1 },
+        context: { limit: newsPerPage, skip: i * newsPerPage, numPages, currentPage: i + 1, alias: 'новости'},
       })
     })
 
@@ -92,6 +93,7 @@ exports.createPages = ({ actions, graphql }) => {
         component: path.resolve(`src/templates/new.js`),
         context: {
           id: node.id,
+          alias: 'новости'
         },
       })
     })

@@ -77,6 +77,11 @@
     padding-bottom: 8px;
     border-bottom: 2px solid tomato;
     color: #333333;
+    transition: color .5s ease;
+}
+.widget-title:hover{
+    color: tomato;
+    text-decoration: underline;
 }
 .widget-column{
     margin-bottom: 2px;

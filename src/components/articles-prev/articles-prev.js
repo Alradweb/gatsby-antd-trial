@@ -32,7 +32,37 @@ const PrevArticle = (props) => {
     </Col>
   )
 }
-
+const ArticlesSideWidget = ({ articles }) => {
+  return (
+    <Row>
+      <Link to={"/articles/"}>
+        <h3 className={styles.widgetTitle}>Статьи</h3>
+      </Link>
+      {
+        articles.map(a => {
+          return (
+            <Col xs={{ span: 24 }} key={a.node.id} className={styles.widgetColumn}>
+              <Row className={styles.widgetWrap}
+                   onClick={(ev)=>{
+                     if(ev.target.tagName === 'DIV') navigate(`/articles/${a.node.customPath}`)
+                   }}
+              >
+                <Col xs={{ span: 4 }} className={styles.widgetLeftPart}>
+                  {/*<span>{a.node.id}</span>*/}
+                </Col>
+                <Col xs={{ span: 20 }} className={styles.widgetText}>
+                  <Link to={`/articles/${a.node.customPath}`} style={{ color: "inherit" }}>
+                    <p>{a.node.title}</p>
+                  </Link>
+                </Col>
+              </Row>
+            </Col>
+          )
+        })
+      }
+    </Row>
+  )
+}
 const ArticleLowerWidget = (props) =>{
   return(
     <div className={styles.lowerWidget}>
@@ -54,13 +84,15 @@ const ArticleLowerWidget = (props) =>{
   )
 }
 const ArticlesPrev = (props) => {
-  if(props.lowerWidget && props.exceptedIdArticle){
+  if(props.lowerWidget){
     const getArticles = () =>{
+      if(!props.exceptedIdArticle) return props.articles.slice(-(props.columns))
       const idx = props.articles.findIndex(el => el.node.id === props.exceptedIdArticle)
       return [...props.articles.slice(0, idx), ...props.articles.slice(idx +1)].slice(-(props.columns))
     }
     return <ArticleLowerWidget articles={getArticles()}/>
   }
+  if(props.sideWidget) return <ArticlesSideWidget articles={props.articles.slice(-(props.columns))}/>
   const articles = props.specialArticles ? props.specialArticles : props.articles.slice(-(props.columns))
   //console.log(props.exceptedArticle)
 
