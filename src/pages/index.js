@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql } from "gatsby"
+//import { graphql } from "gatsby"
 import Layout from "../containers/app-layout"
 //import ReactMarkdown from "react-markdown"
 import ArticlesPrev from "../components/articles-prev/articles-prev"
@@ -8,6 +8,8 @@ import MostInteresting from "../components/most-interesting/most-interesting"
 import Popular from "../components/popular/popular"
 import RandomArticles from "../components/random-articles/random-articles"
 import ShowMore from "../components/showMore/show-more"
+import Helmet from "react-helmet"
+//import SEO from "../components/seo/seo"
 
 /* eslint-disable */
 
@@ -16,6 +18,7 @@ export default (props) => {
     //console.log(props)
     return (
         <Layout>
+            <Helmet title={'Домашняя страница'} />
             <ArticlesPrev columns={5}/>
             <NewsPrev/>
             <MostInteresting/>
@@ -25,16 +28,26 @@ export default (props) => {
         </Layout>
     )
 }
-export const query = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-        language
-      }
-    }
-  }
-`
+// export const query = graphql`
+//   query {
+//   site{
+//     siteMetadata {
+//     title
+//     language
+//   }
+//   }
+//   }
+// `
+
+// site {
+//   siteMetadata {
+//     title
+//     language
+//   }
+// }
+
+
+
 
 //   <div style={{width: '100%', height: '100vh'}}>
 // <Card

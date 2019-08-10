@@ -3,39 +3,12 @@
  *
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
-
+const config = require('./config/site')
+//console.log(config)
 module.exports = {
   /* Your site config here */
   siteMetadata: {
-    title: `Test`,
-    language: "en",
-    helmetMetaData: [
-      { name: 'description', content: 'Sample' },
-      { name: 'keywords', content: 'sample, something' },
-    ],
-    menuLinks: [
-      {
-        name: "home",
-        alias: "домой",
-        link: "/",
-        icon: "home",
-        key: 1
-      },
-      {
-        name: "articles",
-        alias: "статьи",
-        link: "/articles/",
-        icon: "read",
-        key: 2
-      },
-      {
-        name: "news",
-        alias: "новости",
-        link: "/news/",
-        icon: "notification",
-        key: 3
-      },
-    ],
+   ...config
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -60,5 +33,20 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-sitemap`,
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: config.title,
+        short_name: config.shortName,
+        description: config.description,
+        start_url: config.pathPrefix,
+        background_color: config.backgroundColor,
+        theme_color: config.themeColor,
+        display: 'standalone',
+        icon: config.favicon,
+      },
+    },
+    `gatsby-plugin-offline`,
   ],
 }

@@ -1,13 +1,22 @@
-import React from "react"
+import React from 'react';
+import { Link } from "gatsby"
+import Helmet from 'react-helmet';
 
-import Layout from "../containers/app-layout"
+
+const ErrorPage = () => (
+  <div>
+    <Helmet title={'404'} />
+    <section style={{textAlign: 'center'}}>
+      <h1>Ой, что-то пошло не так.</h1>
+      <h3>Эта страница не существует или более недоступна.</h3>
+      <h3>
+        Пора <Link to="/"  aria-label={`Переход на страницу "Домой"`}>Домой</Link>.
+      </h3>
+    </section>
+  </div>
+);
+
+export default ErrorPage;
 
 
-const NotFoundPage = () => (
-  <Layout>
-    <h1 style={{ color: "red" }}>NOT FOUND</h1>
-    <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-  </Layout>
-)
 
-export default NotFoundPage

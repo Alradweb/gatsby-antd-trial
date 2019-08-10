@@ -11,6 +11,7 @@ import ImportantInfo from "../components/important-info/important-info"
 import Breadcrumbs from "../components/breadcrumbs/breadcrumbs"
 import NewsPrev from "../components/news-prev/news-prev"
 import ArticlesPrev from "../components/articles-prev/articles-prev"
+import SEO from "../components/seo/seo"
 
 // "policy": [{
 //       "img-src": "'self' http:"
@@ -22,9 +23,16 @@ import ArticlesPrev from "../components/articles-prev/articles-prev"
 
 const ArticleTemplate = (props) => {
   const { data } = props
-  //console.log(props)
+  console.log(data.strapiArticle.image.childImageSharp.fluid.src)
   return (
     <Layout>
+      <SEO
+        title={data.strapiArticle.title}
+        description={data.strapiArticle.content || ' '}
+        image={data.strapiArticle.image.childImageSharp.fluid.src}
+        pathname={`/articles/${data.strapiArticle.customPath}`}
+        article
+      />
       <div className={styles.container}
            style={{ backgroundImage: `linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.7)), url(${data.strapiArticle.image.childImageSharp.fluid.src})` }}
       >
@@ -70,6 +78,7 @@ export const query = graphql`
       title
       content
       id
+      customPath
       image {
         childImageSharp {
           fluid {

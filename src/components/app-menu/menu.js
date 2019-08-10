@@ -23,6 +23,7 @@ const LowerMenu = ({ menuLinks, currentPath }) => {
           const resolveAllMatches = currentPath.startsWith(`/${name}`) ? currentPath : link
           return <Menu.Item key={resolveAllMatches} style={{ backgroundColor: "transparent" }}>
             <GatsbyLink
+              aria-label={`Переход на страницу ${alias}`}
               activeClassName={styles.activeLink} to={link}>
               {alias.toUpperCase()}
             </GatsbyLink>
@@ -40,7 +41,7 @@ const DesktopMenu = ({ menuLinks, currentPath }) => {
   return (
     <Header className={styles.desktopHeader}>
       <div className={styles.logoWrapper}>
-        <GatsbyLink to={"/"}>
+        <GatsbyLink to={"/"} aria-label={`Переход на домашнюю страницу`}>
           <span className={styles.logo}>{`LO\u0307\u0323GO`}</span>
         </GatsbyLink>
       </div>
@@ -56,7 +57,7 @@ const DesktopMenu = ({ menuLinks, currentPath }) => {
             const resolveAllMatches = currentPath.startsWith(`/${name}`) ? currentPath : link
             //console.log('--curr-',currentPath, '--name--', name, 'matches?-', currentPath.startsWith(`/${name}`))
             return <Menu.Item key={resolveAllMatches} style={{ backgroundColor: "transparent" }}>
-              <GatsbyLink to={link} activeClassName={styles.activeLink}>
+              <GatsbyLink to={link} activeClassName={styles.activeLink} aria-label={`Переход на страницу ${alias}`}>
                 {alias.toUpperCase()}
               </GatsbyLink>
             </Menu.Item> //activeClassName={styles.activeLink}
@@ -88,7 +89,7 @@ const MobileMenu = ({ menuLinks, currentPath, menu, toggleSearch, closeMenu, tog
   const closedMenuContent = (
     <>
       {!menuIsOpen && <div className={searchIsOpen ? styles.logoMobileClose : styles.logoMobile}><GatsbyLink
-        to={"/"}>{`LO\u0307\u0323GO`}</GatsbyLink></div>}
+        to={"/"}  aria-label={`Переход на домашнюю страницу`} >{`LO\u0307\u0323GO`}</GatsbyLink></div>}
       <Search/>
     </>
   )
@@ -123,7 +124,7 @@ const MobileMenu = ({ menuLinks, currentPath, menu, toggleSearch, closeMenu, tog
               <Menu.Item key={resolveAllMatches} style={{ backgroundColor: "transparent" }}>
                 <Icon type={icon} />
                 <span>{alias.toUpperCase()}</span>
-                <GatsbyLink to={link}/>
+                <GatsbyLink to={link} aria-label={`Переход на страницу ${alias}`}/>
               </Menu.Item>
             )
           })}

@@ -15,7 +15,7 @@ const Breadcrumbs = (props) => {
     const title = pathsLength === index + 1 ? props.title : newAlias || snippet
     return (
       <Breadcrumb.Item key={url}>
-        <Link to={url}>{title}</Link>
+        <Link to={url} aria-label={`Переход на страницу ${title}`}>{title}</Link>
       </Breadcrumb.Item>
     )
   })
@@ -24,7 +24,7 @@ const Breadcrumbs = (props) => {
   return (
     <Breadcrumb className={styles.breadcrumbs} separator={"»"}>
       <Breadcrumb.Item>
-        <Link to={"/"}><Icon type="home" style={{ fontSize: "18px" }}/></Link>
+        <Link to={"/"} aria-label={`Переход на домашнюю страницу`}><Icon type="home" style={{ fontSize: "18px" }}/></Link>
       </Breadcrumb.Item>
       {extraBreadcrumbItems}
     </Breadcrumb>

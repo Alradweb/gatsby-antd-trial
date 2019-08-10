@@ -9,8 +9,8 @@ import styles from "./app-article.module.css"
 import Social from "../components/social/social"
 import ImportantInfo from "../components/important-info/important-info"
 import Breadcrumbs from "../components/breadcrumbs/breadcrumbs"
-//import NewsPrev from "../components/news-prev/news-prev"
 import ArticlesPrev from "../components/articles-prev/articles-prev"
+import SEO from "../components/seo/seo"
 
 
 const NewTemplate = (props) => {
@@ -18,6 +18,13 @@ const NewTemplate = (props) => {
   //console.log(props.pageContext)
   return (
     <Layout>
+      <SEO
+        title={data.strapiNewsarticle.title}
+        description={' '}
+        image={''}
+        pathname={`/news/${data.strapiNewsarticle.customPath}`}
+        article
+      />
       <div className={styles.container}
            style={{ backgroundImage: `linear-gradient(rgba(0,0,0,.2),rgba(0,0,0,.7)), url(${data.strapiNewsarticle.image.childImageSharp.fluid.src})` }}
       >
@@ -63,6 +70,7 @@ export const query = graphql`
       title
       content
       id
+      customPath
       date(formatString: "DD.MM.YYYY")
       readerDate: date(formatString: "YYYY-MM-DD" )
       image {

@@ -5,13 +5,14 @@ import styles from "./app-layout.module.css"
 import AppMenu from "../components/app-menu/menu"
 import { Layout} from "antd"
 import { graphql, StaticQuery } from "gatsby"
-import { Helmet } from "react-helmet"
+//import { Helmet } from "react-helmet"
 import { Location } from '@reach/router';
 import WindowIndicator from "../components/window-indicator"
 import ScrollProgress from "../components/scroll-progress/scroll-progress"
 import ImportantInfo from "../components/important-info/important-info"
 import ScrollToTop from '../components/scroll-to-top/scroll-to-top'
 import Footer from "../components/footer/footer"
+import SEO from "../components/seo/seo"
 const { Content} = Layout
 
 const AppLayout = (props) => {
@@ -23,11 +24,6 @@ const AppLayout = (props) => {
       query SiteTitleQuery {
         site {
           siteMetadata {
-            title
-            helmetMetaData {
-              content
-              name
-            }
             menuLinks {
              name
              alias
@@ -38,37 +34,41 @@ const AppLayout = (props) => {
         }
       }
     `}
-      render={data => (
-        <Provider store={store}>
-          <WindowIndicator>
-          <Helmet
-            title={data.site.siteMetadata.title}
-            meta={data.site.siteMetadata.helmetMetaData}
-          >
-          </Helmet>
-          <ScrollProgress/>
-          <AppMenu
-            menuLinks={data.site.siteMetadata.menuLinks}
-            currentPath={props.location.pathname}
-
-          />
-          <div className={styles.appLayout}>
-            <ImportantInfo horizontal/>
-            <Content>
-              {props.children}
-            </Content>
-          </div>
-            <Footer>
+      render={data => {
+        //console.log('Layout(data)->',data)
+        return (
+          <Provider store={store}>
+            <SEO/>
+            <WindowIndicator>
+              {/*<Helmet*/}
+              {/*  title={data.site.siteMetadata.title}*/}
+              {/*  meta={data.site.siteMetadata.helmetMetaData}*/}
+              {/*>*/}
+              {/*</Helmet>*/}
+              <ScrollProgress/>
               <AppMenu
                 menuLinks={data.site.siteMetadata.menuLinks}
                 currentPath={props.location.pathname}
-                lower
+
               />
-            </Footer>
-            <ScrollToTop/>
-          </WindowIndicator>
-        </Provider>
-      )}
+              <div className={styles.appLayout}>
+                <ImportantInfo horizontal/>
+                <Content>
+                  {props.children}
+                </Content>
+              </div>
+              <Footer>
+                <AppMenu
+                  menuLinks={data.site.siteMetadata.menuLinks}
+                  currentPath={props.location.pathname}
+                  lower
+                />
+              </Footer>
+              <ScrollToTop/>
+            </WindowIndicator>
+          </Provider>
+        )
+      }}
     />
   )
 }
