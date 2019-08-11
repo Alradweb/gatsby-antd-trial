@@ -48,5 +48,13 @@ module.exports = {
       },
     },
     `gatsby-plugin-offline`,
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://zealous-bohr-df5586.netlify.com',
+        sitemap: 'https://zealous-bohr-df5586.netlify.com/sitemap.xml',
+        policy: [{ userAgent: '*', disallow: ['/'] }]
+      }
+    },
   ],
 }

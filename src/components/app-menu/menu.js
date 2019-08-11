@@ -11,156 +11,238 @@ import { addActiveStyle } from "../../utils"
 const { Header } = Layout
 
 const LowerMenu = ({ menuLinks, currentPath }) => {
-  return (
-    <nav style={{ borderBottom: "1px solid rgba(255,255,255,.6)" }}>
-      <Menu
-        theme="dark"
-        mode="horizontal"
-        defaultSelectedKeys={[`${currentPath}`]}
-        style={{ lineHeight: "64px" }}
-      >
-        {menuLinks.map(({ link, name, alias }) => {
-          const resolveAllMatches = currentPath.startsWith(`/${name}`) ? currentPath : link
-          return <Menu.Item key={resolveAllMatches} style={{ backgroundColor: "transparent" }}>
-            <GatsbyLink
-              aria-label={`Переход на страницу ${alias}`}
-              activeClassName={styles.activeLink} to={link}>
-              {alias.toUpperCase()}
-            </GatsbyLink>
-          </Menu.Item> //activeClassName={styles.activeLink}
-        })}
-      </Menu>
-    </nav>
-  )
+    return (
+        <nav style={{ borderBottom: "1px solid rgba(255,255,255,.6)" }}>
+            <Menu
+                theme="dark"
+                mode="horizontal"
+                defaultSelectedKeys={[`${currentPath}`]}
+                style={{ lineHeight: "64px" }}
+            >
+                {menuLinks.map(({ link, name, alias }) => {
+                    const resolveAllMatches = currentPath.startsWith(`/${name}`)
+                        ? currentPath
+                        : link
+                    return (
+                        <Menu.Item
+                            key={resolveAllMatches}
+                            style={{ backgroundColor: "transparent" }}
+                        >
+                            <GatsbyLink
+                                aria-label={`Переход на страницу ${alias}`}
+                                activeClassName={styles.activeLink}
+                                to={link}
+                            >
+                                {alias.toUpperCase()}
+                            </GatsbyLink>
+                        </Menu.Item>
+                    ) //activeClassName={styles.activeLink}
+                })}
+            </Menu>
+        </nav>
+    )
 }
 const DesktopMenu = ({ menuLinks, currentPath }) => {
-  //console.log("menu-props--", currentPath)
-  const navRef = useCallback(node => {
-    if (node !== null) {addActiveStyle(node)}
-  }, [])
-  return (
-    <Header className={styles.desktopHeader}>
-      <div className={styles.logoWrapper}>
-        <GatsbyLink to={"/"} aria-label={`Переход на домашнюю страницу`}>
-          <span className={styles.logo}>{`LO\u0307\u0323GO`}</span>
-        </GatsbyLink>
-      </div>
-      <nav ref={navRef}>
-        <Menu
-          theme="dark"
-          mode="horizontal"
-          defaultSelectedKeys={[`${currentPath}` ]}
-          // selectedKeys={[`/articles/2`]}
-          style={{ lineHeight: "64px" }}
-        >
-          {menuLinks.map(({ link, name, alias }) => {
-            const resolveAllMatches = currentPath.startsWith(`/${name}`) ? currentPath : link
-            //console.log('--curr-',currentPath, '--name--', name, 'matches?-', currentPath.startsWith(`/${name}`))
-            return <Menu.Item key={resolveAllMatches} style={{ backgroundColor: "transparent" }}>
-              <GatsbyLink to={link} activeClassName={styles.activeLink} aria-label={`Переход на страницу ${alias}`}>
-                {alias.toUpperCase()}
-              </GatsbyLink>
-            </Menu.Item> //activeClassName={styles.activeLink}
-          })}
-        </Menu>
-      </nav>
-      <Search/>
-    </Header>
-  )
+    //console.log("menu-props--", currentPath)
+    const navRef = useCallback(node => {
+        if (node !== null) {
+            addActiveStyle(node)
+        }
+    }, [])
+    return (
+        <Header className={styles.desktopHeader}>
+            <div className={styles.logoWrapper}>
+                <GatsbyLink
+                    to={"/"}
+                    aria-label={`Переход на домашнюю страницу`}
+                >
+                    <span className={styles.logo}>{`LO\u0307\u0323GO`}</span>
+                </GatsbyLink>
+            </div>
+            <nav ref={navRef}>
+                <Menu
+                    theme="dark"
+                    mode="horizontal"
+                    defaultSelectedKeys={[`${currentPath}`]}
+                    // selectedKeys={[`/articles/2`]}
+                    style={{ lineHeight: "64px" }}
+                >
+                    {menuLinks.map(({ link, name, alias }) => {
+                        const resolveAllMatches = currentPath.startsWith(
+                            `/${name}`
+                        )
+                            ? currentPath
+                            : link
+
+                        return (
+                            <Menu.Item
+                                key={resolveAllMatches}
+                                style={{ backgroundColor: "transparent" }}
+                            >
+                                <GatsbyLink
+                                    to={link}
+                                    activeClassName={styles.activeLink}
+                                    aria-label={`Переход на страницу ${alias}`}
+                                >
+                                    {alias.toUpperCase()}
+                                </GatsbyLink>
+                            </Menu.Item>
+                        ) //activeClassName={styles.activeLink}
+                    })}
+                </Menu>
+            </nav>
+            <Search />
+        </Header>
+    )
 }
 
-
-const MobileMenu = ({ menuLinks, currentPath, menu, toggleSearch, closeMenu, toggleMenu }) => {
-  //console.log(menuLinks)
-  const { menuIsOpen, searchIsOpen } = menu
-  const sidebar = useRef(null)
-  const menuButton = useRef(null)
-  const openNav = () => {
-    toggleSearch(false)
-    sidebar.current.style.width = "250px"
-    menuButton.current.style.marginLeft = "250px"
-    addActiveStyle(sidebar.current, true)
-  }
-  const closeNav = () => {
-    if (!menuIsOpen) return
-    sidebar.current.style.width = "0"
-    menuButton.current.style.marginLeft = "0"
-  }
-  const closedMenuContent = (
-    <>
-      {!menuIsOpen && <div className={searchIsOpen ? styles.logoMobileClose : styles.logoMobile}><GatsbyLink
-        to={"/"}  aria-label={`Переход на домашнюю страницу`} >{`LO\u0307\u0323GO`}</GatsbyLink></div>}
-      <Search/>
-    </>
-  )
-  return (
-    <header style={{ marginBottom: "8px" }}>
-      <div ref={menuButton} className={menuIsOpen ? styles.menuButtonOpen : styles.menuButton}>
-        <Icon
-          className={menuIsOpen ? styles.triggerOpen : styles.trigger}
-          type={!menuIsOpen ? "menu-unfold" : "menu-fold"}
-          onClick={() => {
-
-            menuIsOpen ? closeNav() : openNav()
-            toggleMenu(!menuIsOpen)
-          }}
-        />
-        {menuIsOpen ? null : closedMenuContent}
-      </div>
-
-      <nav className={styles.sidebar} ref={sidebar} onClick={() => {
-        closeNav()
-        closeMenu()
-      }}>
-
-        <Menu
-          defaultSelectedKeys={[`${currentPath}`]}
-          theme="dark"
-          // onClick={function({ item, key, keyPath, domEvent }) {console.log(item, key, keyPath, domEvent)}}
-        >
-          {menuLinks.map(({ link, name, icon, alias }) => {
-            const resolveAllMatches = currentPath.startsWith(`/${name}`) ? currentPath : link
-            return (
-              <Menu.Item key={resolveAllMatches} style={{ backgroundColor: "transparent" }}>
-                <Icon type={icon} />
-                <span>{alias.toUpperCase()}</span>
-                <GatsbyLink to={link} aria-label={`Переход на страницу ${alias}`}/>
-              </Menu.Item>
-            )
-          })}
-        </Menu>
-      </nav>
-    </header>
-  )
-}
-
-
-const AppMenu = (props) => {
-//console.log(props.currentPath)
-  if (props.lower) return <LowerMenu menuLinks={props.menuLinks} currentPath={props.currentPath}/>
-  if (!props._window.isWindow) return <DesktopMenu menuLinks={props.menuLinks} currentPath={props.currentPath}/>
-  return <Media query="(max-width: 599px)">
-    {matches =>
-      matches ? (
-        <MobileMenu menuLinks={props.menuLinks}
-                    currentPath={props.currentPath}
-                    menu={props.menu}
-                    openMenu={props.openMenu}
-                    closeMenu={props.closeMenu}
-                    toggleMenu={props.toggleMenu}
-                    toggleSearch={props.toggleSearch}
-        />
-      ) : (
-        <DesktopMenu menuLinks={props.menuLinks} currentPath={props.currentPath}/>
-      )
+const MobileMenu = ({
+    menuLinks,
+    currentPath,
+    menu,
+    toggleSearch,
+    closeMenu,
+    toggleMenu,
+}) => {
+    //console.log(menuLinks)
+    const { menuIsOpen, searchIsOpen } = menu
+    const sidebar = useRef(null)
+    const menuButton = useRef(null)
+    const openNav = () => {
+        toggleSearch(false)
+        sidebar.current.style.width = "250px"
+        menuButton.current.style.marginLeft = "250px"
+        addActiveStyle(sidebar.current, true)
     }
-  </Media>
+    const closeNav = () => {
+        if (!menuIsOpen) return
+        sidebar.current.style.width = "0"
+        menuButton.current.style.marginLeft = "0"
+    }
+    const closedMenuContent = (
+        <>
+            {!menuIsOpen && (
+                <div
+                    className={
+                        searchIsOpen
+                            ? styles.logoMobileClose
+                            : styles.logoMobile
+                    }
+                >
+                    <GatsbyLink
+                        to={"/"}
+                        aria-label={`Переход на домашнюю страницу`}
+                    >{`LO\u0307\u0323GO`}</GatsbyLink>
+                </div>
+            )}
+            <Search />
+        </>
+    )
+    return (
+        <header style={{ marginBottom: "8px" }}>
+            <div
+                ref={menuButton}
+                className={
+                    menuIsOpen ? styles.menuButtonOpen : styles.menuButton
+                }
+            >
+                <Icon
+                    className={menuIsOpen ? styles.triggerOpen : styles.trigger}
+                    type={!menuIsOpen ? "menu-unfold" : "menu-fold"}
+                    onClick={() => {
+                        menuIsOpen ? closeNav() : openNav()
+                        toggleMenu(!menuIsOpen)
+                    }}
+                />
+                {menuIsOpen ? null : closedMenuContent}
+            </div>
+
+            <nav
+                className={styles.sidebar}
+                ref={sidebar}
+                onClick={() => {
+                    closeNav()
+                    closeMenu()
+                }}
+            >
+                <Menu
+                    defaultSelectedKeys={[`${currentPath}`]}
+                    theme="dark"
+                    // onClick={function({ item, key, keyPath, domEvent }) {console.log(item, key, keyPath, domEvent)}}
+                >
+                    {menuLinks.map(({ link, name, icon, alias }) => {
+                        const resolveAllMatches = currentPath.startsWith(
+                            `/${name}`
+                        )
+                            ? currentPath
+                            : link
+                        return (
+                            <Menu.Item
+                                key={resolveAllMatches}
+                                style={{ backgroundColor: "transparent" }}
+                            >
+                                <Icon type={icon} />
+                                <span>{alias.toUpperCase()}</span>
+                                <GatsbyLink
+                                    to={link}
+                                    aria-label={`Переход на страницу ${alias}`}
+                                />
+                            </Menu.Item>
+                        )
+                    })}
+                </Menu>
+            </nav>
+        </header>
+    )
+}
+
+const AppMenu = props => {
+    //console.log(props.currentPath)
+    if (props.lower)
+        return (
+            <LowerMenu
+                menuLinks={props.menuLinks}
+                currentPath={props.currentPath}
+            />
+        )
+    if (!props._window.isWindow)
+        return (
+            <DesktopMenu
+                menuLinks={props.menuLinks}
+                currentPath={props.currentPath}
+            />
+        )
+    return (
+        <Media query="(max-width: 599px)">
+            {matches =>
+                matches ? (
+                    <MobileMenu
+                        menuLinks={props.menuLinks}
+                        currentPath={props.currentPath}
+                        menu={props.menu}
+                        openMenu={props.openMenu}
+                        closeMenu={props.closeMenu}
+                        toggleMenu={props.toggleMenu}
+                        toggleSearch={props.toggleSearch}
+                    />
+                ) : (
+                    <DesktopMenu
+                        menuLinks={props.menuLinks}
+                        currentPath={props.currentPath}
+                    />
+                )
+            }
+        </Media>
+    )
 }
 const mapStateToProps = ({ menu, _window }) => {
-  return {
-    menu,
-    _window,
-  }
+    return {
+        menu,
+        _window,
+    }
 }
 
-export default connect(mapStateToProps, actions)(AppMenu)
+export default connect(
+    mapStateToProps,
+    actions
+)(AppMenu)

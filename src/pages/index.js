@@ -13,18 +13,18 @@ import Helmet from "react-helmet"
 
 /* eslint-disable */
 
-export default (props) => {
+export default props => {
     //const { data } = props
     //console.log(props)
     return (
         <Layout>
-            <Helmet title={'Домашняя страница'} />
-            <ArticlesPrev columns={5}/>
-            <NewsPrev/>
-            <MostInteresting/>
-            <Popular/>
-            <RandomArticles/>
-            <ShowMore/>
+            <Helmet title={"Домашняя страница"} />
+            <ArticlesPrev columns={5} />
+            <NewsPrev />
+            <MostInteresting />
+            <Popular />
+            <RandomArticles />
+            <ShowMore />
         </Layout>
     )
 }
@@ -45,9 +45,6 @@ export default (props) => {
 //     language
 //   }
 // }
-
-
-
 
 //   <div style={{width: '100%', height: '100vh'}}>
 // <Card

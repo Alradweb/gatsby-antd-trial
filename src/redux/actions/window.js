@@ -1,5 +1,5 @@
 export function changeWindowState() {
-  return{
-    type: 'IS_WINDOW'
-  }
+    return {
+        type: "IS_WINDOW",
+    }
 }

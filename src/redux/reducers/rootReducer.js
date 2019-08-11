@@ -4,7 +4,7 @@ import windowReducer from "./windowReducer"
 import moduleLoaderIndicator from "./moduleLoaderIndicator"
 
 export const rootReducer = combineReducers({
-  menu: menuReducer,
-  _window: windowReducer,
-  module: moduleLoaderIndicator,
+    menu: menuReducer,
+    _window: windowReducer,
+    module: moduleLoaderIndicator,
 })

@@ -1,24 +1,24 @@
 export function closeMenu() {
-  return{
-    type: 'MENU_CLOSE'
-  }
+    return {
+        type: "MENU_CLOSE",
+    }
 }
 
 export function openMenu() {
-  return{
-    type: 'MENU_OPEN'
-  }
+    return {
+        type: "MENU_OPEN",
+    }
 }
 
 export function toggleMenu(payload) {
-  return{
-    type: 'MENU_TOGGLE',
-    payload
-  }
+    return {
+        type: "MENU_TOGGLE",
+        payload,
+    }
 }
 export function toggleSearch(payload) {
-  return{
-    type: 'SEARCH_TOGGLE',
-    payload
-  }
+    return {
+        type: "SEARCH_TOGGLE",
+        payload,
+    }
 }
