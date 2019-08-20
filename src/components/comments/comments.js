@@ -5,10 +5,13 @@ import CommentList from "./comments-list"
 import Editor from "./editor"
 import { Comment, Avatar } from "antd"
 import notificationOpen from "../notification/notification"
-
-const socket = io("https://rocky-reaches-90322.herokuapp.com", {
+const path = process.env.COMMENTS_API_URL
+const cats = process.env.TEST_BEST_CATS
+//"https://rocky-reaches-90322.herokuapp.com"
+const socket = io(path, {
   autoConnect: false,
 })
+
 //import openSocket from 'socket.io-client'
 //import { subscribeToTimer, socketToggle } from '../../utils';
 class Comments2 extends React.Component {
@@ -159,6 +162,7 @@ class Comments2 extends React.Component {
     return (
       <>
         <div>
+          <h4>Про котов - {cats}.</h4>
           {commentsList.length > 0 && <CommentList comments={commentsList}/>}
           {
             showTextField ? <Comment
