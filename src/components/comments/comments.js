@@ -7,6 +7,7 @@ import { Comment, Avatar } from "antd"
 import notificationOpen from "../notification/notification"
 const path = process.env.COMMENTS_API_URL
 const cats = process.env.TEST_BEST_CATS
+console.log('path--', path, 'cats--', cats)
 //"https://rocky-reaches-90322.herokuapp.com"
 const socket = io(path, {
   autoConnect: false,
