@@ -1,6 +1,5 @@
 import React from "react"
 import { Link, navigate } from "gatsby"
-//import ReactMarkdown from "react-markdown"
 import { Col, Row } from "antd"
 import styles from "./app-articles-prev.module.css"
 import Social from "../social/social"

@@ -14,7 +14,7 @@ const ArticlesList = props => {
     const { currentPage, numPages } = props.pageContext
     const articles = props.data.allStrapiArticle.edges
     //const articles = data.allStrapiArticle.edges.slice(-1)
-    console.log(currentPage)
+    //console.log(currentPage)
     return (
         <Layout>
             <Helmet title={`Список статей. Страница - ${currentPage}`} />

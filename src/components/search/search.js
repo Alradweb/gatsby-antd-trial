@@ -10,10 +10,11 @@ const Search = ({ menu, toggleSearch }) => {
 
     const setClickWatcher = ev => {
         ev.stopPropagation()
-        input.current.focus()
+        if(input) input.current.focus()
         const onClickHandler = e => {
             if (e.target !== input.current) {
                 toggleSearch(false)
+                input && input.current.blur()
                 window.removeEventListener("click", onClickHandler)
             }
         }
@@ -37,7 +38,8 @@ const Search = ({ menu, toggleSearch }) => {
                     <input type="hidden" name="ie" value="UTF-8" />
                     <input
                         ref={input}
-                        type="text"
+                        type="search"
+                        aria-label={'Поиск по сайту'}
                         name="q"
                         placeholder={`Поиск по сайту...`}
                     />

@@ -12,6 +12,7 @@ import Breadcrumbs from "../components/breadcrumbs/breadcrumbs"
 import NewsPrev from "../components/news-prev/news-prev"
 import ArticlesPrev from "../components/articles-prev/articles-prev"
 import SEO from "../components/seo/seo"
+import Comments from "../components/comments/comments"
 
 // "policy": [{
 //       "img-src": "'self' http:"
@@ -21,7 +22,7 @@ import SEO from "../components/seo/seo"
 
 const ArticleTemplate = props => {
     const { data } = props
-    console.log(data.strapiArticle.image.childImageSharp.fluid.src)
+   // console.log(data.strapiArticle.image.childImageSharp.fluid.src)
     return (
         <Layout>
             <SEO
@@ -75,6 +76,7 @@ const ArticleTemplate = props => {
                             exceptedIdArticle={data.strapiArticle.id}
                         />
                     </div>
+                    <Comments title={data.strapiArticle.title} ownerId={data.strapiArticle.id}/>
                 </Col>
                 <Col xs={{ span: 24 }} md={{ span: 8 }}>
                     <ImportantInfo vertical />
@@ -107,6 +109,3 @@ export const query = graphql`
         }
     }
 `
-//   <Link to={`/authors/User_${data.strapiArticle.author.id}`}>
-// {data.strapiArticle.author.username}
-// </Link>
