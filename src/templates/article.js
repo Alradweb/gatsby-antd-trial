@@ -22,7 +22,7 @@ import Comments from "../components/comments/comments"
 
 const ArticleTemplate = props => {
     const { data } = props
-   // console.log(data.strapiArticle.image.childImageSharp.fluid.src)
+    console.log(data.strapiArticle.id)
     return (
         <Layout>
             <SEO
@@ -76,7 +76,7 @@ const ArticleTemplate = props => {
                             exceptedIdArticle={data.strapiArticle.id}
                         />
                     </div>
-                    <Comments title={data.strapiArticle.title} ownerId={data.strapiArticle.id}/>
+                    <Comments title={data.strapiArticle.title} ownId={data.strapiArticle.id}/>
                 </Col>
                 <Col xs={{ span: 24 }} md={{ span: 8 }}>
                     <ImportantInfo vertical />

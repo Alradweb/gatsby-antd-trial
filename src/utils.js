@@ -1,14 +1,4 @@
-
-
-
 export const isWindow = typeof window !== `undefined`
-
- function subscribeToTimer(cb, message) {
-    //console.log('cb--',cb)
-    //socket.open()
-   // if(cb) socket.on('all messages', timestamp => cb(null, timestamp));
-    //if(message) socket.emit('chat message', message);
-}
 
 export const randomArticles = (oldArray, n) => {
     return oldArray

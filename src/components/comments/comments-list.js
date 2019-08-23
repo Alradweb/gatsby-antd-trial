@@ -1,30 +1,34 @@
-import React from 'react'
-import { Comment, List} from 'antd'
-import moment from 'moment'
-import 'moment/locale/ru'
-//moment.locale('ru')
+import React from "react"
+import { Comment, List } from "antd"
+import moment from "moment"
+import "moment/locale/ru"
+
+
 
 const CommentList = ({ comments }) => {
 
-  //console.log(moment)
-  // const event = moment(comments[0].datetime)
-  //console.log('ло ' + event)
+  const sum = comments.length
+  const cms = (sum === 1 || (sum > 19 && sum % 10 === 1)) ?
+    'комментарий' :
+    ((sum > 1 && sum < 5) || (sum > 19 && sum % 10 > 1 && sum % 10 < 5)) ?
+      'комментария' :
+      'комментариев'
   //console.log('Событие произошло ' + event.fromNow())
- return (
+  return (
     <List
       dataSource={comments}
-      header={`${comments.length} ${comments.length > 1 ? 'комментариев' : 'комментарий'}`}
-      itemLayout="horizontal"
+      header={`${sum} ${cms}`}
+      itemLayout="vertical"
       renderItem={props => {
-        const changeProps = {...props, datetime: moment(props.datetime).fromNow()}
+        const changeProps = { ...props, datetime: moment(props.datetime).fromNow() }
         //console.log(changeProps)
-       return <Comment {...changeProps} />
-       //return <Comment {...props} />
+        return <List.Item style={{border: 'none'}}>
+                 <Comment {...changeProps} />
+               </List.Item>
       }}
     />
   )
 }
 export default CommentList
 
-//{content : 'create an event listener', author: 'Вася Пупкин', avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png', datetime: '12.08.2019'},
 

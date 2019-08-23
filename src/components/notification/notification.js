@@ -6,6 +6,11 @@ const notificationOpen = (type, message, description) =>{
   if(repeatedMessage) return
   repeatedMessage = true
 
+  notification.config({
+    placement: 'bottomRight',
+    bottom: 50
+  })
+
   setTimeout(()=>{
     notification[type]({
       message,
@@ -18,14 +23,6 @@ const notificationOpen = (type, message, description) =>{
     repeatedMessage = false
   },600)
 
-  // return(
-  //   <div>
-  //     <Button onClick={() => openNotificationWithIcon('success')}>Success</Button>
-  //     <Button onClick={() => openNotificationWithIcon('info')}>Info</Button>
-  //     <Button onClick={() => openNotificationWithIcon('warning')}>Warning</Button>
-  //     <Button onClick={() => openNotificationWithIcon('error')}>Error</Button>
-  //   </div>
-  // )
 }
 export  default notificationOpen
 

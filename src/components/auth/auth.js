@@ -1,6 +1,6 @@
 import React from 'react'
-import { Modal, Form, Icon, Input, Button, Checkbox, Radio, Avatar } from "antd"
-
+import { Modal, Form, Icon, Input, Button, Checkbox, Radio, Avatar} from "antd"
+import styles from './app-auth.module.css'
 const importAvatars = (r) => r.keys().map(i => r(i))
 const avatars = importAvatars(require.context('../../../static/avatars', false, /\.(png|jpe?g|svg)$/));
 
@@ -36,7 +36,9 @@ class NormalLoginForm extends React.Component {
           isValid: false
         },
         remember: true,
-        avatar: avatars[0]
+        avatar: {
+          value: avatars[0]
+        }
       }
     }
     return  {
@@ -56,9 +58,12 @@ class NormalLoginForm extends React.Component {
         isValid: false
       },
       remember: true,
-      avatar: avatars[0]
+      avatar: {
+        value: avatars[0]
+      }
     }
-  };
+  }
+
   state = this.initialState()
 
   registerHandler = ev => {
@@ -69,27 +74,29 @@ class NormalLoginForm extends React.Component {
       email: email.value,
       name: name.value,
       password: password.value,
-      avatar: avatar.value,
+      avatar : avatar.value,
       remember
     })
     this.setState(this.initialState())
   }
+
   loginHandler = ev => {
     ev.preventDefault();
     const{email, password, remember, avatar} = this.state
-    //console.log(email.value, password.value, remember)
+    console.log(email.value, password.value, remember)
     this.props.authData({
       login: true,
       email: email.value,
       password: password.value,
-      avatar: avatar.value,
+      //avatar : avatar.value,
       remember
     })
     this.setState(this.initialState())
   }
+
   handleControl = (ev) =>{
     const control = ev.target.name;
-    console.log(ev.target.value)
+    //console.log(avatars[0])
     if(control === 'remember'){
       this.setState({
         remember: ev.target.checked
@@ -100,47 +107,35 @@ class NormalLoginForm extends React.Component {
     newControl.value = (ev.target.value).trim()
     newControl.touched = true;
     newControl.isValid = validateControl(control, ev.target.value)
-
     this.setState({
       [control] : newControl
     })
   }
-  handleOk = () => {
-    // this.setState({
-    //   confirmLoading: true,
-    // })
-  };
+
   render() {
     const{email, password, remember} = this.state
     const{visible, handleModalCancel, formTitle} = this.props
-    const{handleOk} = this
     const isLoginForm = formTitle === 'login'
     const emailError = email.touched && !email.isValid
     const passwordError = password.touched && !password.isValid
-    //console.log('form: ', email.touched, email.isValid)
-
     return (
       <Modal
-        title={isLoginForm ? 'Вход' : 'Регистрация'}
+        title={isLoginForm ? 'Вход' : <div>'Регистрация'</div>}
         visible={visible}
+        footer={[
+          <Button key="back" onClick={handleModalCancel}>
+            Закрыть
+          </Button>
 
+        ]}
         //confirmLoading={confirmLoading}
         onCancel={handleModalCancel}
+        centered
       >
-        <Form onSubmit={(ev)=> ev.preventDefault()} className="login-form">
-          <Form.Item label="E-mail" validateStatus={emailError ? 'error' : ''} help={emailError || ''}>
-            <Input
-              prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
-              type="email"
-              name="email"
-              placeholder="E-mail"
-              value={email.value}
-              onChange={this.handleControl}
-            />
-          </Form.Item>
+        <Form onSubmit={ev => ev.preventDefault()} className="login-form">
           {
             !isLoginForm && (
-              <Form.Item label="Name"
+              <Form.Item label="Имя"
                          validateStatus={ this.state.name.touched && !this.state.name.isValid ? 'error' : ''}
                          help={ this.state.name.touched && !this.state.name.isValid || ''}
               >
@@ -148,19 +143,29 @@ class NormalLoginForm extends React.Component {
                   prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
                   type="name"
                   name="name"
-                  placeholder="Name"
+                  placeholder="Имя"
                   value={this.state.name.value}
                   onChange={this.handleControl}
                 />
               </Form.Item>
             )
           }
-          <Form.Item label="Password" validateStatus={passwordError ? 'error' : ''} help={passwordError || ''}>
+          <Form.Item label="Эл. почта" validateStatus={emailError ? 'error' : ''} help={emailError || ''}>
+            <Input
+              prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
+              type="email"
+              name="email"
+              placeholder="Эл. почта"
+              value={email.value}
+              onChange={this.handleControl}
+            />
+          </Form.Item>
+          <Form.Item label="Пароль" validateStatus={passwordError ? 'error' : ''} help={passwordError || ''}>
             <Input
               prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
               type="password"
               name="password"
-              placeholder="Password"
+              placeholder="Пароль"
               value={password.value}
               onChange={this.handleControl}
             />
@@ -174,16 +179,22 @@ class NormalLoginForm extends React.Component {
           </Form.Item>
           <Form.Item>
             <Checkbox defaultChecked={remember} name='remember' onChange={this.handleControl}>Запомнить меня</Checkbox>
-            <Button onClick={isLoginForm ? this.loginHandler : this.registerHandler} type="primary"  disabled={!email.isValid || !password.isValid}>
-               {isLoginForm ? 'Войти' : 'Зарегистрироваться'}
-            </Button>
           </Form.Item>
+          <Button onClick={isLoginForm ? this.loginHandler : this.registerHandler} type="primary"  disabled={!email.isValid || !password.isValid}>
+            {isLoginForm ? 'Войти' : 'Зарегистрироваться'}
+          </Button>
+          {
+            isLoginForm ?
+              null :
+              <div>
+                или <button className={styles.loginBtn} onClick={this.loginHandler} disabled={!email.isValid || !password.isValid} >авторизоваться!</button>
+              </div>
+          }
         </Form>
       </Modal>
     )
   }
 }
 
-//const WrappedNormalLoginForm = Form.create({ name: 'normal_login' })(NormalLoginForm);
 
 export default NormalLoginForm
