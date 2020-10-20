@@ -26,7 +26,7 @@ module.exports = {
       options: {
         apiURL: process.env.DEPLOY_URL
           ? "https://intense-inlet-52562.herokuapp.com"
-          : "http://localhost:1337",
+          : "https://intense-inlet-52562.herokuapp.com", // http://localhost:1337
         contentTypes: [`article`, `user`, `newsarticle`],
         queryLimit: 100000,
       },

@@ -35,7 +35,7 @@ const AppLayout = props => {
                 }
             `}
             render={data => {
-                //console.log('Layout(data)->',data)
+
                 return (
                     <Provider store={store}>
                         <SEO />

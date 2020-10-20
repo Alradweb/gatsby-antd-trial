@@ -120,7 +120,7 @@ class NormalLoginForm extends React.Component {
     const passwordError = password.touched && !password.isValid
     return (
       <Modal
-        title={isLoginForm ? 'Вход' : <div>'Регистрация'</div>}
+        title={isLoginForm ? 'Вход' : 'Регистрация'}
         visible={visible}
         footer={[
           <Button key="back" onClick={handleModalCancel}>
