@@ -63,10 +63,10 @@ public
 
 # Yarn
 yarn-error.log
-yarn.lock
+
 .pnp/
 .pnp.js
-# Yarn Integrity file
+# Yarn Integrity filee
 .yarn-integrity
 .env.development
 package-lock.json
