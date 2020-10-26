@@ -1,11 +1,11 @@
 {
   "name": "gatsby-antd",
-  "private": true,
+  "private": false,
   "description": "Trial starter for Gatsby and Ant Design",
   "version": "0.1.0",
   "license": "ISC",
   "scripts": {
-    "build": "gatsby build",
+    "build": "gatsby clean && gatsby build",
     "dev": "gatsby develop",
     "devmob": "gatsby develop -H 0.0.0.0",
     "lint": "eslint src/**/*.{js,jsx}",
