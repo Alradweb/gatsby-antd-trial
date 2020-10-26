@@ -108,7 +108,7 @@ export const query = graphql`
                     customPath
                     image {
                         childImageSharp {
-                            fluid(maxWidth: 960, maxHeight: 600) {
+                            fluid(maxWidth: 960, maxHeight: 600, quality: 90) {
                                 ...GatsbyImageSharpFluid
                             }
                         }

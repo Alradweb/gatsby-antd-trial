@@ -19,6 +19,7 @@ const withArticles = View => {
                                                 fluid(
                                                     maxWidth: 960
                                                     maxHeight: 600
+                                                    quality: 90
                                                 ) {
                                                     ...GatsbyImageSharpFluid
                                                 }
