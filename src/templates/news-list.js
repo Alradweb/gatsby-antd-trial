@@ -12,8 +12,7 @@ import Helmet from "react-helmet"
 const NewsList = props => {
     const { currentPage, numPages } = props.pageContext
     const articles = props.data.allStrapiNewsarticle.edges
-    //const articles = data.allStrapiArticle.edges.slice(-1)
-    //console.log(articles, styles)
+
     return (
         <Layout>
             <Helmet title={`Список новостей. Страница - ${currentPage}`} />

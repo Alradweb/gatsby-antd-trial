@@ -6,7 +6,7 @@ import Social from "../social/social"
 import withArticles from "../withArticles"
 
 const PrevArticle = props => {
-    //console.log(props)
+
     return (
         <Col
             xs={{ span: 24 }}
@@ -59,7 +59,6 @@ const ArticlesSideWidget = ({ articles }) => {
                                 xs={{ span: 4 }}
                                 className={styles.widgetLeftPart}
                             >
-                                {/*<span>{a.node.id}</span>*/}
                             </Col>
                             <Col
                                 xs={{ span: 20 }}
@@ -121,7 +120,6 @@ const ArticlesPrev = props => {
     const articles = props.specialArticles
         ? props.specialArticles
         : props.articles.slice(-props.columns)
-    //console.log(props.exceptedArticle)
 
     return (
         <div className={styles.articlesPrev}>

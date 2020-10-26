@@ -7,7 +7,7 @@ import { Comment, Avatar } from "antd"
 import notificationOpen from "../notification/notification"
 
 const path = process.env.GATSBY_COMMENTS_API_URL
-console.log('path------',path)
+
 const socket = io(path, {
   autoConnect: false,
 })
@@ -40,10 +40,7 @@ class Comments extends React.Component {
 
   // _isMounted = false;
   componentDidMount() {
-
-    //console.log(this.props.ownId)
     setTimeout(() => {
-      console.log('this.props.ownId-------', this.props.ownId)
       socket.open()
       socket.emit("get all comments by ownId", this.props.ownId)
       socket.on("all comments", this.getData)
@@ -65,14 +62,12 @@ class Comments extends React.Component {
   }
 
   submitData = () => {
-    //console.log('this.props.ownId--', this.props.ownId)
     const content = this.state.comment
     if (!content.trim()) return
     const newCommentForServer = {
       comment: { content },
       author: { id: this.state.userId },
       article: { ownId: this.props.ownId, title: this.props.title },
-      //article: { ownId: null, title: this.props.title },
     }
     socket.emit("add comment", newCommentForServer)
     const newCommentForClient = {

@@ -35,8 +35,8 @@
     font-weight: bold;
 }
 .logo{
-    font-size: 24px;
-    color: tomato;
+    width: 85px;
+    height: auto;
 }
 .logo-mobile{
     font-size: 18px;

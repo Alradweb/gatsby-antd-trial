@@ -3,7 +3,7 @@
     background-position: center;
     position: relative;
     display: block;
-    min-height: 400px;
+    min-height: 720px;
     opacity: 1;
     margin-bottom: 16px;
 }
@@ -18,55 +18,75 @@
     text-align: left;
     color: #ffffff;
 }
-.title{
+
+.title {
     color: #ffffff;
     font-size: 32px;
     line-height: 1.2;
     display: block;
 }
-.article{
+
+.article {
     padding-right: 16px;
 }
-.article-header{
+
+.article-header {
     margin-bottom: 16px;
 }
-.text{
+
+.text {
 
 }
-.text img{
+
+.text img {
     display: block;
     max-width: 100%;
     height: auto;
     margin: auto;
 }
-.text p{
+
+.text p {
     font-size: 18px;
     color: #333333
 }
-.social{
+
+.social {
     background-color: #f0f0f0;
     padding: 16px 0 0 16px;
     margin-bottom: 16px;
 }
 
-@media (max-width: 768px){
-    .container{
+@media (max-width: 768px) {
+    .container {
         margin-bottom: 8px;
+        min-height: 400px;
     }
-    .title{
+
+    .title {
         font-size: 24px;
     }
-    .article{
+
+    .article {
         padding-right: 0;
     }
-    .article-header{
+
+    .article-header {
         margin-bottom: 8px;
     }
-    .text{
+
+    .text {
         margin-bottom: 8px;
     }
-    .social{
+
+    .social {
         padding-bottom: 8px;
         margin-bottom: 8px;
     }
+}
+
+@media (max-width: 567px) {
+    .container {
+        min-height: 320px;
+    }
+
 }

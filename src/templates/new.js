@@ -1,6 +1,5 @@
 import React from "react"
 import { graphql } from "gatsby"
-//import Img from "gatsby-image"
 import Layout from "../containers/app-layout"
 import ReactMarkdown from "react-markdown"
 import AppLikely from "../components/likely/likely"
@@ -19,7 +18,7 @@ const NewTemplate = props => {
         <Layout>
             <SEO
                 title={data.strapiNewsarticle.title}
-                description={" "}
+                description={"TODO"}
                 image={""}
                 pathname={`/news/${data.strapiNewsarticle.customPath}`}
                 article

@@ -1,10 +1,10 @@
 import React from "react"
-import { graphql } from "gatsby"
+import {graphql} from "gatsby"
 //import Img from "gatsby-image"
 import Layout from "../containers/app-layout"
 import ReactMarkdown from "react-markdown"
 import AppLikely from "../components/likely/likely"
-import { Row, Col } from "antd"
+import {Row, Col} from "antd"
 import styles from "./app-article.module.css"
 import Social from "../components/social/social"
 import ImportantInfo from "../components/important-info/important-info"
@@ -14,15 +14,8 @@ import ArticlesPrev from "../components/articles-prev/articles-prev"
 import SEO from "../components/seo/seo"
 import Comments from "../components/comments/comments"
 
-// "policy": [{
-//       "img-src": "'self' http:"
-//     },
-//       "block-all-mixed-content"
-//     ] security.json
-
 const ArticleTemplate = props => {
-    const { data } = props
-    console.log(data.strapiArticle.id)
+    const {data} = props
     return (
         <Layout>
             <SEO
@@ -40,13 +33,13 @@ const ArticleTemplate = props => {
             >
                 <div className={styles.content}>
                     <h1 className={styles.title}>{data.strapiArticle.title}</h1>
-                    <Social color="light" />
+                    <Social color="light"/>
                 </div>
             </div>
-            <Row style={{ marginBottom: "32px" }}>
+            <Row style={{marginBottom: "32px"}}>
                 <Col
-                    xs={{ span: 24 }}
-                    md={{ span: 16 }}
+                    xs={{span: 24}}
+                    md={{span: 16}}
                     className={styles.article}
                 >
                     <div className={styles.articleHeader}>
@@ -55,21 +48,17 @@ const ArticleTemplate = props => {
                             alias={props.pageContext.alias}
                         />
                     </div>
-                    <ImportantInfo horizontal />
+                    <ImportantInfo horizontal/>
                     <div className={styles.text}>
                         <ReactMarkdown
                             source={data.strapiArticle.content}
-                            transformImageUri={uri =>
-                                uri.startsWith("http")
-                                    ? uri
-                                    : `${process.env.IMAGE_BASE_URL}${uri}`
-                            }
+
                             escapeHtml={false}
                         />
                         <div className={styles.social}>
-                            <AppLikely color="dark" fullSize lowerWidget />
+                            <AppLikely color="dark" fullSize lowerWidget/>
                         </div>
-                        <ImportantInfo horizontal />
+                        <ImportantInfo horizontal/>
                         <ArticlesPrev
                             lowerWidget
                             columns={5}
@@ -78,9 +67,9 @@ const ArticleTemplate = props => {
                     </div>
                     <Comments title={data.strapiArticle.title} ownId={data.strapiArticle.id}/>
                 </Col>
-                <Col xs={{ span: 24 }} md={{ span: 8 }}>
-                    <ImportantInfo vertical />
-                    <NewsPrev widget />
+                <Col xs={{span: 24}} md={{span: 8}}>
+                    <ImportantInfo vertical/>
+                    <NewsPrev widget/>
                 </Col>
             </Row>
         </Layout>

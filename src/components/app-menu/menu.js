@@ -1,32 +1,35 @@
-import React, { useCallback, useRef } from "react"
-import { connect } from "react-redux"
-import { Layout, Menu, Icon } from "antd"
+import React, {useCallback, useRef} from "react"
+import {connect} from "react-redux"
+import {Layout, Menu, Icon} from "antd"
 import styles from "./app-menu.module.css"
 import Media from "react-media"
-import { Link as GatsbyLink } from "gatsby"
+import {Link as GatsbyLink} from "gatsby"
 import Search from "../search/search"
 import * as actions from "../../redux/actions/menu"
-import { addActiveStyle } from "../../utils"
+import {addActiveStyle} from "../../utils"
+import logo from '../../images/logo.svg'
 
-const { Header } = Layout
+const {Header} = Layout
 
-const LowerMenu = ({ menuLinks, currentPath }) => {
+const Logo = () => <img src={logo} alt="logo" className={styles.logo}/>
+
+const LowerMenu = ({menuLinks, currentPath}) => {
     return (
-        <nav style={{ borderBottom: "1px solid rgba(255,255,255,.6)" }}>
+        <nav style={{borderBottom: "1px solid rgba(255,255,255,.6)"}}>
             <Menu
                 theme="dark"
                 mode="horizontal"
                 defaultSelectedKeys={[`${currentPath}`]}
-                style={{ lineHeight: "64px" }}
+                style={{lineHeight: "64px"}}
             >
-                {menuLinks.map(({ link, name, alias }) => {
+                {menuLinks.map(({link, name, alias}) => {
                     const resolveAllMatches = currentPath.startsWith(`/${name}`)
                         ? currentPath
                         : link
                     return (
                         <Menu.Item
                             key={resolveAllMatches}
-                            style={{ backgroundColor: "transparent" }}
+                            style={{backgroundColor: "transparent"}}
                         >
                             <GatsbyLink
                                 aria-label={`Переход на страницу ${alias}`}
@@ -42,8 +45,7 @@ const LowerMenu = ({ menuLinks, currentPath }) => {
         </nav>
     )
 }
-const DesktopMenu = ({ menuLinks, currentPath }) => {
-    //console.log("menu-props--", currentPath)
+const DesktopMenu = ({menuLinks, currentPath}) => {
     const navRef = useCallback(node => {
         if (node !== null) {
             addActiveStyle(node)
@@ -56,7 +58,7 @@ const DesktopMenu = ({ menuLinks, currentPath }) => {
                     to={"/"}
                     aria-label={`Переход на домашнюю страницу`}
                 >
-                    <span className={styles.logo}>{`LO\u0307\u0323GO`}</span>
+                    <Logo/>
                 </GatsbyLink>
             </div>
             <nav ref={navRef}>
@@ -64,10 +66,9 @@ const DesktopMenu = ({ menuLinks, currentPath }) => {
                     theme="dark"
                     mode="horizontal"
                     defaultSelectedKeys={[`${currentPath}`]}
-                    // selectedKeys={[`/articles/2`]}
-                    style={{ lineHeight: "64px" }}
+                    style={{lineHeight: "64px"}}
                 >
-                    {menuLinks.map(({ link, name, alias }) => {
+                    {menuLinks.map(({link, name, alias}) => {
                         const resolveAllMatches = currentPath.startsWith(
                             `/${name}`
                         )
@@ -77,7 +78,7 @@ const DesktopMenu = ({ menuLinks, currentPath }) => {
                         return (
                             <Menu.Item
                                 key={resolveAllMatches}
-                                style={{ backgroundColor: "transparent" }}
+                                style={{backgroundColor: "transparent"}}
                             >
                                 <GatsbyLink
                                     to={link}
@@ -87,25 +88,25 @@ const DesktopMenu = ({ menuLinks, currentPath }) => {
                                     {alias.toUpperCase()}
                                 </GatsbyLink>
                             </Menu.Item>
-                        ) //activeClassName={styles.activeLink}
+                        )
                     })}
                 </Menu>
             </nav>
-            <Search />
+            <Search/>
         </Header>
     )
 }
 
 const MobileMenu = ({
-    menuLinks,
-    currentPath,
-    menu,
-    toggleSearch,
-    closeMenu,
-    toggleMenu,
-}) => {
+                        menuLinks,
+                        currentPath,
+                        menu,
+                        toggleSearch,
+                        closeMenu,
+                        toggleMenu,
+                    }) => {
     //console.log(menuLinks)
-    const { menuIsOpen, searchIsOpen } = menu
+    const {menuIsOpen, searchIsOpen} = menu
     const sidebar = useRef(null)
     const menuButton = useRef(null)
     const openNav = () => {
@@ -132,14 +133,16 @@ const MobileMenu = ({
                     <GatsbyLink
                         to={"/"}
                         aria-label={`Переход на домашнюю страницу`}
-                    >{`LO\u0307\u0323GO`}</GatsbyLink>
+                    >
+                        <Logo/>
+                    </GatsbyLink>
                 </div>
             )}
-            <Search />
+            <Search/>
         </>
     )
     return (
-        <header style={{ marginBottom: "8px" }}>
+        <header style={{marginBottom: "8px"}}>
             <div
                 ref={menuButton}
                 className={
@@ -168,9 +171,8 @@ const MobileMenu = ({
                 <Menu
                     defaultSelectedKeys={[`${currentPath}`]}
                     theme="dark"
-                    // onClick={function({ item, key, keyPath, domEvent }) {console.log(item, key, keyPath, domEvent)}}
                 >
-                    {menuLinks.map(({ link, name, icon, alias }) => {
+                    {menuLinks.map(({link, name, icon, alias}) => {
                         const resolveAllMatches = currentPath.startsWith(
                             `/${name}`
                         )
@@ -179,9 +181,9 @@ const MobileMenu = ({
                         return (
                             <Menu.Item
                                 key={resolveAllMatches}
-                                style={{ backgroundColor: "transparent" }}
+                                style={{backgroundColor: "transparent"}}
                             >
-                                <Icon type={icon} />
+                                <Icon type={icon}/>
                                 <span>{alias.toUpperCase()}</span>
                                 <GatsbyLink
                                     to={link}
@@ -197,7 +199,7 @@ const MobileMenu = ({
 }
 
 const AppMenu = props => {
-    //console.log(props.currentPath)
+
     if (props.lower)
         return (
             <LowerMenu
@@ -235,7 +237,7 @@ const AppMenu = props => {
         </Media>
     )
 }
-const mapStateToProps = ({ menu, _window }) => {
+const mapStateToProps = ({menu, _window}) => {
     return {
         menu,
         _window,

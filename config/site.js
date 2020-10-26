@@ -1,16 +1,16 @@
 module.exports = {
-  pathPrefix: '/', // Prefix for all links. If you deploy your site to example.com/portfolio your pathPrefix should be "portfolio"
-  title: 'Сайт о космосе, космических явлениях.', // Navigation and Site Title
-  titleAlt: 'Сайт о космосе', // Title for JSONLD
-  description: 'Сайт о космосе, космических явлениях, вселенной, звёздах, планетах и многом другом.',
+  pathPrefix: '/',
+  title: 'Сайт о древнем Египте.', // Navigation and Site Title
+  titleAlt: 'Сайт о древнем Египте', // Title for JSONLD
+  description: 'Сайт о древнем Египте и многом другом.',
   url: 'https://zealous-bohr-df5586.netlify.com', // Domain of your site. No trailing slash!
   siteUrl: 'https://zealous-bohr-df5586.netlify.com', // url + pathPrefix
-  siteLanguage: 'ru', // Language Tag on <html> element
+  siteLanguage: 'ru',
   logo: 'static/logo/logo.png', // Used for SEO
   banner: 'static/logo/banner.png',
   // JSONLD / Manifest
   favicon: 'static/logo/favicon.png', // Used for manifest favicon generation
-  shortName: 'Космос', // shortname for manifest. MUST be shorter than 12 characters
+  shortName: 'Египет', // shortname for manifest. MUST be shorter than 12 characters
   author: 'Alex', // Author for schemaORGJSONLD
   themeColor: '#001529',
   backgroundColor: '#ffffff',
