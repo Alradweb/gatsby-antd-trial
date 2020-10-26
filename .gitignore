@@ -52,13 +52,13 @@ typings/
 *.tgz
 
 # dotenv environment variables file
-.env
+.env*
 
 # gatsby files
 .cache/
 public
 
-# Mac files
+# Mac files surge --domain https://cruel-eggnog.surge.sh
 .DS_Store
 
 # Yarn

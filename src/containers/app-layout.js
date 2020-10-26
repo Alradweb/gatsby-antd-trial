@@ -5,7 +5,6 @@ import styles from "./app-layout.module.css"
 import AppMenu from "../components/app-menu/menu"
 import { Layout } from "antd"
 import { graphql, StaticQuery } from "gatsby"
-//import { Helmet } from "react-helmet"
 import { Location } from "@reach/router"
 import WindowIndicator from "../components/window-indicator"
 import ScrollProgress from "../components/scroll-progress/scroll-progress"
@@ -16,7 +15,7 @@ import SEO from "../components/seo/seo"
 const { Content } = Layout
 
 const AppLayout = props => {
-    //console.log('Layout(props)->',props)
+
 
     return (
         <StaticQuery
@@ -40,11 +39,6 @@ const AppLayout = props => {
                     <Provider store={store}>
                         <SEO />
                         <WindowIndicator>
-                            {/*<Helmet*/}
-                            {/*  title={data.site.siteMetadata.title}*/}
-                            {/*  meta={data.site.siteMetadata.helmetMetaData}*/}
-                            {/*>*/}
-                            {/*</Helmet>*/}
                             <ScrollProgress />
                             <AppMenu
                                 menuLinks={data.site.siteMetadata.menuLinks}
@@ -75,30 +69,3 @@ export default props => (
         {locationProps => <AppLayout {...locationProps} {...props} />}
     </Location>
 )
-// const AppLayout = ({ children }) => {
-//   return (
-//     <div className={styles.appLayout}>
-//       <DocumentHead/>
-//       <PageProgress color='tomato' height={3}/>
-//       <AppMenu/>
-//       <Content style={{ padding: "0 20px" }}>
-//         <Breadcrumb style={{ margin: "16px 0" }}>
-//           <Breadcrumb.Item>Home</Breadcrumb.Item>
-//           <Breadcrumb.Item>List</Breadcrumb.Item>
-//           <Breadcrumb.Item>App</Breadcrumb.Item>
-//         </Breadcrumb>
-//         <div style={{ background: "#fff", padding: 24, minHeight: 280 }}>
-//           {children}
-//         </div>
-//       </Content>
-//
-//       <Footer style={{ textAlign: "center" }}>
-//         © {new Date().getFullYear()}, Built with
-//         {` `}
-//         <a href="https://www.gatsbyjs.org">Gatsby</a> and {" "}
-//         <a href="http://strapi.io">Strapi</a>
-//       </Footer>
-//     </div>
-//   )
-// }
-// export default AppLayout

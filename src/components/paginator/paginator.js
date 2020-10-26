@@ -89,7 +89,6 @@ const Paginator = props => {
                     className={styles.pagination}
                 />
             </div>
-            {/*<Pagination simple defaultCurrent={currentPage} total={numPages * 10} />*/}
         </section>
     )
 }

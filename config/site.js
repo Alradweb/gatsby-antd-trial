@@ -3,8 +3,8 @@ module.exports = {
   title: 'Сайт о древнем Египте.', // Navigation and Site Title
   titleAlt: 'Сайт о древнем Египте', // Title for JSONLD
   description: 'Сайт о древнем Египте и многом другом.',
-  url: 'https://zealous-bohr-df5586.netlify.com', // Domain of your site. No trailing slash!
-  siteUrl: 'https://zealous-bohr-df5586.netlify.com', // url + pathPrefix
+  url: 'https://cruel-eggnog.surge.sh', // Domain of your site. No trailing slash!
+  siteUrl: 'https://cruel-eggnog.surge.sh', // url + pathPrefix http://cruel-eggnog.surge.sh
   siteLanguage: 'ru',
   logo: 'static/logo/logo.png', // Used for SEO
   banner: 'static/logo/banner.png',

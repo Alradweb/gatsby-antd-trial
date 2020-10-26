@@ -1,6 +1,6 @@
 # example netlify.toml
 [build]
-  command = "gatsby clean && gatsby build"
+  command = "gatsby build"
   functions = "functions"
   publish = "public"
 

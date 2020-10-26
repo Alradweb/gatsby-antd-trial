@@ -3,8 +3,6 @@ import Helmet from "react-helmet"
 
 import { StaticQuery, graphql } from "gatsby"
 
-//<meta name="image" content="https://gatsby-tutorial-starter.netlify.comstatic/logo/banner.png" data-react-helmet="true">
-
 const SEO = props => {
     const { title, desc, banner, pathname } = props
     const article = props.article

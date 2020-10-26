@@ -6,11 +6,11 @@
   "license": "ISC",
   "scripts": {
     "build": "gatsby clean && gatsby build",
+    "publ": "cd public && surge --domain https://cruel-eggnog.surge.sh",
     "dev": "gatsby develop",
     "devmob": "gatsby develop -H 0.0.0.0",
     "lint": "eslint src/**/*.{js,jsx}",
     "format": "prettier --write src/**/*.{js,jsx}",
-    "start": "npm run dev",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""

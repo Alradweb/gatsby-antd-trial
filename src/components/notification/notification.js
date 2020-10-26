@@ -15,10 +15,6 @@ const notificationOpen = (type, message, description) =>{
     notification[type]({
       message,
       description
-      // style: {
-      //   width: 600,
-      //   marginLeft: 335 - 600,
-      // },
     })
     repeatedMessage = false
   },600)

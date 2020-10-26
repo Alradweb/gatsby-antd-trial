@@ -35,7 +35,6 @@ class Comments extends React.Component {
     data.login ?
       this.checkLoginOnServer(null, data) :
       this.checkRegisterOnServer(data)
-    //console.log(data)
   }
 
   // _isMounted = false;
@@ -157,7 +156,7 @@ class Comments extends React.Component {
     const { submitData, editorChange, handleModalCancel, writeComment, getAuthData } = this
     return (
       <>
-        <div>
+        <div style={{marginBottom: '8px'}}>
           <h4 onClick={()=> notificationOpen("error", "Уведомление", "userIsLogin, commentsList, comment, submitting, modalVisible, showTextField, formTitle, userAvatar")}>Комментарии:</h4>
           {commentsList.length > 0 && <CommentList comments={commentsList}/>}
           {
