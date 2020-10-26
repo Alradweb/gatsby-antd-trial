@@ -58,14 +58,15 @@ typings/
 .cache/
 public
 
-# Mac files surge --domain https://cruel-eggnog.surge.sh
+# Mac files
 .DS_Store
 
 # Yarn
 yarn-error.log
+yarn.lock
 .pnp/
 .pnp.js
 # Yarn Integrity file
 .yarn-integrity
-
+.env.development
 package-lock.json
